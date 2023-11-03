@@ -14,7 +14,7 @@ const Navbar = ({}: Props) => {
   return (
     <>
       <motion.div
-        className=" flex mx-auto w-5/6 ml-[-.1rem]"
+        className=" flex w-full  items-center mx-auto  ml-[-.1rem] border-b-2"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
@@ -26,20 +26,27 @@ const Navbar = ({}: Props) => {
         <HText>
           <span className="pl-2">Pomoto</span>
         </HText>
-        <div className="flex  justify-between">
-          <div className="flex flex-row justify-center m-2 items-center cursor-pointer ">
-            <img src={report} alt="" width={20} height={20} />
-            <h2>Report</h2>
-          </div>
-          <div className="flex flex-row  items-center  m-2 cursor-pointer">
-            <img src={setting} alt="" width={20} height={20} />
-            <h2>Setting</h2>
-          </div>
+        <div className="flex  justify-between ">
+          <button className="border-2 rounded-md mx-2">
+            <div className="flex flex-row justify-center m-2 items-center cursor-pointer ">
+              <img src={report} alt="" width={20} height={20} />
+              <h2>Report</h2>
+            </div>
+          </button>
 
-          <div className="flex flex-row justify-center m-2 items-center cursor-pointer ">
-            <img src={login} alt="" width={20} height={20} />
-            <h2>Login</h2>
-          </div>
+          <button className="border-2 rounded-md mx-2">
+            <div className="flex flex-row  items-center  m-2 cursor-pointer">
+              <img src={setting} alt="" width={20} height={20} />
+              <h2>Setting</h2>
+            </div>
+          </button>
+
+          <button className="border-2 rounded mx-2">
+            <div className="flex flex-row justify-center m-2 items-center cursor-pointer ">
+              <img src={login} alt="" width={20} height={20} />
+              <h2>Login</h2>
+            </div>
+          </button>
         </div>
       </motion.div>
     </>
