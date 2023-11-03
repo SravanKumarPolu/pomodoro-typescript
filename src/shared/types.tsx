@@ -1,8 +1,8 @@
 export enum SelectedPage {
   Home = "home",
-  Benefits = "benefits",
-  OurClasses = "ourclasses",
-  ContactUs = "contactus",
+  Setting = "setting",
+  Login = "login",
+  Report = "report",
 }
 export interface BenefitType {
   icon: JSX.Element;
