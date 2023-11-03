@@ -5,6 +5,7 @@ import report from "../../assets/report.svg";
 import login from "../../assets/login.svg";
 import Link from "./Link";
 import { SelectedPage } from "@/shared/types";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -14,6 +15,7 @@ type Props = {
 
 const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
   const flexBetween = "flex items-center justify-between";
+  const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
   return (
     <>
       <nav>
@@ -31,40 +33,62 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
             <HText>
               <span className="pl-2">Pomoto</span>
             </HText>
-            <div className="flex  justify-between ">
-              <button className="border-2 rounded-md mx-2">
-                <div className="flex flex-row justify-center m-2 items-center cursor-pointer ">
-                  <img src={report} alt="" width={20} height={20} />
-                  <Link
-                    page="Report"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  />
-                </div>
-              </button>
+            {isAboveMediumScreens ? (
+              <div className="flex  justify-between ">
+                <button className="border-2 rounded-md mx-2">
+                  <div className="flex flex-row justify-center m-2 items-center cursor-pointer ">
+                    <img src={report} alt="" width={20} height={20} />
+                    <Link
+                      page="Report"
+                      selectedPage={selectedPage}
+                      setSelectedPage={setSelectedPage}
+                    />
+                  </div>
+                </button>
 
-              <button className="border-2 rounded-md mx-2">
-                <div className="flex flex-row  items-center  m-2 cursor-pointer">
-                  <img src={setting} alt="" width={20} height={20} />
-                  <Link
-                    page="Setting"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  />
-                </div>
-              </button>
+                <button className="border-2 rounded-md mx-2">
+                  <div className="flex flex-row  items-center  m-2 cursor-pointer">
+                    <img src={setting} alt="" width={20} height={20} />
+                    <Link
+                      page="Setting"
+                      selectedPage={selectedPage}
+                      setSelectedPage={setSelectedPage}
+                    />
+                  </div>
+                </button>
 
-              <button className="border-2 rounded mx-2">
-                <div className="flex flex-row justify-center m-2 items-center cursor-pointer ">
-                  <img src={login} alt="" width={20} height={20} />
-                  <Link
-                    page="Login"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  />
-                </div>
-              </button>
-            </div>
+                <button className="border-2 rounded mx-2">
+                  <div className="flex flex-row justify-center m-2 items-center cursor-pointer ">
+                    <img src={login} alt="" width={20} height={20} />
+                    <Link
+                      page="Login"
+                      selectedPage={selectedPage}
+                      setSelectedPage={setSelectedPage}
+                    />
+                  </div>
+                </button>
+              </div>
+            ) : (
+              <div className="flex  justify-between ">
+                <button className="border-2 rounded-md mx-2">
+                  <div className="flex flex-row justify-center m-2 items-center cursor-pointer ">
+                    <img src={report} alt="" width={20} height={20} />
+                  </div>
+                </button>
+
+                <button className="border-2 rounded-md mx-2">
+                  <div className="flex flex-row  items-center  m-2 cursor-pointer">
+                    <img src={setting} alt="" width={20} height={20} />
+                  </div>
+                </button>
+
+                <button className="border-2 rounded mx-2">
+                  <div className="flex flex-row justify-center m-2 items-center cursor-pointer ">
+                    <img src={login} alt="" width={20} height={20} />
+                  </div>
+                </button>
+              </div>
+            )}
           </motion.div>
         </div>
       </nav>
