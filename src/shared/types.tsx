@@ -3,6 +3,9 @@ export enum SelectedPage {
   Setting = "setting",
   Login = "login",
   Report = "report",
+  Pomodoro = "pomodoro",
+  Long = "long",
+  Short = "short",
 }
 export interface BenefitType {
   icon: JSX.Element;
