@@ -78,6 +78,22 @@ const Hero = ({ selectedPage, setSelectedPage }: Props) => {
               </button>
             </div>
           )}
+          <div className="flex flex-row m-2">
+            <button className="m-2 px-2 border-2 rounded xs:mx-1 xs:text-xs">
+              <Link
+                page="Start"
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
+            </button>
+            <button className="m-2 px-2 border-2 rounded xs:mx-1 xs:text-xs">
+              <Link
+                page="Stop"
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
+            </button>
+          </div>
         </div>
       </div>
     </div>
