@@ -3,6 +3,8 @@ import { SelectedPage } from "@/shared/types";
 import Link from "../navbar/Link";
 import reset from "@/assets/reset.svg";
 import next from "@/assets/next.svg";
+import play from "@/assets/play.svg";
+import pause from "@/assets/pause.svg";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
 type Props = {
@@ -78,22 +80,33 @@ const Hero = ({ selectedPage, setSelectedPage }: Props) => {
               </button>
             </div>
           )}
-          <div className="flex flex-row m-2">
-            <button className="m-2 px-2 border-2 rounded xs:mx-1 xs:text-xs">
-              <Link
-                page="Start"
-                selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
-              />
-            </button>
-            <button className="m-2 px-2 border-2 rounded xs:mx-1 xs:text-xs">
-              <Link
-                page="Stop"
-                selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
-              />
-            </button>
-          </div>
+          {isAboveMediumScreens ? (
+            <div className="flex flex-row m-2">
+              <button className="m-2 px-2 border-2 rounded ">
+                <Link
+                  page="Play"
+                  selectedPage={selectedPage}
+                  setSelectedPage={setSelectedPage}
+                />
+              </button>
+              <button className="m-2 px-2 border-2 rounded ">
+                <Link
+                  page="Pause"
+                  selectedPage={selectedPage}
+                  setSelectedPage={setSelectedPage}
+                />
+              </button>
+            </div>
+          ) : (
+            <div className="flex flex-row justify-between items-center gap-1">
+              <button className="flex bg-white m-2  border-2 rounded w-12 h-12 items-center  justify-center">
+                <img className="  " src={play} alt="" width={24} height={24} />
+              </button>
+              <button className="flex bg-white m-2  border-2 rounded w-12 h-12 items-center  justify-center">
+                <img className="  " src={pause} alt="" width={24} height={24} />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
