@@ -36,7 +36,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
             {isAboveMediumScreens ? (
               <div className="flex  justify-between ">
                 <button className="border-2 rounded-md mx-2">
-                  <div className="flex flex-row justify-center m-2 items-center cursor-pointer ">
+                  <div className="flex flex-row justify-center m-2 items-center cursor-pointer sx:m-1 ">
                     <img src={report} alt="" width={20} height={20} />
                     <Link
                       page="Report"
