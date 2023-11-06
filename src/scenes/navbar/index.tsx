@@ -19,7 +19,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
   return (
     <>
       <nav>
-        <div className={`${flexBetween} fixed top-0 z-30 w-full py-6`}>
+        <div className={`${flexBetween} fixed top-0 z-30 w-full py-6 `}>
           <motion.div
             className=" flex w-full  items-center mx-auto  ml-[-.1rem] border-b-2"
             initial="hidden"
@@ -69,20 +69,20 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
                 </button>
               </div>
             ) : (
-              <div className="flex  justify-between ">
-                <button className="border-2 rounded-md mx-2">
+              <div className="flex  justify-around items-center ">
+                <button className="border-2 rounded-md mx-1">
                   <div className="flex flex-row justify-center m-2 items-center cursor-pointer ">
                     <img src={report} alt="" width={20} height={20} />
                   </div>
                 </button>
 
-                <button className="border-2 rounded-md mx-2">
+                <button className="border-2 rounded-md mx-1">
                   <div className="flex flex-row  items-center  m-2 cursor-pointer">
                     <img src={setting} alt="" width={20} height={20} />
                   </div>
                 </button>
 
-                <button className="border-2 rounded mx-2">
+                <button className="border-2 rounded mx-1">
                   <div className="flex flex-row justify-center m-2 items-center cursor-pointer ">
                     <img src={login} alt="" width={20} height={20} />
                   </div>

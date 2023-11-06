@@ -6,6 +6,7 @@ export enum SelectedPage {
   Pomodoro = "pomodoro",
   Long = "long",
   Short = "short",
+  ContactUs = "ContactUs",
 }
 export interface BenefitType {
   icon: JSX.Element;
