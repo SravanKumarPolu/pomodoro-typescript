@@ -93,16 +93,16 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
               </button>
             </div>
           ) : (
-            <div className="flex flex-row justify-between items-center">
-              <button className="flex bg-white m-2 border-2 rounded w-12 h-12 items-center justify-center">
-                <img className="" src={reset} alt="" width={24} height={24} />
+            <div className="flex flex-row justify-between items-center ">
+              <button className="flex bg-white m-2  border-2 rounded w-12 h-12 items-center  justify-center">
+                <img className="  " src={reset} alt="" width={24} height={24} />
               </button>
-              <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
+              <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500  font-semibold flex items-center justify-center">
                 {Math.floor(time / 60)}:
                 {(time % 60).toString().padStart(2, "0")}
               </div>
-              <button className="flex bg-white m-2 border-2 rounded w-12 h-12 items-center justify-center">
-                <img className="" src={next} alt="" width={24} height={24} />
+              <button className="flex bg-white m-2  border-2 rounded w-12 h-12 items-center  justify-center">
+                <img className="  " src={next} alt="" width={24} height={24} />
               </button>
             </div>
           )}
@@ -119,8 +119,6 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
                   />
                 </button>
               ) : (
-                // Render "Play" button when the timer is not active
-                // <button onClick={toggleTimer}>{isActive ? 'Pause' : 'Start'}</button>
                 <button
                   onClick={toggleTimer}
                   className="m-2 px-2 border-2 rounded ">
@@ -134,12 +132,30 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
             </div>
           ) : (
             <div className="flex flex-row justify-between items-center gap-1">
-              <button className="flex bg-white m-2 border-2 rounded w-12 h-12 items-center justify-center">
-                <img className="" src={play} alt="" width={24} height={24} />
-              </button>
-              <button className="flex bg-white m-2 border-2 rounded w-12 h-12 items-center justify-center">
-                <img className="" src={pause} alt="" width={24} height={24} />
-              </button>
+              {isActive ? (
+                <button
+                  onClick={toggleTimer}
+                  className="flex bg-white m-2  border-2 rounded w-12 h-12 items-center  justify-center">
+                  <img
+                    className="  "
+                    src={pause}
+                    alt=""
+                    width={24}
+                    height={24}
+                  />
+                </button>
+              ) : (
+                <button className="flex bg-white m-2  border-2 rounded w-12 h-12 items-center  justify-center">
+                  <img
+                    onClick={toggleTimer}
+                    className="  "
+                    src={play}
+                    alt=""
+                    width={24}
+                    height={24}
+                  />
+                </button>
+              )}
             </div>
           )}
         </div>
