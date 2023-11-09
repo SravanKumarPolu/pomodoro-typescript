@@ -41,12 +41,9 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
   return (
     <div className="h-full flex items-center justify-center p-2">
       <div
-        className={`flex mt-0 items-center justify-center p-10 h-${
-          isAboveMediumScreens ? "5/6" : "5/6"
-        }
-         w-${
-           isAboveMediumScreens ? "4/6" : "full"
-         }  bg-gray-950 rounded text-gray-100 absolute  `}>
+        className={`flex h-2/3 mt-0 items-center justify-center  p-10 
+       ${isAboveMediumScreens ? "w-5/6" : "w-full"}
+       bg-gray-950 rounded text-white absolute`}>
         <div className="flex flex-col gap-2 items-center justify-around">
           <div className="flex flex-row m-2">
             <button className="m-2 px-2 border-2 rounded xs:mx-1 xs:text-xs">
