@@ -3,7 +3,7 @@ import Link from "../navbar/Link";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Pomodoro from "@/pomodoro";
 import ShortBreak from "@/short";
-// import LongBreak from "@/long";
+import LongBreak from "@/long";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -33,13 +33,13 @@ const Hero: React.FC<Props> = ({
             setSelectedPage={setSelectedPage}
           />
         );
-      // case "LongBreak":
-      //   return (
-      //     <LongBreak
-      //       selectedPage={selectedPage}
-      //       setSelectedPage={setSelectedPage}
-      //     />
-      //   );
+      case "LongBreak":
+        return (
+          <LongBreak
+            selectedPage={selectedPage}
+            setSelectedPage={setSelectedPage}
+          />
+        );
       default:
         return null;
     }
