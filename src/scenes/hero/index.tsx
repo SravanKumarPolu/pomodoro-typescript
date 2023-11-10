@@ -41,7 +41,12 @@ const Hero: React.FC<Props> = ({
           />
         );
       default:
-        return null;
+        return (
+          <Pomodoro
+            selectedPage={selectedPage}
+            setSelectedPage={setSelectedPage}
+          />
+        );
     }
   };
 
