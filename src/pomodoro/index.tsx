@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { SelectedPage } from "@/shared/types";
 
 import reset from "@/assets/reset.svg";
@@ -39,7 +39,7 @@ const Pomodoro = ({ selectedPage, setSelectedPage }: Props) => {
   };
 
   return (
-    <div>
+    <div className="flex justify-center items-center flex-col">
       {isAboveMediumScreens ? (
         <div className="flex flex-row m-2 items-center gap-4">
           <button className="m-2 px-2 border-2 rounded ">

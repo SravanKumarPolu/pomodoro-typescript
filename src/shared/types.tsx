@@ -3,10 +3,11 @@ export enum SelectedPage {
   Setting = "setting",
   Login = "login",
   Report = "report",
-  Pomodoro = "pomodoro",
+  Pomodoro = "Pomodoro",
   Long = "long",
-  Short = "short",
+  ShortBreak = "ShortBreak",
   ContactUs = "ContactUs",
+  LongBreak = "LongBreak",
 }
 export interface BenefitType {
   icon: JSX.Element;
