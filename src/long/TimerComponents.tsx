@@ -7,8 +7,12 @@ interface TimerDisplay {
 export const ControlButton: React.FC<{ text: string; onClick: () => void }> = ({
   text,
   onClick,
-}) => <button onClick={onClick}>{text}</button>;
+}) => (
+  <button className="m-2 px-2 border-2 rounded" onClick={onClick}>
+    {text}
+  </button>
+);
 
 export const TimerDisplay: React.FC<{ time: any }> = ({ time }) => (
-  <div>Time: {time}</div>
+  <div> {time}</div>
 );

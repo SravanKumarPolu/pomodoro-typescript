@@ -1,20 +1,16 @@
 // tsrafce
 import { useState, useEffect } from "react";
 import { SelectedPage } from "@/shared/types";
+import { ControlButton, TimerDisplay } from "./TimerComponents";
 
-import reset from "@/assets/reset.svg";
-import next from "@/assets/next.svg";
-import play from "@/assets/play.svg";
-import pause from "@/assets/pause.svg";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import Link from "@/scenes/navbar/Link";
 
 type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-const LongBreak = ({ selectedPage, setSelectedPage }: Props) => {
+const LongBreak = ({ setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
   const [time, setTime] = useState(15 * 60);
   const [isActive, setIsActive] = useState(false);
@@ -27,7 +23,8 @@ const LongBreak = ({ selectedPage, setSelectedPage }: Props) => {
       }, 1000);
     } else if (time === 0) {
       setIsActive(false);
-      setTime(15 * 60); // Reset to 25 minutes
+      setTime(15 * 60);
+      setSelectedPage(SelectedPage.Pomodoro);
     }
 
     return () => clearInterval(interval);
@@ -36,86 +33,43 @@ const LongBreak = ({ selectedPage, setSelectedPage }: Props) => {
   const toggleTimer = () => {
     setIsActive(!isActive);
   };
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(
+      remainingSeconds
+    ).padStart(2, "0")}`;
+  };
   return (
     <div className="flex justify-center items-center flex-col">
+      <div className="flex flex-row m-2 items-center gap-4">
+        <ControlButton
+          text="Reset"
+          onClick={() => {
+            toggleTimer();
+            setTime(25 * 60);
+            setIsActive(false);
+          }}
+        />
+        <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
+          <TimerDisplay time={formatTime(time)} />
+        </div>
+
+        <ControlButton
+          text="Next"
+          onClick={() => setSelectedPage(SelectedPage.LongBreak)}
+        />
+      </div>
       {isAboveMediumScreens ? (
-        <div className="flex flex-row m-2 items-center gap-4">
-          <button className="m-2 px-2 border-2 rounded ">
-            <Link
-              page="Reset"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-          </button>
-          <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
-            {Math.floor(time / 60)}:{(time % 60).toString().padStart(2, "0")}
-          </div>
-          <button className="m-2 px-2 border-2 rounded ">
-            <Link
-              page="Next"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-          </button>
-        </div>
+        <ControlButton
+          text={isActive ? "Pause" : "Play"}
+          onClick={() => toggleTimer()}
+        />
       ) : (
-        <div className="flex flex-row justify-between items-center ">
-          <button className="flex bg-white m-2  border-2 rounded w-12 h-12 items-center  justify-center">
-            <img className="  " src={reset} alt="" width={24} height={24} />
-          </button>
-          <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500  font-semibold flex items-center justify-center">
-            {Math.floor(time / 60)}:{(time % 60).toString().padStart(2, "0")}
-          </div>
-          <button className="flex bg-white m-2  border-2 rounded w-12 h-12 items-center  justify-center">
-            <img className="  " src={next} alt="" width={24} height={24} />
-          </button>
-        </div>
-      )}
-      {isAboveMediumScreens ? (
-        <div className="flex flex-row m-2">
-          {isActive ? ( // Render "Pause" button when the timer is active
-            <button
-              onClick={toggleTimer}
-              className="m-2 px-2 border-2 rounded ">
-              <Link
-                page="Pause"
-                selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
-              />
-            </button>
-          ) : (
-            <button
-              onClick={toggleTimer}
-              className="m-2 px-2 border-2 rounded ">
-              <Link
-                page="Play"
-                selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
-              />
-            </button>
-          )}
-        </div>
-      ) : (
-        <div className="flex flex-row justify-between items-center gap-1">
-          {isActive ? (
-            <button
-              onClick={toggleTimer}
-              className="flex bg-white m-2  border-2 rounded w-12 h-12 items-center  justify-center">
-              <img className="  " src={pause} alt="" width={24} height={24} />
-            </button>
-          ) : (
-            <button className="flex bg-white m-2  border-2 rounded w-12 h-12 items-center  justify-center">
-              <img
-                onClick={toggleTimer}
-                className="  "
-                src={play}
-                alt=""
-                width={24}
-                height={24}
-              />
-            </button>
-          )}
-        </div>
+        <ControlButton
+          text={isActive ? "Pause" : "Play"}
+          onClick={() => toggleTimer()}
+        />
       )}
     </div>
   );
