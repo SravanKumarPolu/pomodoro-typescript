@@ -12,11 +12,7 @@ type Props = {
   remainingTime: number; // Add remainingTime to the Props type
 };
 
-const Hero: React.FC<Props> = ({
-  selectedPage,
-
-  setSelectedPage,
-}: Props) => {
+const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
 
   const [remainingTime, setRemainingTime] = useState<number>(25 * 60);
@@ -29,6 +25,11 @@ const Hero: React.FC<Props> = ({
         case SelectedPage.Pomodoro:
           setSelectedPage(SelectedPage.ShortBreak);
           setRemainingTime(5 * 60);
+
+          break;
+        case SelectedPage.LongBreak:
+          setSelectedPage(SelectedPage.Pomodoro);
+          setRemainingTime(25 * 60);
           break;
         case SelectedPage.ShortBreak:
           setSelectedPage(SelectedPage.Pomodoro);
@@ -50,7 +51,7 @@ const Hero: React.FC<Props> = ({
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [selectedPage, setSelectedPage]);
+  }, [selectedPage, setSelectedPage, remainingTime]);
 
   const renderPage = () => {
     switch (selectedPage) {
