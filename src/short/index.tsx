@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SelectedPage } from "@/shared/types";
-// import Link from "../navbar/Link";
-// import useMediaQuery from "@/hooks/useMediaQuery";
+
 import { ControlButton, TimerDisplay } from "./TimerComponents";
 type Props = {
   selectedPage: SelectedPage;
@@ -32,6 +31,13 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const toggleTimer = () => {
     setIsActive(!isActive);
   };
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(
+      remainingSeconds
+    ).padStart(2, "0")}`;
+  };
 
   return (
     <div className="flex justify-center items-center flex-col">
@@ -43,7 +49,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
           setIsActive(false);
         }}
       />
-      <TimerDisplay time={time} />
+      <TimerDisplay time={formatTime(time)} />
       <ControlButton
         text="Next"
         onClick={() => setSelectedPage(SelectedPage.Pomodoro)}

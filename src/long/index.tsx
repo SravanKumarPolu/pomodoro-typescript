@@ -16,7 +16,7 @@ type Props = {
 
 const LongBreak = ({ selectedPage, setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
-  const [time, setTime] = useState(15 * 60); // Initial time is 25 minutes in seconds
+  const [time, setTime] = useState(15 * 60);
   const [isActive, setIsActive] = useState(false);
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -26,8 +26,6 @@ const LongBreak = ({ selectedPage, setSelectedPage }: Props) => {
         setTime((prevTime) => prevTime - 1);
       }, 1000);
     } else if (time === 0) {
-      // Timer is up, you can add sound or notifications here
-      // For simplicity, we'll reset the timer
       setIsActive(false);
       setTime(15 * 60); // Reset to 25 minutes
     }

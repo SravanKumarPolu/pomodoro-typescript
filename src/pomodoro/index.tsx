@@ -1,6 +1,6 @@
+// Pomodoro.tsx
 import React, { useEffect, useState } from "react";
 import { SelectedPage } from "@/shared/types";
-// import useMediaQuery from "@/hooks/useMediaQuery";
 import { ControlButton, TimerDisplay } from "./TimerComponents";
 
 type Props = {
@@ -9,7 +9,6 @@ type Props = {
 };
 
 const Pomodoro: React.FC<Props> = ({ setSelectedPage }: Props) => {
-  // const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
   const [time, setTime] = useState(25 * 60); // Initial time is 25 minutes in seconds
   const [isActive, setIsActive] = useState(false);
 
@@ -33,6 +32,14 @@ const Pomodoro: React.FC<Props> = ({ setSelectedPage }: Props) => {
     setIsActive(!isActive);
   };
 
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(
+      remainingSeconds
+    ).padStart(2, "0")}`;
+  };
+
   return (
     <div className="flex justify-center items-center flex-col">
       <ControlButton
@@ -43,7 +50,7 @@ const Pomodoro: React.FC<Props> = ({ setSelectedPage }: Props) => {
           setIsActive(false);
         }}
       />
-      <TimerDisplay time={time} />
+      <TimerDisplay time={formatTime(time)} />
       <ControlButton
         text="Next"
         onClick={() => setSelectedPage(SelectedPage.ShortBreak)}
