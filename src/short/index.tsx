@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { SelectedPage } from "@/shared/types";
 
 import { ControlButton, TimerDisplay } from "./TimerComponents";
+import useMediaQuery from "@/hooks/useMediaQuery";
 type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
 };
 
 const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
-  // const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
+  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
   const [time, setTime] = useState(5 * 60); // Initial time is 5 minutes in seconds
   const [isActive, setIsActive] = useState(false);
 
@@ -41,24 +42,35 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
   return (
     <div className="flex justify-center items-center flex-col">
-      <ControlButton
-        text="Reset"
-        onClick={() => {
-          toggleTimer();
-          setTime(5 * 60);
-          setIsActive(false);
-        }}
-      />
-      <TimerDisplay time={formatTime(time)} />
-      <ControlButton
-        text="Next"
-        onClick={() => setSelectedPage(SelectedPage.Pomodoro)}
-      />
+      <div className="flex flex-row m-2 items-center gap-4">
+        <ControlButton
+          text="Reset"
+          onClick={() => {
+            toggleTimer();
+            setTime(25 * 60);
+            setIsActive(false);
+          }}
+        />
+        <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
+          <TimerDisplay time={formatTime(time)} />
+        </div>
 
-      <ControlButton
-        text={isActive ? "Pause" : "Play"}
-        onClick={() => toggleTimer()}
-      />
+        <ControlButton
+          text="Next"
+          onClick={() => setSelectedPage(SelectedPage.ShortBreak)}
+        />
+      </div>
+      {isAboveMediumScreens ? (
+        <ControlButton
+          text={isActive ? "Pause" : "Play"}
+          onClick={() => toggleTimer()}
+        />
+      ) : (
+        <ControlButton
+          text={isActive ? "Pause" : "Play"}
+          onClick={() => toggleTimer()}
+        />
+      )}
     </div>
   );
 };

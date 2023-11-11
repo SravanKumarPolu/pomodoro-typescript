@@ -68,13 +68,13 @@ const Hero: React.FC<Props> = ({
             setSelectedPage={setSelectedPage}
           />
         );
-      // case SelectedPage.LongBreak:
-      //   return (
-      //     <LongBreak
-      //       selectedPage={selectedPage}
-      //       setSelectedPage={setSelectedPage}
-      //     />
-      //   );
+      case SelectedPage.LongBreak:
+        return (
+          <LongBreak
+            selectedPage={selectedPage}
+            setSelectedPage={setSelectedPage}
+          />
+        );
       default:
         return (
           <Pomodoro
