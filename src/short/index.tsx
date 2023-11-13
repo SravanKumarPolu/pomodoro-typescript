@@ -10,7 +10,7 @@ type Props = {
 
 const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
-  const [time, setTime] = useState(5 * 60); // Initial time is 5 minutes in seconds
+  const [time, setTime] = useState(0.2 * 60); // Initial time is 5 minutes in seconds
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -22,7 +22,8 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
       }, 1000);
     } else if (time === 0) {
       setIsActive(false);
-      setTime(5 * 60); // Reset to 5 minutes
+      setTime(0.2 * 60);
+
       setSelectedPage(SelectedPage.Pomodoro); // Automatically switch to Pomodoro
     }
 
@@ -51,13 +52,14 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
             setIsActive(false);
           }}
         />
+
         <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
           <TimerDisplay time={formatTime(time)} />
         </div>
 
         <ControlButton
           text="Next"
-          onClick={() => setSelectedPage(SelectedPage.ShortBreak)}
+          onClick={() => setSelectedPage(SelectedPage.Pomodoro)}
         />
       </div>
       {isAboveMediumScreens ? (

@@ -4,6 +4,7 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import Pomodoro from "@/pomodoro";
 import ShortBreak from "@/short";
 import LongBreak from "@/long";
+
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -20,30 +21,30 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
   useEffect(() => {
     let timer: NodeJS.Timeout;
 
-    const handleTimeout = () => {
-      switch (selectedPage) {
-        case SelectedPage.Pomodoro:
-          setSelectedPage(SelectedPage.ShortBreak);
-          setRemainingTime(5 * 60);
+    // const handleTimeout = () => {
+    //   switch (selectedPage) {
+    //     case SelectedPage.Pomodoro:
+    //       setSelectedPage(SelectedPage.ShortBreak);
+    //       setRemainingTime(5 * 60);
 
-          break;
-        case SelectedPage.LongBreak:
-          setSelectedPage(SelectedPage.Pomodoro);
-          setRemainingTime(25 * 60);
-          break;
-        case SelectedPage.ShortBreak:
-          setSelectedPage(SelectedPage.Pomodoro);
-          setRemainingTime(25 * 60);
-          break;
-        default:
-          break;
-      }
-    };
+    //       break;
+    //     case SelectedPage.LongBreak:
+    //       setSelectedPage(SelectedPage.Pomodoro);
+    //       setRemainingTime(25 * 60);
+    //       break;
+    //     case SelectedPage.ShortBreak:
+    //       setSelectedPage(SelectedPage.Pomodoro);
+    //       setRemainingTime(25 * 60);
+    //       break;
+    //     default:
+    //       break;
+    //   }
+    // };
 
     timer = setInterval(() => {
       setRemainingTime((prevTime) => {
         if (prevTime === 0) {
-          handleTimeout();
+          // handleTimeout();
           clearInterval(timer);
         }
         return prevTime - 1;
