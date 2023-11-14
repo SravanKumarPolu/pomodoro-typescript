@@ -11,7 +11,7 @@ type Props = {
 
 const Pomodoro: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
-  const [time, setTime] = useState(0.1 * 60); // Initial time is 25 minutes in seconds
+  const [time, setTime] = useState(25 * 60); // Initial time is 25 minutes in seconds
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Pomodoro: React.FC<Props> = ({ setSelectedPage }: Props) => {
       }, 1000);
     } else if (time === 0) {
       setIsActive(false);
-      setTime(0.1 * 60);
+      setTime(25 * 60);
 
       setSelectedPage(SelectedPage.ShortBreak);
     }

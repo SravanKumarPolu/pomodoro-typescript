@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { SelectedPage } from "@/shared/types";
-
+import skr from "@/assets/short-to-pomodoro.mp3";
 import { ControlButton, TimerDisplay } from "./TimerComponents";
 import useMediaQuery from "@/hooks/useMediaQuery";
 type Props = {
@@ -10,8 +10,9 @@ type Props = {
 
 const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
-  const [time, setTime] = useState(0.2 * 60); // Initial time is 5 minutes in seconds
+  const [time, setTime] = useState(0.2 * 60);
   const [isActive, setIsActive] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -23,8 +24,16 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
     } else if (time === 0) {
       setIsActive(false);
       setTime(0.2 * 60);
-
-      setSelectedPage(SelectedPage.Pomodoro); // Automatically switch to Pomodoro
+      const audio = audioRef.current;
+      if (audio) {
+        audio.play().catch((error: any) => {
+          console.error(error);
+        });
+        const audioDuration = 10000;
+        setTimeout(() => {
+          setSelectedPage(SelectedPage.Pomodoro);
+        }, audioDuration);
+      }
     }
 
     return () => clearInterval(interval);
@@ -55,6 +64,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
         <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
           <TimerDisplay time={formatTime(time)} />
+          <audio ref={audioRef} preload="none" src={skr}></audio>
         </div>
 
         <ControlButton
