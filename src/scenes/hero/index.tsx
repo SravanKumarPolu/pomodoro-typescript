@@ -10,7 +10,6 @@ import { useEffect, useState } from "react";
 type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
-  remainingTime: number; // Add remainingTime to the Props type
 };
 
 const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
