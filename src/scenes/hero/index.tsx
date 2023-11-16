@@ -6,6 +6,7 @@ import ShortBreak from "@/short";
 import LongBreak from "@/long";
 
 import { useEffect, useState } from "react";
+import TodoWrapper from "@/todolist/TodoWrapper";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -124,6 +125,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
           </div>
           {renderPage()}
         </div>
+        <TodoWrapper />
       </div>
     </div>
   );
