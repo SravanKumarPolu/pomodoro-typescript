@@ -1,23 +1,30 @@
 import { motion } from "framer-motion";
 import HText from "../../shared/HText";
-import setting from "../../assets/setting.svg";
+import settingsvg from "../../assets/setting.svg";
 import report from "../../assets/report.svg";
 import login from "../../assets/login.svg";
 import Link from "./Link";
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import Setting from "@/setting";
 import { useState } from "react";
 
 type Props = {
   selectedPage: SelectedPage;
   isTopOfPage: boolean;
+  showSetting: boolean;
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-const Navbar = ({ selectedPage, setSelectedPage, isTopOfPage }: Props) => {
+const Navbar = ({
+  selectedPage,
+  setSelectedPage,
+
+  isTopOfPage,
+}: Props) => {
   const flexBetween = "flex items-center justify-between";
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
-  const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
+
   const navbarBackground = isTopOfPage ? "" : "bg-primary-100 drop-shadow";
   return (
     <>
@@ -50,15 +57,15 @@ const Navbar = ({ selectedPage, setSelectedPage, isTopOfPage }: Props) => {
                   </div>
                 </button>
 
-                <button className="border-2 rounded-md mx-2">
-                  <div className="flex flex-row  items-center  m-2 cursor-pointer">
-                    <img src={setting} alt="" width={20} height={20} />
-                    <Link
-                      page="Setting"
-                      selectedPage={selectedPage}
-                      setSelectedPage={setSelectedPage}
-                    />
-                  </div>
+                <button
+                  className="flex flex-row  items-center  m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  onClick={() => setSelectedPage(SelectedPage.Setting)}>
+                  <img src={settingsvg} alt="" width={20} height={20} />
+                  <Link
+                    page="Setting"
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
                 </button>
 
                 <button className="border-2 rounded mx-2">
@@ -82,7 +89,7 @@ const Navbar = ({ selectedPage, setSelectedPage, isTopOfPage }: Props) => {
 
                 <button className="border-2 rounded-md mx-1">
                   <div className="flex flex-row  items-center  m-2 cursor-pointer">
-                    <img src={setting} alt="" width={20} height={20} />
+                    <img src={settingsvg} alt="" width={20} height={20} />
                   </div>
                 </button>
 
