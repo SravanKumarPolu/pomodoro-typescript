@@ -88,9 +88,9 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
   };
 
   return (
-    <div className="h-full flex items-center justify-center p-2">
+    <div className=" flex items-center justify-center p-2">
       <div
-        className={`flex h-2/3 mt-0  flex-col items-center justify-center  p-10 
+        className={`flex h-[3orem] mt-0  flex-col items-center justify-center  p-10 
        ${isAboveMediumScreens ? "w-5/6" : "w-full"}
        bg-gray-950 rounded text-white absolute`}>
         <div className="flex flex-col gap-2 items-center justify-around">
@@ -125,7 +125,9 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
           </div>
           {renderPage()}
         </div>
-        <TodoWrapper />
+        <div className="flex flex-wrapper bg-white   p-6 rounded-lg h-[14rem] shadow-lg">
+          <TodoWrapper />
+        </div>
       </div>
     </div>
   );

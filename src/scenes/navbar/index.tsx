@@ -6,20 +6,24 @@ import login from "../../assets/login.svg";
 import Link from "./Link";
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { useState } from "react";
 
 type Props = {
   selectedPage: SelectedPage;
-  // isTopOfPage: boolean;
+  isTopOfPage: boolean;
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
+const Navbar = ({ selectedPage, setSelectedPage, isTopOfPage }: Props) => {
   const flexBetween = "flex items-center justify-between";
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
+  const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
+  const navbarBackground = isTopOfPage ? "" : "bg-primary-100 drop-shadow";
   return (
     <>
       <nav>
-        <div className={`${flexBetween} fixed top-0 z-30 w-full py-6 `}>
+        <div
+          className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6`}>
           <motion.div
             className=" flex w-full  items-center mx-auto  ml-[-.1rem] border-b-2"
             initial="hidden"

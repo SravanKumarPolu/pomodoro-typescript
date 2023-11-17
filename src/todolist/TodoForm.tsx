@@ -1,18 +1,30 @@
-import useMediaQuery from "@/hooks/useMediaQuery";
-import React from "react";
+// TodoForm.tsx
+import useMediaQuery from "../hooks/useMediaQuery";
+import React, { useState } from "react";
 
-type Props = {};
+type Props = {
+  addTodo: (todo: string) => void;
+};
 
-const TodoForm = (props: Props) => {
-  const isAboveMediumScreens = useMediaQuery("(min-width: 670px");
+const TodoForm: React.FC<Props> = ({ addTodo }) => {
+  const [value, setValue] = useState("");
+  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    addTodo(value);
+    setValue("");
+  };
+
   return (
-    <div>
+    <div className="m-4">
       {isAboveMediumScreens ? (
-        <form className="flex flex-row ">
+        <form onSubmit={handleSubmit} className="flex flex-row ">
           <input
             type="text"
-            className="todo-input m-2 p-3 border-2 rounded-lg  "
+            className="todo-input m-2 p-3 border-2 rounded-lg   "
             placeholder="What is the task today"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
           />
           <button
             type="submit"
@@ -21,11 +33,13 @@ const TodoForm = (props: Props) => {
           </button>
         </form>
       ) : (
-        <form className="flex flex-col ">
+        <form onSubmit={handleSubmit} className="flex flex-col ">
           <input
             type="text"
             className="todo-input m-2 p-3 border-2 rounded-lg  "
             placeholder="What is the task today"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
           />
           <button
             type="submit"
