@@ -14,9 +14,16 @@ type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
   isTopOfPage: boolean;
+
+  onClose: () => void;
 };
 
-const Navbar = ({ selectedPage, setSelectedPage, isTopOfPage }: Props) => {
+const Navbar = ({
+  selectedPage,
+  setSelectedPage,
+  isTopOfPage,
+  onClose,
+}: Props) => {
   const flexBetween = "flex items-center justify-between";
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
 
@@ -26,6 +33,10 @@ const Navbar = ({ selectedPage, setSelectedPage, isTopOfPage }: Props) => {
   const handleSettingClick = () => {
     setSelectedPage(SelectedPage.Setting);
     setShowSetting(true);
+  };
+  const handleSettingClose = () => {
+    setShowSetting(false);
+    onClose();
   };
 
   return (
@@ -89,10 +100,16 @@ const Navbar = ({ selectedPage, setSelectedPage, isTopOfPage }: Props) => {
                   </div>
                 </button>
 
-                <button className="border-2 rounded-md mx-1">
-                  <div className="flex flex-row items-center m-2 cursor-pointer">
-                    <img src={settingsvg} alt="" width={20} height={20} />
-                  </div>
+                <button
+                  className="flex flex-row items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  onClick={handleSettingClick}>
+                  <Links
+                    src={settingsvg}
+                    width={20}
+                    height={20}
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
                 </button>
 
                 <button className="border-2 rounded mx-1">
@@ -110,6 +127,7 @@ const Navbar = ({ selectedPage, setSelectedPage, isTopOfPage }: Props) => {
         <Setting
           selectedPage={selectedPage}
           setSelectedPage={setSelectedPage}
+          onClose={handleSettingClose}
         />
       )}
     </>

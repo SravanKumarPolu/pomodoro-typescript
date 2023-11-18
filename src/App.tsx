@@ -25,6 +25,10 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  function handleClose(): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-200">
       <div className="w-full mb-16">
@@ -32,6 +36,7 @@ function App() {
           selectedPage={selectedPage}
           setSelectedPage={setSelectedPage}
           isTopOfPage={isTopOfPage}
+          onClose={handleClose}
         />
       </div>
 
