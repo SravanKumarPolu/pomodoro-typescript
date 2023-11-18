@@ -43,6 +43,28 @@ const Timer = ({ setPomodoroTime }: Props) => {
         />
         <button type="submit"></button>
       </form>
+      <form onSubmit={handleSubmit}>
+        <h2>Short Break</h2>
+        <input
+          className="w-[4rem] h-[2rem]"
+          type="number"
+          placeholder="Enter minutes"
+          value={newTime}
+          onChange={handleInputChange}
+        />
+        <button type="submit"></button>
+      </form>
+      <form onSubmit={handleSubmit}>
+        <h2>Long Break</h2>
+        <input
+          className="w-[4rem] h-[2rem]"
+          type="number"
+          placeholder="Enter minutes"
+          value={newTime}
+          onChange={handleInputChange}
+        />
+        <button type="submit"></button>
+      </form>
     </div>
   );
 };
