@@ -32,7 +32,7 @@ const Setting = ({ onClose }: Props) => {
           </button>
         </div>
         <div>
-          <Timer setPomodoroTime={() => {}} />
+          <Timer />
           <Task />
           <Sound />
           <Theme />

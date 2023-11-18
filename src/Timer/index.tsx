@@ -1,29 +1,18 @@
 // Timer.tsx
-import React, { useState } from "react";
+import React from "react";
 import TimerSvg from "@/assets/Timer.svg";
+import Pomodoro from "./Pomodoro";
+import ShortBreak from "./ShortBreak";
 
-type Props = {
-  setPomodoroTime: (newTime: number) => void; // Function to update Pomodoro time
-};
+type Props = {};
 
-const Timer = ({ setPomodoroTime }: Props) => {
-  const [newTime, setNewTime] = useState(""); // State to store the new time input
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTime(e.target.value);
+const Timer = () => {
+  const setPomodoroTime = (newTime: number) => {
+    console.log("Setting Pomodoro time:", newTime);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Convert the input to seconds and update Pomodoro time
-    const seconds = parseInt(newTime) * 60;
-    if (!isNaN(seconds) && seconds > 0) {
-      setPomodoroTime(seconds);
-    }
-
-    // Clear the input field
-    setNewTime("");
+  const setShortBreakTime = (newTime: number) => {
+    console.log("Setting Pomodoro time:", newTime);
   };
 
   return (
@@ -32,39 +21,10 @@ const Timer = ({ setPomodoroTime }: Props) => {
         <img src={TimerSvg} width={20} height={20} />
         <h2>Timer</h2>
       </div>
-      <form onSubmit={handleSubmit}>
-        <h2>Pomodoro</h2>
-        <input
-          className="w-[4rem] h-[2rem]"
-          type="number"
-          placeholder="Enter minutes"
-          value={newTime}
-          onChange={handleInputChange}
-        />
-        <button type="submit"></button>
-      </form>
-      <form onSubmit={handleSubmit}>
-        <h2>Short Break</h2>
-        <input
-          className="w-[4rem] h-[2rem]"
-          type="number"
-          placeholder="Enter minutes"
-          value={newTime}
-          onChange={handleInputChange}
-        />
-        <button type="submit"></button>
-      </form>
-      <form onSubmit={handleSubmit}>
-        <h2>Long Break</h2>
-        <input
-          className="w-[4rem] h-[2rem]"
-          type="number"
-          placeholder="Enter minutes"
-          value={newTime}
-          onChange={handleInputChange}
-        />
-        <button type="submit"></button>
-      </form>
+      <div className="flex flex-row gap-2">
+        <Pomodoro setPomodoroTime={setPomodoroTime} />
+        <ShortBreak setShortBreakTime={setShortBreakTime} />
+      </div>
     </div>
   );
 };
