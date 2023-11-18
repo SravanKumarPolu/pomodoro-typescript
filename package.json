@@ -20,6 +20,7 @@
     "react": "^18.2.0",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.19.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

@@ -88,7 +88,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
   };
 
   return (
-    <div className=" flex items-center justify-center p-2">
+    <div className=" flex items-center  justify-center p-2 ">
       <div
         className={`flex h-[3orem] mt-0  flex-col items-center justify-center pt-2 p-10 
        ${isAboveMediumScreens ? "w-5/6" : "w-full"}
@@ -105,7 +105,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
               />
             </button>
             <button
-              className="m-2 px-2 border-2 rounded xs:mx-1 xs:text-xs"
+              className="m-2 px-2 border-2  rounded xs:mx-1 xs:text-xs"
               onClick={() => setSelectedPage(SelectedPage.ShortBreak)}>
               <Link
                 page="ShortBreak"
