@@ -2,8 +2,8 @@
 import { motion } from "framer-motion";
 import HText from "../../shared/HText";
 import settingsvg from "../../assets/setting.svg";
-import report from "../../assets/report.svg";
-import login from "../../assets/login.svg";
+import reportsvg from "../../assets/report.svg";
+import loginsvg from "../../assets/login.svg";
 import Links from "./Link";
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
@@ -59,15 +59,15 @@ const Navbar = ({
             </HText>
             {isAboveMediumScreens ? (
               <div className="flex justify-between ">
-                <button className="border-2 rounded-md mx-2">
-                  <div className="flex flex-row justify-center m-2 items-center cursor-pointer">
-                    <img src={report} alt="" width={20} height={20} />
-                    <Links
-                      page="Report"
-                      selectedPage={selectedPage}
-                      setSelectedPage={setSelectedPage}
-                    />
-                  </div>
+                <button
+                  className="flex flex-row items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  onClick={handleSettingClick}>
+                  <img src={reportsvg} alt="" width={20} height={20} />
+                  <Links
+                    page="Report"
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
                 </button>
 
                 <button
@@ -81,23 +81,29 @@ const Navbar = ({
                   />
                 </button>
 
-                <button className="border-2 rounded mx-2">
-                  <div className="flex flex-row justify-center m-2 items-center cursor-pointer">
-                    <img src={login} alt="" width={20} height={20} />
-                    <Links
-                      page="Login"
-                      selectedPage={selectedPage}
-                      setSelectedPage={setSelectedPage}
-                    />
-                  </div>
+                <button
+                  className="flex flex-row items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  onClick={handleSettingClick}>
+                  <img src={loginsvg} alt="" width={20} height={20} />
+                  <Links
+                    page="Login"
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
                 </button>
               </div>
             ) : (
               <div className="flex justify-around items-center ">
-                <button className="border-2 rounded-md mx-1">
-                  <div className="flex flex-row justify-center m-2 items-center cursor-pointer">
-                    <img src={report} alt="" width={20} height={20} />
-                  </div>
+                <button
+                  className="flex flex-row items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  onClick={handleSettingClick}>
+                  <Links
+                    src={reportsvg}
+                    width={20}
+                    height={20}
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
                 </button>
 
                 <button
@@ -112,10 +118,16 @@ const Navbar = ({
                   />
                 </button>
 
-                <button className="border-2 rounded mx-1">
-                  <div className="flex flex-row justify-center m-2 items-center cursor-pointer">
-                    <img src={login} alt="" width={20} height={20} />
-                  </div>
+                <button
+                  className="flex flex-row items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  onClick={handleSettingClick}>
+                  <Links
+                    src={loginsvg}
+                    width={20}
+                    height={20}
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
                 </button>
               </div>
             )}
