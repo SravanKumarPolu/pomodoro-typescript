@@ -24,7 +24,7 @@ const ShortBreak = ({ setShortBreakTime }: Props) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h2>Short Break</h2>
+        <h2 className="text-gray-400 font-weight-500">Short Break</h2>
         <input
           className="w-[6rem] h-[2rem] bg-gray-200 rounded-md"
           type="number"

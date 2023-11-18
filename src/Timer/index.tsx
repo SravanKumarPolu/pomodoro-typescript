@@ -3,6 +3,7 @@ import React from "react";
 import TimerSvg from "@/assets/Timer.svg";
 import Pomodoro from "./Pomodoro";
 import ShortBreak from "./ShortBreak";
+import LongBreak from "./LongBreak";
 
 type Props = {};
 
@@ -12,6 +13,9 @@ const Timer = () => {
   };
 
   const setShortBreakTime = (newTime: number) => {
+    console.log("Setting Pomodoro time:", newTime);
+  };
+  const setLongBreakTime = (newTime: number) => {
     console.log("Setting Pomodoro time:", newTime);
   };
 
@@ -24,6 +28,7 @@ const Timer = () => {
       <div className="flex flex-row gap-2">
         <Pomodoro setPomodoroTime={setPomodoroTime} />
         <ShortBreak setShortBreakTime={setShortBreakTime} />
+        <LongBreak setLongBreakTime={setLongBreakTime} />
       </div>
     </div>
   );

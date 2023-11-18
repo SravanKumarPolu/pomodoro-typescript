@@ -27,7 +27,7 @@ const Pomodoro = ({ setPomodoroTime }: Props) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h2>Pomodoro</h2>
+        <h2 className="text-gray-400 font-weight-500">Pomodoro</h2>
         <input
           className="w-[6rem] h-[2rem] bg-gray-200 rounded-md"
           type="number"
