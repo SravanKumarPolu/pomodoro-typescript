@@ -34,18 +34,6 @@ const Pomodoros: React.FC<Props> = ({
     return () => clearInterval(interval);
   }, [isActive, time, setSelectedPage, selectedPage]);
 
-  const toggleTimer = () => {
-    setIsActive(!isActive);
-  };
-
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds
-    ).padStart(2, "0")}`;
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 

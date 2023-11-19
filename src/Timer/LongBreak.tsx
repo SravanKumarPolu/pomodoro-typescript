@@ -14,7 +14,7 @@ const LongBreak = ({
   selectedPage,
 }: Props) => {
   const [newTime, setNewTime] = useState("");
-  const [time, setTime] = useState(25 * 60);
+  const [time, setTime] = useState(15 * 60);
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -33,18 +33,6 @@ const LongBreak = ({
 
     return () => clearInterval(interval);
   }, [isActive, time, setSelectedPage, selectedPage]);
-
-  const toggleTimer = () => {
-    setIsActive(!isActive);
-  };
-
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds
-    ).padStart(2, "0")}`;
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,7 +56,7 @@ const LongBreak = ({
           className="w-[6rem] h-[2rem] bg-gray-200 rounded-md"
           type="number"
           placeholder="Enter minutes"
-          value={newTime}
+          defaultValue={time / 60}
           onChange={handleInputChange}
         />
         <button type="submit"></button>
