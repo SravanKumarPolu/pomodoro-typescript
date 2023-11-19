@@ -69,7 +69,7 @@ const Pomodoros: React.FC<Props> = ({
           className="w-[6rem] h-[2rem] bg-gray-200 rounded-md"
           type="number"
           placeholder="Enter minutes"
-          value={newTime}
+          defaultValue={time / 60}
           onChange={handleInputChange}
         />
         <button type="submit"></button>
