@@ -1,16 +1,16 @@
+// Pomodoros.tsx
+import React, { useState, useEffect } from "react";
 import { SelectedPage } from "@/shared/types";
-import { useEffect, useState } from "react";
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void;
-
-  selectedPage?: SelectedPage;
-  setShortBreakTime: (newTime: number) => void;
+  setPomodoroTime: (newTime: number) => void;
+  selectedPage?: SelectedPage; // Make selectedPage optional
 };
 
-const ShortBreak = ({
+const Pomodoros: React.FC<Props> = ({
   setSelectedPage,
-  setShortBreakTime,
+  setPomodoroTime,
   selectedPage,
 }: Props) => {
   const [newTime, setNewTime] = useState("");
@@ -28,7 +28,7 @@ const ShortBreak = ({
       setIsActive(false);
       setTime(25 * 60);
 
-      setSelectedPage(selectedPage || SelectedPage.Pomodoro);
+      setSelectedPage(selectedPage || SelectedPage.ShortBreak);
     }
 
     return () => clearInterval(interval);
@@ -45,16 +45,18 @@ const ShortBreak = ({
       remainingSeconds
     ).padStart(2, "0")}`;
   };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const seconds = parseInt(newTime) * 60;
     if (!isNaN(seconds) && seconds > 0) {
-      setShortBreakTime(seconds);
+      setPomodoroTime(seconds);
     }
 
     setNewTime("");
   };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTime(e.target.value);
   };
@@ -62,7 +64,7 @@ const ShortBreak = ({
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h2 className="text-gray-400 font-weight-500">Short Break</h2>
+        <h2 className="text-gray-400 font-weight-500">Pomodoro</h2>
         <input
           className="w-[6rem] h-[2rem] bg-gray-200 rounded-md"
           type="number"
@@ -76,4 +78,4 @@ const ShortBreak = ({
   );
 };
 
-export default ShortBreak;
+export default Pomodoros;

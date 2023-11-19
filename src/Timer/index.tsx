@@ -1,22 +1,29 @@
 // Timer.tsx
 import React from "react";
 import TimerSvg from "@/assets/Timer.svg";
-import Pomodoro from "./Pomodoro";
+
 import ShortBreak from "./ShortBreak";
 import LongBreak from "./LongBreak";
+import Pomodoros from "./Pomodoros";
+import { SelectedPage } from "@/shared/types";
 
 type Props = {};
 
 const Timer = () => {
+  const setSelectedPage = (value: SelectedPage) => {
+    console.log("Setting selected page:", value);
+  };
+
   const setPomodoroTime = (newTime: number) => {
     console.log("Setting Pomodoro time:", newTime);
   };
 
   const setShortBreakTime = (newTime: number) => {
-    console.log("Setting Pomodoro time:", newTime);
+    console.log("Setting Short Break time:", newTime);
   };
+
   const setLongBreakTime = (newTime: number) => {
-    console.log("Setting Pomodoro time:", newTime);
+    console.log("Setting Long Break time:", newTime);
   };
 
   return (
@@ -26,9 +33,18 @@ const Timer = () => {
         <h2>Timer</h2>
       </div>
       <div className="flex flex-row gap-2">
-        <Pomodoro setPomodoroTime={setPomodoroTime} />
-        <ShortBreak setShortBreakTime={setShortBreakTime} />
-        <LongBreak setLongBreakTime={setLongBreakTime} />
+        <Pomodoros
+          setSelectedPage={setSelectedPage}
+          setPomodoroTime={setPomodoroTime}
+        />
+        <ShortBreak
+          setShortBreakTime={setShortBreakTime}
+          setSelectedPage={setSelectedPage}
+        />
+        <LongBreak
+          setLongBreakTime={setLongBreakTime}
+          setSelectedPage={setSelectedPage}
+        />
       </div>
     </div>
   );
