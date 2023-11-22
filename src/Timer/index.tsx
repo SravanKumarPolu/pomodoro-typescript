@@ -27,8 +27,8 @@ const Timer = () => {
   };
 
   return (
-    <div className="w-[20rem] p-2">
-      <div className="flex flex-row p-1">
+    <div className="w-[20rem] p-2 border-b-2 border-white-500">
+      <div className="flex flex-row ">
         <img src={TimerSvg} width={20} height={20} />
         <h2>Timer</h2>
       </div>

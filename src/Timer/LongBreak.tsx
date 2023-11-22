@@ -53,7 +53,7 @@ const LongBreak = ({
       <form onSubmit={handleSubmit}>
         <h2 className="text-gray-400 font-weight-500">Long Break</h2>
         <input
-          className="w-[6rem] h-[2rem] bg-gray-200 rounded-md"
+          className="w-[6rem] h-[2rem] bg-gray-200 rounded-md p-1"
           type="number"
           placeholder="Enter minutes"
           defaultValue={time / 60}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TaskSvg from "@/assets/task.svg";
 
 type Props = {
   label: string;
@@ -17,8 +18,11 @@ const Task = ({ label }: Props) => {
   };
 
   return (
-    <div className="w-[20rem] p-2">
-      <h2>Task</h2>
+    <div className="w-[20rem] p-2 border-b-2 border-white-500">
+      <div className="flex flex-row">
+        <img src={TaskSvg} width={20} height={20} />
+        <h2>Task</h2>
+      </div>
       <div>
         <div className="flex items-center mb-4  justify-between">
           <label htmlFor="toggle1">Auto Switch Tasks {label}</label>

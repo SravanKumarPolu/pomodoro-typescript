@@ -33,7 +33,7 @@ const Setting = ({ onClose }: Props) => {
         </div>
         <div>
           <Timer />
-          <Task />
+          <Task label={""} />
           <Sound />
           <Theme />
           <Notifications />
