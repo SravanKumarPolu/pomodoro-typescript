@@ -1,5 +1,5 @@
 // Timer.tsx
-import React from "react";
+import React, { useState } from "react";
 import TimerSvg from "@/assets/Timer.svg";
 
 import ShortBreak from "./ShortBreak";
@@ -25,7 +25,7 @@ const Timer = () => {
   const setLongBreakTime = (newTime: number) => {
     console.log("Setting Long Break time:", newTime);
   };
-
+  const [minutes, setMinutes] = useState(25);
   return (
     <div className="w-[20rem] p-2 border-b-2 border-white-500">
       <div className="flex flex-row ">
@@ -33,10 +33,7 @@ const Timer = () => {
         <h2>Timer</h2>
       </div>
       <div className="flex flex-row gap-2">
-        <Pomodoros
-          setSelectedPage={setSelectedPage}
-          setPomodoroTime={setPomodoroTime}
-        />
+        <Pomodoros minutes={minutes} setMinutes={setMinutes} />
         <ShortBreak
           setShortBreakTime={setShortBreakTime}
           setSelectedPage={setSelectedPage}

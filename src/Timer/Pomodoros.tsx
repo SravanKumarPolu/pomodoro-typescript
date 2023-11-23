@@ -1,67 +1,38 @@
 // Pomodoros.tsx
-import React, { useState, useEffect } from "react";
-import { SelectedPage } from "@/shared/types";
+import React, { useState } from "react";
+import Pomodoro from "@/pomodoro/TimerComponents";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
-type Props = {
-  setSelectedPage: (value: SelectedPage) => void;
-  setPomodoroTime: (newTime: number) => void;
-  selectedPage?: SelectedPage; // Make selectedPage optional
-};
+type Props = {};
 
-const Pomodoros: React.FC<Props> = ({
-  setSelectedPage,
-  setPomodoroTime,
-  selectedPage,
-}: Props) => {
-  const [newTime, setNewTime] = useState("");
-  const [time, setTime] = useState(25 * 60);
+const Pomodoros: React.FC<Props> = () => {
+  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
   const [isActive, setIsActive] = useState(false);
+  const [minutes, setMinutes] = useState(25);
+  const [seconds, setSeconds] = useState(0);
 
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-
-    if (isActive && time > 0) {
-      interval = setInterval(() => {
-        setTime((prevTime) => prevTime - 1);
-      }, 1000);
-    } else if (time === 0) {
-      setIsActive(false);
-      setTime(25 * 60);
-
-      setSelectedPage(selectedPage || SelectedPage.ShortBreak);
-    }
-
-    return () => clearInterval(interval);
-  }, [isActive, time, setSelectedPage, selectedPage]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const seconds = parseInt(newTime) * 60;
-    if (!isNaN(seconds) && seconds > 0) {
-      setPomodoroTime(seconds);
-    }
-
-    setNewTime("");
+  const toggleTimer = () => {
+    setIsActive(!isActive);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTime(e.target.value);
+  const handleMinuteChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newMinutes = parseInt(e.target.value, 10);
+    setMinutes(isNaN(newMinutes) ? 0 : newMinutes);
+  };
+
+  const handleSecondChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newSeconds = parseInt(e.target.value, 10);
+    setSeconds(isNaN(newSeconds) ? 0 : newSeconds);
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <div>
         <h2 className="text-gray-400 font-weight-500">Pomodoro</h2>
-        <input
-          className="w-[6rem] h-[2rem] bg-gray-200 rounded-md p-1"
-          type="number"
-          placeholder="Enter minutes"
-          defaultValue={time / 60}
-          onChange={handleInputChange}
-        />
-        <button type="submit"></button>
-      </form>
+        <div>
+          <input type="number" value={minutes} onChange={handleMinuteChange} />
+        </div>
+      </div>
     </div>
   );
 };
