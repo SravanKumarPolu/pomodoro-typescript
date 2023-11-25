@@ -1,3 +1,4 @@
+import { useTimerContext } from "@/components/ShortTimerContext";
 import { SelectedPage } from "@/shared/types";
 import { useEffect, useState } from "react";
 
@@ -9,26 +10,22 @@ type Props = {
 };
 
 const ShortBreak = ({}: Props) => {
-  const [newTime, setNewTime] = useState("");
-  const [time, setTime] = useState(5 * 60);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTime(e.target.value);
-  };
+  const { timerValue, handleTimerChange } = useTimerContext();
 
   return (
     <div>
-      <form>
-        <h2 className="text-gray-400 font-weight-500">Short Break</h2>
+      <div className="mb-4">
+        <label htmlFor="timerValue" className="text-gray-400 font-weight-500">
+          Short Break
+        </label>
         <input
-          className="w-[6rem] h-[2rem] bg-gray-200 rounded-md p-1"
           type="number"
-          placeholder="Enter minutes"
-          defaultValue={time / 60}
-          onChange={handleInputChange}
+          id="timerValue"
+          value={timerValue}
+          onChange={(e) => handleTimerChange(parseInt(e.target.value))}
+          className="w-[6rem] h-[2rem] bg-gray-200 rounded-md p-1"
         />
-        <button type="submit"></button>
-      </form>
+      </div>
     </div>
   );
 };
