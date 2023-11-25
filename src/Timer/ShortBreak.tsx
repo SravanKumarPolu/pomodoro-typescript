@@ -1,6 +1,5 @@
-import { useTimerContext } from "@/components/ShortTimerContext";
+import { useTimerContext } from "@/components/TimerContext";
 import { SelectedPage } from "@/shared/types";
-import { useEffect, useState } from "react";
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void;
@@ -10,7 +9,7 @@ type Props = {
 };
 
 const ShortBreak = ({}: Props) => {
-  const { timerValue, handleTimerChange } = useTimerContext();
+  const { timerValue2, handleTimerChange2 } = useTimerContext();
 
   return (
     <div>
@@ -21,8 +20,8 @@ const ShortBreak = ({}: Props) => {
         <input
           type="number"
           id="timerValue"
-          value={timerValue}
-          onChange={(e) => handleTimerChange(parseInt(e.target.value))}
+          value={timerValue2}
+          onChange={(e) => handleTimerChange2(parseInt(e.target.value))}
           className="w-[6rem] h-[2rem] bg-gray-200 rounded-md p-1"
         />
       </div>

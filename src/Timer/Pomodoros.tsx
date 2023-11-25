@@ -1,9 +1,9 @@
 // PomodoroTimer.tsx
-import { useTimerContext } from "@/components/PomoTimerContext";
+import { useTimerContext } from "@/components/TimerContext";
 import React from "react";
 
 const PomodoroTimer: React.FC = () => {
-  const { timerValue, handleTimerChange } = useTimerContext();
+  const { timerValue1, handleTimerChange1 } = useTimerContext();
 
   return (
     <div>
@@ -14,8 +14,8 @@ const PomodoroTimer: React.FC = () => {
         <input
           type="number"
           id="timerValue"
-          value={timerValue}
-          onChange={(e) => handleTimerChange(parseInt(e.target.value))}
+          value={timerValue1}
+          onChange={(e) => handleTimerChange1(parseInt(e.target.value))}
           className="w-[6rem] h-[2rem] bg-gray-200 rounded-md p-1"
         />
       </div>

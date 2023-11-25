@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { SelectedPage } from "@/shared/types";
 import { ControlButton } from "./TimerComponents";
-import { useTimerContext } from "@/components/PomoTimerContext";
+import { useTimerContext } from "@/components/TimerContext";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -10,8 +10,8 @@ type Props = {
 
 const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
-  const { timerValue } = useTimerContext();
-  const [time, setTime] = useState(timerValue * 60);
+  const { timerValue1 } = useTimerContext();
+  const [time, setTime] = useState(timerValue1 * 60);
 
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
@@ -22,8 +22,8 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   };
 
   useEffect(() => {
-    setTime(timerValue * 60);
-  }, [timerValue]);
+    setTime(timerValue1 * 60);
+  }, [timerValue1]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -34,12 +34,12 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
       }, 1000);
     } else if (time === 0) {
       setIsActive(false);
-      setTime(timerValue * 60);
+      setTime(timerValue1 * 60);
       setSelectedPage(SelectedPage.ShortBreak);
     }
 
     return () => clearInterval(interval);
-  }, [isActive, time, timerValue, setSelectedPage]);
+  }, [isActive, time, timerValue1, setSelectedPage]);
 
   const toggleTimer = () => {
     setIsActive(!isActive);
@@ -52,7 +52,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
           text="Reset"
           onClick={() => {
             setIsActive(false);
-            setTime(timerValue * 60);
+            setTime(timerValue1 * 60);
           }}
         />
 

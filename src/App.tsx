@@ -3,7 +3,7 @@ import Navbar from "@/scenes/navbar";
 import { useEffect, useState } from "react";
 import { SelectedPage } from "./shared/types";
 import Hero from "./scenes/hero";
-import { TimerProvider } from "./components/PomoTimerContext";
+import { TimerProvider } from "./components/TimerContext";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(

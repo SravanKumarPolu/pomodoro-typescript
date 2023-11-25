@@ -3,6 +3,7 @@ import { SelectedPage } from "@/shared/types";
 import skr from "@/assets/short-to-pomodo.mp3";
 import { ControlButton, TimerDisplay } from "./TimerComponents";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { useTimerContext } from "@/components/TimerContext";
 type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
@@ -10,8 +11,20 @@ type Props = {
 
 const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
-  const [time, setTime] = useState(15 * 60);
   const [isActive, setIsActive] = useState(false);
+  const { timerValue2 } = useTimerContext();
+  const [time, setTime] = useState(timerValue2 * 60);
+
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(
+      remainingSeconds
+    ).padStart(2, "0")}`;
+  };
+  useEffect(() => {
+    setTime(timerValue2 * 60);
+  }, [timerValue2]);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -42,13 +55,6 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const toggleTimer = () => {
     setIsActive(!isActive);
   };
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds
-    ).padStart(2, "0")}`;
-  };
 
   return (
     <div className="flex justify-center items-center flex-col">
@@ -57,13 +63,13 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
           text="Reset"
           onClick={() => {
             toggleTimer();
-            setTime(25 * 60);
+            setTime(timerValue2 * 60);
             setIsActive(false);
           }}
         />
 
         <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
-          <TimerDisplay time={formatTime(time)} />
+          {formatTime(time)}
           <audio ref={audioRef} preload="none" src={skr}></audio>
         </div>
 
