@@ -13,6 +13,8 @@ interface TimerContextProps {
   handleTimerChange1: Dispatch<SetStateAction<number>>;
   timerValue2: number;
   handleTimerChange2: Dispatch<SetStateAction<number>>;
+  timerValue3: number;
+  handleTimerChange3: Dispatch<SetStateAction<number>>;
 }
 
 const TimerContext = createContext<TimerContextProps | undefined>(undefined);
@@ -40,6 +42,15 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
       typeof newValue === "function" ? newValue(prevTimerValue) : newValue
     );
   };
+
+  const [timerValue3, setTimervalue3] = useState<number>(15);
+  const handleTimerChange3: TimerContextProps["handleTimerChange3"] = (
+    newValue
+  ) => {
+    setTimervalue3((prevTimerValue) =>
+      typeof newValue === "function" ? newValue(prevTimerValue3) : newValue
+    );
+  };
   return (
     <TimerContext.Provider
       value={{
@@ -47,6 +58,8 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
         timerValue2,
         handleTimerChange2,
         handleTimerChange1,
+        timerValue3,
+        handleTimerChange3,
       }}>
       {children}
     </TimerContext.Provider>
