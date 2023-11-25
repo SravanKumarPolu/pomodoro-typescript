@@ -17,23 +17,6 @@ const LongBreak = ({
   const [time, setTime] = useState(15 * 60);
   const [isActive, setIsActive] = useState(false);
 
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-
-    if (isActive && time > 0) {
-      interval = setInterval(() => {
-        setTime((prevTime) => prevTime - 1);
-      }, 1000);
-    } else if (time === 0) {
-      setIsActive(false);
-      setTime(25 * 60);
-
-      setSelectedPage(selectedPage || SelectedPage.Pomodoro);
-    }
-
-    return () => clearInterval(interval);
-  }, [isActive, time, setSelectedPage, selectedPage]);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
