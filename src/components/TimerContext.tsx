@@ -48,7 +48,7 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
     newValue
   ) => {
     setTimervalue3((prevTimerValue) =>
-      typeof newValue === "function" ? newValue(prevTimerValue3) : newValue
+      typeof newValue === "function" ? newValue(prevTimerValue) : newValue
     );
   };
   return (
