@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { SelectedPage } from "@/shared/types";
 import { ControlButton } from "./TimerComponents";
-import useMediaQuery from "@/hooks/useMediaQuery";
+
 import { useTimerContext } from "@/components/PomoTimerContext";
 
 type Props = {
@@ -10,17 +10,21 @@ type Props = {
 };
 
 const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
-  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
   const [isActive, setIsActive] = useState(false);
   const { timerValue } = useTimerContext();
-  const [time, setTime] = useState(timerValue);
+  const [time, setTime] = useState(timerValue * 60);
+
   const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
     const remainingSeconds = seconds % 60;
-    return `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds
-    ).padStart(2, "0")}`;
+
+    return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
+      2,
+      "0"
+    )}:${String(remainingSeconds).padStart(2, "0")}`;
   };
+
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
@@ -30,7 +34,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
       }, 1000);
     } else if (time === 0) {
       setIsActive(false);
-      setTime(timerValue);
+      setTime(timerValue * 60);
 
       setSelectedPage(SelectedPage.ShortBreak);
     }
@@ -49,7 +53,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
           text="Reset"
           onClick={() => {
             setIsActive(false);
-            setTime(timerValue);
+            setTime(timerValue * 60);
           }}
         />
 

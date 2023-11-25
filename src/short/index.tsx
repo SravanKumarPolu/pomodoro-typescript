@@ -10,7 +10,7 @@ type Props = {
 
 const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
-  const [time, setTime] = useState(0.2 * 60);
+  const [time, setTime] = useState(15 * 60);
   const [isActive, setIsActive] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
