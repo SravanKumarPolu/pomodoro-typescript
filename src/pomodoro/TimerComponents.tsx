@@ -16,20 +16,6 @@ const Pomodoro: React.FC<PomodoroProps> = ({
   setIsActive,
   setTimer,
 }) => {
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-
-    if (isActive && time > 0) {
-      interval = setInterval(() => {
-        setTimer((prevTime) => prevTime - 1);
-      }, 1000);
-    } else if (time === 0) {
-      setIsActive(false);
-    }
-
-    return () => clearInterval(interval);
-  }, [isActive, time, setIsActive, setTimer]);
-
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;

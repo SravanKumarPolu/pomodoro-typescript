@@ -1,28 +1,25 @@
 // PomodoroTimer.tsx
 import { useTimerContext } from "@/components/PomoTimerContext";
-import React, { useState } from "react";
+import React from "react";
 
 const PomodoroTimer: React.FC = () => {
-  const [newTime, setNewTime] = useState("");
-  const [time, setTime] = useState(15 * 60);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTime(e.target.value);
-  };
+  const { timerValue, handleTimerChange } = useTimerContext();
 
   return (
-    <div>
-      <form>
-        <h2 className="text-gray-400 font-weight-500">Long Break</h2>
+    <div className="h-[20rem] flex flex-col items-center justify-center">
+      <h1 className="text-4xl font-bold mb-4">Pomodoro Timer</h1>
+      <div className="mb-4">
+        <label htmlFor="timerValue" className="mr-2">
+          Set Timer:
+        </label>
         <input
-          className="w-[6rem] h-[2rem] bg-gray-200 rounded-md p-1"
           type="number"
-          placeholder="Enter minutes"
-          defaultValue={time / 60}
-          onChange={handleInputChange}
+          id="timerValue"
+          value={timerValue}
+          onChange={(e) => handleTimerChange(parseInt(e.target.value))}
+          className="border p-2"
         />
-        <button type="submit"></button>
-      </form>
+      </div>
     </div>
   );
 };

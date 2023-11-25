@@ -3,6 +3,7 @@ import Navbar from "@/scenes/navbar";
 import { useEffect, useState } from "react";
 import { SelectedPage } from "./shared/types";
 import Hero from "./scenes/hero";
+import { TimerProvider } from "./components/PomoTimerContext";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
@@ -31,20 +32,25 @@ function App() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-200">
-      <div className="w-full mb-16">
-        <Navbar
-          selectedPage={selectedPage}
-          setSelectedPage={setSelectedPage}
-          isTopOfPage={isTopOfPage}
-          onClose={handleClose}
-        />
-      </div>
-
-      <div className="w-full p-4 mt-16">
-        <div className="app rounded-lg overflow-hidden shadow-lg">
-          <Hero selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
+      <TimerProvider>
+        <div className="w-full mb-16">
+          <Navbar
+            selectedPage={selectedPage}
+            setSelectedPage={setSelectedPage}
+            isTopOfPage={isTopOfPage}
+            onClose={handleClose}
+          />
         </div>
-      </div>
+
+        <div className="w-full p-4 mt-16">
+          <div className="app rounded-lg overflow-hidden shadow-lg">
+            <Hero
+              selectedPage={selectedPage}
+              setSelectedPage={setSelectedPage}
+            />
+          </div>
+        </div>
+      </TimerProvider>
     </div>
   );
 }
