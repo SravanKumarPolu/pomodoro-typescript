@@ -47,7 +47,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
           text="Reset"
           onClick={() => {
             toggleTimer();
-            setTime(25 * 60);
+            setTime(15 * 60);
             setIsActive(false);
           }}
         />

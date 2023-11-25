@@ -10,6 +10,7 @@ import React, {
 
 interface TimerContextProps {
   timerValue: number;
+  minutes: number;
   handleTimerChange: Dispatch<SetStateAction<number>>;
 }
 
@@ -20,8 +21,8 @@ interface TimerProviderProps {
 }
 
 export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
-  const [timerValue, setTimerValue] = useState<number>(25);
-
+  const [timerValue, setTimerValue] = useState<number>(25 * 60);
+  const minutes = Math.floor(timerValue / 60); // Calculate minutes based on initial timerValue
   const handleTimerChange: TimerContextProps["handleTimerChange"] = (
     newValue
   ) => {
@@ -31,7 +32,7 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
   };
 
   return (
-    <TimerContext.Provider value={{ timerValue, handleTimerChange }}>
+    <TimerContext.Provider value={{ timerValue, minutes, handleTimerChange }}>
       {children}
     </TimerContext.Provider>
   );
