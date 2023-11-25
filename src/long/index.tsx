@@ -1,9 +1,9 @@
 // tsrafce
 import { useState, useEffect } from "react";
 import { SelectedPage } from "@/shared/types";
-import { ControlButton, TimerDisplay } from "./TimerComponents";
+import { ControlButton } from "./TimerComponents";
 
-import useMediaQuery from "@/hooks/useMediaQuery";
+import { useTimerContext } from "@/components/TimerContext";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -11,9 +11,21 @@ type Props = {
 };
 
 const LongBreak = ({ setSelectedPage }: Props) => {
-  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
-  const [time, setTime] = useState(15 * 60);
   const [isActive, setIsActive] = useState(false);
+  const { timerValue3 } = useTimerContext();
+  const [time, setTime] = useState(timerValue3 * 60);
+
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(
+      remainingSeconds
+    ).padStart(2, "0")}`;
+  };
+
+  useEffect(() => {
+    setTime(timerValue3 * 60);
+  }, [timerValue3]);
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
@@ -23,7 +35,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
       }, 1000);
     } else if (time === 0) {
       setIsActive(false);
-      setTime(15 * 60);
+      setTime(timerValue3 * 60);
       setSelectedPage(SelectedPage.Pomodoro);
     }
 
@@ -33,13 +45,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
   const toggleTimer = () => {
     setIsActive(!isActive);
   };
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds
-    ).padStart(2, "0")}`;
-  };
+
   return (
     <div className="flex justify-center items-center flex-col">
       <div className="flex flex-row m-2 items-center gap-4">
@@ -47,30 +53,24 @@ const LongBreak = ({ setSelectedPage }: Props) => {
           text="Reset"
           onClick={() => {
             toggleTimer();
-            setTime(15 * 60);
+            setTime(timerValue3 * 60);
             setIsActive(false);
           }}
         />
         <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
-          <TimerDisplay time={formatTime(time)} />
+          {formatTime(time)}
         </div>
 
         <ControlButton
           text="Next"
-          onClick={() => setSelectedPage(SelectedPage.LongBreak)}
+          onClick={() => setSelectedPage(SelectedPage.Pomodoro)}
         />
       </div>
-      {isAboveMediumScreens ? (
-        <ControlButton
-          text={isActive ? "Pause" : "Play"}
-          onClick={() => toggleTimer()}
-        />
-      ) : (
-        <ControlButton
-          text={isActive ? "Pause" : "Play"}
-          onClick={() => toggleTimer()}
-        />
-      )}
+
+      <ControlButton
+        text={isActive ? "Pause" : "Play"}
+        onClick={() => toggleTimer()}
+      />
     </div>
   );
 };
