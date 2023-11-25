@@ -9,7 +9,7 @@ import React, {
 } from "react";
 
 interface TimerContextProps {
-  timerValue: number; // Timer value in minutes
+  timerValue: number;
   handleTimerChange: Dispatch<SetStateAction<number>>;
 }
 
@@ -20,19 +20,18 @@ interface TimerProviderProps {
 }
 
 export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
-  const [timerValueInMinutes, setTimerValueInMinutes] = useState<number>(25);
+  const [timerValue, setTimerValue] = useState<number>(25);
 
   const handleTimerChange: TimerContextProps["handleTimerChange"] = (
     newValue
   ) => {
-    setTimerValueInMinutes((prevTimerValue) =>
+    setTimerValue((prevTimerValue) =>
       typeof newValue === "function" ? newValue(prevTimerValue) : newValue
     );
   };
 
   return (
-    <TimerContext.Provider
-      value={{ timerValue: timerValueInMinutes * 60, handleTimerChange }}>
+    <TimerContext.Provider value={{ timerValue, handleTimerChange }}>
       {children}
     </TimerContext.Provider>
   );
@@ -45,8 +44,5 @@ export const useTimerContext = (): TimerContextProps => {
     throw new Error("useTimerContext must be used within a TimerProvider");
   }
 
-  return {
-    ...context,
-    timerValue: context.timerValue / 60, // Convert timer value to minutes
-  };
+  return context;
 };

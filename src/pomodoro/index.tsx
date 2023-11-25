@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SelectedPage } from "@/shared/types";
 import { ControlButton } from "./TimerComponents";
-
 import { useTimerContext } from "@/components/PomoTimerContext";
 
 type Props = {
@@ -15,15 +14,16 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [time, setTime] = useState(timerValue * 60);
 
   const formatTime = (seconds: number) => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
+    const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-
-    return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
-      2,
-      "0"
-    )}:${String(remainingSeconds).padStart(2, "0")}`;
+    return `${String(minutes).padStart(2, "0")}:${String(
+      remainingSeconds
+    ).padStart(2, "0")}`;
   };
+
+  useEffect(() => {
+    setTime(timerValue * 60);
+  }, [timerValue]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -35,7 +35,6 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
     } else if (time === 0) {
       setIsActive(false);
       setTime(timerValue * 60);
-
       setSelectedPage(SelectedPage.ShortBreak);
     }
 
