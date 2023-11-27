@@ -2,6 +2,10 @@ import Bell from "@/assets/pomo-to-short.mp3";
 import Kitchen from "@/assets/long-to-pomodoro.mp3";
 import Bird from "@/assets/bird.mp3";
 import Wood from "@/assets/wood.mp3";
+import TickingFast from "@/assets/ticking-fast.mp3";
+import TickingSlow from "@/assets/ticking-slow.mp3";
+import BrownNoise from "@/assets/brown.mp3";
+import WhiteNoise from "@/assets/white.mp3";
 import Digital from "@/assets/digital.mp3";
 import SoundSvg from "@/assets/sound.svg";
 import { useEffect, useState } from "react";
@@ -91,6 +95,20 @@ const Sound = ({}: Props) => {
             />
           </div>
         </div>
+      </div>
+      <div className="flex flex-row justify-between">
+        <span>Ticking Sound</span>
+        <select
+          id="alarm"
+          className="bg-gray-200 p-1 rounded-sm"
+          value={selectedAlarm}
+          onChange={handleAlarmChange}>
+          <option value="None">None</option>
+          <option value={TickingFast}>Ticking Fast</option>
+          <option value={TickingSlow}>Ticking Slow</option>
+          <option value={WhiteNoise}>White Noise</option>
+          <option value={BrownNoise}>Brown Noise</option>
+        </select>
       </div>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
     </div>
