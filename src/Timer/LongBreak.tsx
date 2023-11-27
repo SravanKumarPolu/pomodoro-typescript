@@ -1,14 +1,6 @@
 import { useTimerContext } from "@/components/TimerContext";
-import { SelectedPage } from "@/shared/types";
 
-type Props = {
-  setSelectedPage: (value: SelectedPage) => void;
-
-  selectedPage?: SelectedPage;
-  setShortBreakTime: (newTime: number) => void;
-};
-
-const LongBreak = ({}: Props) => {
+const LongBreak = () => {
   const { timerValue3, handleTimerChange3 } = useTimerContext();
 
   return (

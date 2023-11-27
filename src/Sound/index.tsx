@@ -1,8 +1,6 @@
-import React from "react";
-
 type Props = {};
 
-const Sound = (props: Props) => {
+const Sound = ({}: Props) => {
   return (
     <div className="w-[20rem]  p-2">
       <h2>Sound</h2>

@@ -1,8 +1,6 @@
-import React from "react";
-
 type Props = {};
 
-const Notifications = (props: Props) => {
+const Notifications = ({}: Props) => {
   return (
     <div className="w-[20rem] p-2">
       <h2>Notifications</h2>

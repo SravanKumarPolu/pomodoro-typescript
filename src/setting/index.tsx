@@ -15,23 +15,21 @@ type Props = {
 
 const Setting = ({ onClose }: Props) => {
   return (
-    <div
-      className="flex flex-col w-[22rem] p-2 m-2  mt-10 top-16 absolute right-[17em] bg-white rounded shadow-lg z-10 
-      ">
-      <div>
-        <div className="flex justify-between p-2 border-b-2 border-white-500">
-          <h1>Setting</h1>
+    <div className="w-[24rm]  z-10 absolute p-4 m-2 mt-10 top-11 sm:w-[24rem] sm:right-[4rem] sm:fixed">
+      <div className="bg-white rounded shadow-lg">
+        <div className="flex justify-between p-4 border-b-2 border-white-500">
+          <h1 className="text-lg font-semibold">Setting</h1>
           <button className="cursor-pointer" onClick={onClose}>
             <img
               width={24}
               height={24}
               src={removesvg}
               alt=""
-              className="filter grayscale "
+              className="filter grayscale"
             />
           </button>
         </div>
-        <div>
+        <div className="p-4">
           <Timer />
           <Task label={""} />
           <Sound />
@@ -42,4 +40,5 @@ const Setting = ({ onClose }: Props) => {
     </div>
   );
 };
+
 export default Setting;

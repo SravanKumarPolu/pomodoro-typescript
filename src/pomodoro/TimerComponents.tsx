@@ -1,5 +1,5 @@
 // Pomodoro.tsx
-import React, { useEffect, Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 interface PomodoroProps {
   initialTime: number;
@@ -9,13 +9,7 @@ interface PomodoroProps {
   setTimer: Dispatch<SetStateAction<number>>; // Include setTimer in the interface
 }
 
-const Pomodoro: React.FC<PomodoroProps> = ({
-  initialTime,
-  time,
-  isActive,
-  setIsActive,
-  setTimer,
-}) => {
+const Pomodoro: React.FC<PomodoroProps> = ({ time }) => {
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;

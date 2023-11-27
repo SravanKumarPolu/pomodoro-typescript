@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TaskSvg from "@/assets/task.svg";
 
 type Props = {

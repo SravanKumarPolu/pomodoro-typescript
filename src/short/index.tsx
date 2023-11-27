@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { SelectedPage } from "@/shared/types";
 import skr from "@/assets/short-to-pomodo.mp3";
-import { ControlButton, TimerDisplay } from "./TimerComponents";
-import useMediaQuery from "@/hooks/useMediaQuery";
+import { ControlButton } from "./TimerComponents";
+
 import { useTimerContext } from "@/components/TimerContext";
 type Props = {
   selectedPage: SelectedPage;
@@ -10,7 +10,6 @@ type Props = {
 };
 
 const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
-  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
   const [isActive, setIsActive] = useState(false);
   const { timerValue2 } = useTimerContext();
   const [time, setTime] = useState(timerValue2 * 60);
@@ -78,17 +77,11 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
           onClick={() => setSelectedPage(SelectedPage.Pomodoro)}
         />
       </div>
-      {isAboveMediumScreens ? (
-        <ControlButton
-          text={isActive ? "Pause" : "Play"}
-          onClick={() => toggleTimer()}
-        />
-      ) : (
-        <ControlButton
-          text={isActive ? "Pause" : "Play"}
-          onClick={() => toggleTimer()}
-        />
-      )}
+
+      <ControlButton
+        text={isActive ? "Pause" : "Play"}
+        onClick={() => toggleTimer()}
+      />
     </div>
   );
 };

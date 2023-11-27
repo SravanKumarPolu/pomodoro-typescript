@@ -1,8 +1,6 @@
-import React from "react";
-
 type Props = {};
 
-const Themes = (props: Props) => {
+const Themes = ({}: Props) => {
   return (
     <div className="w-[18rem] p-2">
       <h2>Theme</h2>
