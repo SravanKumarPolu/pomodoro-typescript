@@ -35,7 +35,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
       }, 1000);
     } else if (time === 0) {
       setIsActive(false);
-      setTime(0.2 * 60);
+      setTime(timerValue2 * 60);
       const audio = audioRef.current;
       if (audio) {
         audio.play().catch((error: any) => {

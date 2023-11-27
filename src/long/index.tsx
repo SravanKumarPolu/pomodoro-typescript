@@ -1,8 +1,8 @@
 // tsrafce
-import { useState, useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { SelectedPage } from "@/shared/types";
 import { ControlButton } from "./TimerComponents";
-
+import skr from "@/assets/long-to-pomodoro.mp3";
 import { useTimerContext } from "@/components/TimerContext";
 
 type Props = {
@@ -22,10 +22,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
       remainingSeconds
     ).padStart(2, "0")}`;
   };
-
-  useEffect(() => {
-    setTime(timerValue3 * 60);
-  }, [timerValue3]);
+  const audioRef = useRef<HTMLAudioElement>(null);
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
@@ -36,11 +33,20 @@ const LongBreak = ({ setSelectedPage }: Props) => {
     } else if (time === 0) {
       setIsActive(false);
       setTime(timerValue3 * 60);
-      setSelectedPage(SelectedPage.Pomodoro);
+      const audio = audioRef.current;
+      if (audio) {
+        audio.play().catch((error: any) => {
+          console.error(error);
+        });
+        const audioDuration = 10000;
+        setTimeout(() => {
+          setSelectedPage(SelectedPage.Pomodoro);
+        }, audioDuration);
+      }
     }
 
     return () => clearInterval(interval);
-  }, [isActive, time]);
+  }, [isActive, time, setSelectedPage]);
 
   const toggleTimer = () => {
     setIsActive(!isActive);
@@ -59,6 +65,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
         />
         <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
           {formatTime(time)}
+          <audio ref={audioRef} preload="none" src={skr}></audio>
         </div>
 
         <ControlButton
