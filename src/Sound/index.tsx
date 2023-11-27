@@ -17,6 +17,7 @@ const Sound = ({}: Props) => {
   const [volume, setVolume] = useState(0.5); // initial volume
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const [selectedAlarm, setSelectedAlarm] = useState<string>("");
+  const [selectedSound, setSelectedSound] = useState<string>("");
 
   const handleAlarmChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedAlarm(event.target.value);
@@ -33,7 +34,10 @@ const Sound = ({}: Props) => {
       setVolume(newVolume);
     }
   };
-
+  const handleTickingChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedSound = event.target.value;
+    setSelectedSound(selectedSound === "None" ? "" : selectedSound);
+  };
   useEffect(() => {
     const newAudio = new Audio();
     setAudio(newAudio);
@@ -46,6 +50,14 @@ const Sound = ({}: Props) => {
       }
     };
   }, []);
+  useEffect(() => {
+    if (audio && selectedSound) {
+      audio.src = selectedSound;
+      audio.play();
+    } else {
+      audio?.pause();
+    }
+  }, [selectedSound, audio]);
 
   useEffect(() => {
     if (audio && selectedAlarm) {
@@ -101,8 +113,8 @@ const Sound = ({}: Props) => {
         <select
           id="alarm"
           className="bg-gray-200 p-1 rounded-sm"
-          value={selectedAlarm}
-          onChange={handleAlarmChange}>
+          value={selectedSound || "None"}
+          onChange={handleTickingChange}>
           <option value="None">None</option>
           <option value={TickingFast}>Ticking Fast</option>
           <option value={TickingSlow}>Ticking Slow</option>
