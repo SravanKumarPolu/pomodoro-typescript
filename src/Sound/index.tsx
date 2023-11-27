@@ -14,7 +14,9 @@ type Props = {};
 const Sound = ({}: Props) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(0.5); // initial volume
+  const [durationTickling, setDurationTickling] = useState(0);
+  const [volume, setVolume] = useState(0.5);
+  const [ticklingVolume, setTicklingVolume] = useState(0.5);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const [selectedAlarm, setSelectedAlarm] = useState<string>("");
   const [selectedSound, setSelectedSound] = useState<string>("");
@@ -34,10 +36,37 @@ const Sound = ({}: Props) => {
       setVolume(newVolume);
     }
   };
-  const handleTickingChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+
+  const handleTicklingValumeChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const newVolume = parseFloat(event.target.value);
+    if (audio) {
+      audio.volume = newVolume;
+      setTicklingVolume(newVolume);
+    }
+  };
+
+  const handleTicklingChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const selectedSound = event.target.value;
     setSelectedSound(selectedSound === "None" ? "" : selectedSound);
   };
+
+  useEffect(() => {
+    if (audio) {
+      audio.addEventListener("timeupdate", handleTimeUpdate);
+      audio.addEventListener("loadeddata", () =>
+        setDurationTickling(audio.duration)
+      );
+
+      return () => {
+        audio.removeEventListener("timeupdate", handleTimeUpdate);
+      };
+    }
+  }, [audio]);
+
   useEffect(() => {
     const newAudio = new Audio();
     setAudio(newAudio);
@@ -86,7 +115,6 @@ const Sound = ({}: Props) => {
         <span>Alarm Sound</span>
         <div className="flex flex-col ">
           <select
-            id="alarm"
             className="bg-gray-200 p-1 rounded-sm"
             value={selectedAlarm}
             onChange={handleAlarmChange}>
@@ -110,19 +138,28 @@ const Sound = ({}: Props) => {
       </div>
       <div className="flex flex-row justify-between">
         <span>Ticking Sound</span>
-        <select
-          id="alarm"
-          className="bg-gray-200 p-1 rounded-sm"
-          value={selectedSound || "None"}
-          onChange={handleTickingChange}>
-          <option value="None">None</option>
-          <option value={TickingFast}>Ticking Fast</option>
-          <option value={TickingSlow}>Ticking Slow</option>
-          <option value={WhiteNoise}>White Noise</option>
-          <option value={BrownNoise}>Brown Noise</option>
-        </select>
+        <div className="flex flex-col">
+          <select
+            className="bg-gray-200 p-1 rounded-sm"
+            value={selectedSound || "None"}
+            onChange={handleTicklingChange}>
+            <option value="None">None</option>
+            <option value={TickingFast}>Ticking Fast</option>
+            <option value={TickingSlow}>Ticking Slow</option>
+            <option value={WhiteNoise}>White Noise</option>
+            <option value={BrownNoise}>Brown Noise</option>
+          </select>
+          <div className="pt-4">
+            <input
+              type="range"
+              value={ticklingVolume}
+              max={1}
+              step={0.01}
+              onChange={handleTicklingValumeChange}
+            />
+          </div>
+        </div>
       </div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
     </div>
   );
 };
