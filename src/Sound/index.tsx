@@ -12,9 +12,7 @@ import { useEffect, useState } from "react";
 type Props = {};
 
 const Sound = ({}: Props) => {
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [durationTickling, setDurationTickling] = useState(0);
+  const [, setDurationTickling] = useState(0);
   const [volume, setVolume] = useState(0.5);
   const [ticklingVolume, setTicklingVolume] = useState(0.5);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
@@ -25,10 +23,6 @@ const Sound = ({}: Props) => {
     setSelectedAlarm(event.target.value);
   };
 
-  const handleTimeUpdate = () => {
-    setCurrentTime(audio?.currentTime || 0);
-  };
-
   const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(event.target.value);
     if (audio) {
@@ -37,7 +31,7 @@ const Sound = ({}: Props) => {
     }
   };
 
-  const handleTicklingValumeChange = (
+  const handleTicklingVolumeChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const newVolume = parseFloat(event.target.value);
@@ -52,17 +46,24 @@ const Sound = ({}: Props) => {
   ) => {
     const selectedSound = event.target.value;
     setSelectedSound(selectedSound === "None" ? "" : selectedSound);
+
+    if (audio && !audio.paused) {
+      audio.pause();
+      audio.src = selectedSound;
+      audio.play();
+    }
   };
 
   useEffect(() => {
     if (audio) {
-      audio.addEventListener("timeupdate", handleTimeUpdate);
       audio.addEventListener("loadeddata", () =>
         setDurationTickling(audio.duration)
       );
 
       return () => {
-        audio.removeEventListener("timeupdate", handleTimeUpdate);
+        audio.removeEventListener("loadeddata", () =>
+          setDurationTickling(audio.duration)
+        );
       };
     }
   }, [audio]);
@@ -79,8 +80,10 @@ const Sound = ({}: Props) => {
       }
     };
   }, []);
+
   useEffect(() => {
     if (audio && selectedSound) {
+      audio.pause();
       audio.src = selectedSound;
       audio.play();
     } else {
@@ -90,21 +93,11 @@ const Sound = ({}: Props) => {
 
   useEffect(() => {
     if (audio && selectedAlarm) {
+      audio.pause();
       audio.src = selectedAlarm;
       audio.play();
     }
   }, [selectedAlarm, audio]);
-
-  useEffect(() => {
-    if (audio) {
-      audio.addEventListener("timeupdate", handleTimeUpdate);
-      audio.addEventListener("loadeddata", () => setDuration(audio.duration));
-
-      return () => {
-        audio.removeEventListener("timeupdate", handleTimeUpdate);
-      };
-    }
-  }, [audio]);
   return (
     <div className=" flex flex-col  w-[20rem]  p-2 border-b-2 border-white-500">
       <div className="flex flex-row p-1">
@@ -155,7 +148,7 @@ const Sound = ({}: Props) => {
               value={ticklingVolume}
               max={1}
               step={0.01}
-              onChange={handleTicklingValumeChange}
+              onChange={handleTicklingVolumeChange}
             />
           </div>
         </div>
