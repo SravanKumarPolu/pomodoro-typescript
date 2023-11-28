@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { SelectedPage } from "@/shared/types";
 import skr from "@/assets/short-to-pomodo.mp3";
-import { ControlButton } from "./TimerComponents";
+import { ControlButton } from "@/components/TimerComponents";
 
 import { useTimerContext } from "@/components/TimerContext";
 type Props = {

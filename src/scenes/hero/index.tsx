@@ -21,26 +21,6 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
   useEffect(() => {
     let timer: NodeJS.Timeout;
 
-    // const handleTimeout = () => {
-    //   switch (selectedPage) {
-    //     case SelectedPage.Pomodoro:
-    //       setSelectedPage(SelectedPage.ShortBreak);
-    //       setRemainingTime(5 * 60);
-
-    //       break;
-    //     case SelectedPage.LongBreak:
-    //       setSelectedPage(SelectedPage.Pomodoro);
-    //       setRemainingTime(25 * 60);
-    //       break;
-    //     case SelectedPage.ShortBreak:
-    //       setSelectedPage(SelectedPage.Pomodoro);
-    //       setRemainingTime(25 * 60);
-    //       break;
-    //     default:
-    //       break;
-    //   }
-    // };
-
     timer = setInterval(() => {
       setRemainingTime((prevTime) => {
         if (prevTime === 0) {
@@ -92,7 +72,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
       <div
         className={`flex h-[3orem] mt-0  flex-col items-center justify-center pt-2 p-10 
        ${isAboveMediumScreens ? "w-5/6" : "w-full"}
-       bg-gray-600 rounded text-white absolute`}>
+       bg-primary-300 rounded text-white absolute`}>
         <div className="flex flex-col gap-2 items-center justify-around">
           <div className="flex flex-row m-2">
             <button
