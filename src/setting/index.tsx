@@ -6,7 +6,6 @@ import Task from "@/Task";
 import Sound from "@/Sound";
 import Theme from "@/Theme";
 import Notifications from "@/notification";
-import { SoundProvider } from "@/components/SoundContext";
 
 type Props = {
   selectedPage: SelectedPage;
