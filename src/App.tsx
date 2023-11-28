@@ -25,9 +25,9 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-slate-200">
+    <div className="flex flex-col items-center justify-center h-screen ">
       <TimerProvider>
-        <div className="w-full mb-16">
+        <div className="w-full mb-16 overflow-hidden shadow-md">
           <Navbar
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
@@ -37,12 +37,7 @@ function App() {
         </div>
 
         <div className="w-full p-4 mt-16">
-          <div className="app rounded-lg overflow-hidden shadow-lg">
-            <Hero
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-          </div>
+          <Hero selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
         </div>
       </TimerProvider>
     </div>

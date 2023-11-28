@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SelectedPage } from "@/shared/types";
-import { ControlButton } from "../components/TimerComponents";
+import { ControlButton } from "../components/ButtonComponents";
 import { useTimerContext } from "@/components/TimerContext";
 
 type Props = {

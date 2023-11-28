@@ -1,7 +1,7 @@
 // tsrafce
 import { useEffect, useState, useRef } from "react";
 import { SelectedPage } from "@/shared/types";
-import { ControlButton } from "@/components/TimerComponents";
+import { ControlButton } from "@/components/ButtonComponents";
 import skr from "@/assets/long-to-pomodoro.mp3";
 import { useTimerContext } from "@/components/TimerContext";
 
