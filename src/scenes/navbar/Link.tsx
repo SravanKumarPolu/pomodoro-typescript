@@ -34,9 +34,9 @@ const Link = ({
   return (
     <AnchorLink
       className={`${
-        selectedPage === (src || lowerCasePage) ? "text-primary-500 " : ""
+        selectedPage === (src || lowerCasePage) ? "text-white " : ""
       }
-          transition duration-500 hover:text-primary-300
+          transition duration-500 hover:text-gray-300
           `}
       href={`#${src || lowerCasePage}`}
       onClick={handleClick}>

@@ -68,11 +68,11 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
   };
 
   return (
-    <div className=" flex items-center  justify-center p-2 ">
+    <div className="flex items-center justify-center p-2">
       <div
-        className={`flex h-[3orem] mt-0  flex-col items-center justify-center pt-2 p-10 
-       ${isAboveMediumScreens ? "w-5/6" : "w-full"}
-       bg-primary-300 rounded text-white absolute`}>
+        className={`flex h-[36rem] mt-0 flex-col items-center justify-center pt-2 p-10 ${
+          isAboveMediumScreens ? "w-5/6" : "w-full"
+        } bg-teal-300 rounded text-white absolute`}>
         <div className="flex flex-col gap-2 items-center justify-around">
           <div className="flex flex-row m-2">
             <button
@@ -105,7 +105,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
           </div>
           {renderPage()}
         </div>
-        <div className="flex flex-wrapper bg-white   p-6 rounded-lg h-[19rem] shadow-lg">
+        <div className="flex flex-wrapper bg-white p-6 rounded-lg h-[19rem] shadow-lg">
           <TodoWrapper />
         </div>
       </div>
