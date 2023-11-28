@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { SelectedPage } from "./shared/types";
 import Hero from "./scenes/hero";
 import { TimerProvider } from "./components/TimerContext";
+import { SoundProvider } from "./components/SoundContext";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
@@ -27,23 +28,25 @@ function App() {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-lavender-200">
       <TimerProvider>
-        <div className="w-full mb-16 overflow-hidden shadow-md">
-          <Navbar
-            selectedPage={selectedPage}
-            setSelectedPage={setSelectedPage}
-            isTopOfPage={isTopOfPage}
-            onClose={handleClose}
-          />
-        </div>
-
-        <div className="w-full p-4 mt-16">
-          <div className=" rounded-lg overflow-hidden   ">
-            <Hero
+        <SoundProvider>
+          <div className="w-full mb-16 overflow-hidden shadow-md">
+            <Navbar
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
+              isTopOfPage={isTopOfPage}
+              onClose={handleClose}
             />
           </div>
-        </div>
+
+          <div className="w-full p-4 mt-16">
+            <div className=" rounded-lg overflow-hidden   ">
+              <Hero
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
+            </div>
+          </div>
+        </SoundProvider>
       </TimerProvider>
     </div>
   );

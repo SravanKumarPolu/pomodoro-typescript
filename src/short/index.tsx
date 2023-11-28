@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { SelectedPage } from "@/shared/types";
 import skr from "@/assets/short-to-pomodo.mp3";
-import { ControlButton } from "@/components/ButtonComponents";
 
 import { useTimerContext } from "@/components/TimerContext";
+import { ControlButton } from "@/components/ButtonComponents";
 type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;

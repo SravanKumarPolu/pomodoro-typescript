@@ -76,7 +76,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
         <div className="flex flex-col gap-2 items-center justify-around">
           <div className="flex flex-row m-2">
             <button
-              className="m-2 px-2 border-2 border-white rounded xs:mx-1 xs:text-xs"
+              className="m-2 px-2 border-2 rounded xs:mx-1 xs:text-xs"
               onClick={() => setSelectedPage(SelectedPage.Pomodoro)}>
               <Link
                 page="Pomodoro"
@@ -85,7 +85,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
               />
             </button>
             <button
-              className="m-2 px-2 border-2 border-white rounded xs:mx-1 xs:text-xs"
+              className="m-2 px-2 border-2  rounded xs:mx-1 xs:text-xs"
               onClick={() => setSelectedPage(SelectedPage.ShortBreak)}>
               <Link
                 page="ShortBreak"
@@ -94,7 +94,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
               />
             </button>
             <button
-              className="m-2 px-2 border-2 border-white rounded xs:mx-1 xs:text-xs"
+              className="m-2 px-2 border-2 rounded xs:mx-1 xs:text-xs"
               onClick={() => setSelectedPage(SelectedPage.LongBreak)}>
               <Link
                 page="LongBreak"

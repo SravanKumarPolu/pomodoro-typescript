@@ -6,6 +6,7 @@ import Task from "@/Task";
 import Sound from "@/Sound";
 import Theme from "@/Theme";
 import Notifications from "@/notification";
+import { SoundProvider } from "@/components/SoundContext";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -32,7 +33,9 @@ const Setting = ({ onClose }: Props) => {
         <div className="p-4">
           <Timer />
           <Task label={""} />
+
           <Sound />
+
           <Theme />
           <Notifications />
         </div>
