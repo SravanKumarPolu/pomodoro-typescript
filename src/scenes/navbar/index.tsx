@@ -14,6 +14,7 @@ type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
   isTopOfPage: boolean;
+
   onClose: () => void;
 };
 
@@ -23,16 +24,16 @@ const Navbar = ({
   isTopOfPage,
   onClose,
 }: Props) => {
+  const flexBetween = "flex items-center justify-between";
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
 
   const navbarBackground = isTopOfPage ? "" : "bg-primary-100 drop-shadow";
   const [showSetting, setShowSetting] = useState(false);
 
-  const handleSettingClick = (page: SelectedPage) => {
-    setSelectedPage(page);
+  const handleSettingClick = () => {
+    setSelectedPage(SelectedPage.Setting);
     setShowSetting(true);
   };
-
   const handleSettingClose = () => {
     setShowSetting(false);
     onClose();
@@ -42,9 +43,9 @@ const Navbar = ({
     <>
       <nav>
         <div
-          className={`${navbarBackground} flex items-center justify-between fixed top-0 z-30 w-full py-6`}>
+          className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6 `}>
           <motion.div
-            className="flex w-full items-center mx-auto ml-[-.1rem] border-b-2"
+            className=" flex w-full  items-center mx-auto  ml-[-.1rem] border-b-2"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
@@ -56,43 +57,80 @@ const Navbar = ({
             <HText>
               <span className="pl-2">Pomoto</span>
             </HText>
-            <div
-              className={`flex justify-${
-                isAboveMediumScreens ? "between" : "around"
-              }`}>
-              <button
-                className="flex flex-row items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative"
-                onClick={() => handleSettingClick(SelectedPage.Report)}>
-                <img src={reportsvg} alt="" width={20} height={20} />
-                <Links
-                  page="Report"
-                  selectedPage={selectedPage}
-                  setSelectedPage={setSelectedPage}
-                />
-              </button>
+            {isAboveMediumScreens ? (
+              <div className="flex justify-between ">
+                <button
+                  className="flex flex-row items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  onClick={handleSettingClick}>
+                  <img src={reportsvg} alt="" width={20} height={20} />
+                  <Links
+                    page="Report"
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
+                </button>
 
-              <button
-                className="flex flex-row items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative"
-                onClick={() => handleSettingClick(SelectedPage.Setting)}>
-                <img src={settingsvg} alt="" width={20} height={20} />
-                <Links
-                  page="Setting"
-                  selectedPage={selectedPage}
-                  setSelectedPage={setSelectedPage}
-                />
-              </button>
+                <button
+                  className="flex flex-row items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  onClick={handleSettingClick}>
+                  <img src={settingsvg} alt="" width={20} height={20} />
+                  <Links
+                    page="Setting"
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
+                </button>
 
-              <button
-                className="flex flex-row items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative"
-                onClick={() => handleSettingClick(SelectedPage.Login)}>
-                <img src={loginsvg} alt="" width={20} height={20} />
-                <Links
-                  page="Login"
-                  selectedPage={selectedPage}
-                  setSelectedPage={setSelectedPage}
-                />
-              </button>
-            </div>
+                <button
+                  className="flex flex-row items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  onClick={handleSettingClick}>
+                  <img src={loginsvg} alt="" width={20} height={20} />
+                  <Links
+                    page="Login"
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
+                </button>
+              </div>
+            ) : (
+              <div className="flex justify-around items-center ">
+                <button
+                  className="flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  onClick={handleSettingClick}>
+                  <Links
+                    src={reportsvg}
+                    width={20}
+                    height={20}
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
+                </button>
+
+                <button
+                  className="flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  onClick={handleSettingClick}>
+                  <Links
+                    src={settingsvg}
+                    width={20}
+                    height={20}
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
+                </button>
+
+                <button
+                  className="flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  onClick={handleSettingClick}>
+                  <Links
+                    src={loginsvg}
+                    width={20}
+                    height={20}
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
+                </button>
+              </div>
+            )}
           </motion.div>
         </div>
       </nav>
