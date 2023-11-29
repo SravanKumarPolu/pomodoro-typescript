@@ -72,11 +72,11 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
       <div
         className={`flex h-[36rem] mt-0 flex-col items-center justify-center pt-2 p-10 ${
           isAboveMediumScreens ? "w-5/6" : "w-full"
-        } bg-primary-300 rounded text-white absolute`}>
-        <div className="flex flex-col gap-2 items-center justify-around">
+        } bg-pink-500 rounded text-white absolute`}>
+        <div className="flex flex-col gap-2 items-center justify-around bg-pink-400">
           <div className="flex flex-row m-2">
             <button
-              className="m-2 px-2 border-2 rounded xs:mx-1 xs:text-xs"
+              className="m-2 p-1 bg-white bg-opacity-50 rounded xs:mx-1 xs:text-xs"
               onClick={() => setSelectedPage(SelectedPage.Pomodoro)}>
               <Link
                 page="Pomodoro"
@@ -85,7 +85,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
               />
             </button>
             <button
-              className="m-2 px-2 border-2  rounded xs:mx-1 xs:text-xs"
+              className="m-2 p-1 bg-white bg-opacity-50  rounded xs:mx-1 xs:text-xs"
               onClick={() => setSelectedPage(SelectedPage.ShortBreak)}>
               <Link
                 page="ShortBreak"
@@ -94,7 +94,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
               />
             </button>
             <button
-              className="m-2 px-2 border-2 rounded xs:mx-1 xs:text-xs"
+              className="m-2 p-1  rounded xs:mx-1 xs:text-xs bg-white bg-opacity-50 "
               onClick={() => setSelectedPage(SelectedPage.LongBreak)}>
               <Link
                 page="LongBreak"

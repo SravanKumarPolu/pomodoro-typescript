@@ -31,7 +31,9 @@ export const ControlButton: React.FC<{
   text: string;
   onClick: () => void;
 }> = ({ text, onClick }) => (
-  <button className="m-2 px-2 border-2 rounded border-white" onClick={onClick}>
+  <button
+    className="m-2 px-2  rounded bg-white bg-opacity-50"
+    onClick={onClick}>
     {text}
   </button>
 );

@@ -26,7 +26,7 @@ const Navbar = ({
 }: Props) => {
   const flexBetween = "flex items-center justify-between";
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
-  const navbarBackground = isTopOfPage ? "" : "bg-blue-500 drop-shadow";
+  const navbarBackground = isTopOfPage ? "" : "bg-pink-200 drop-shadow";
 
   const [showSetting, setShowSetting] = useState(false);
 
@@ -43,7 +43,7 @@ const Navbar = ({
     <>
       <nav>
         <div
-          className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6 `}>
+          className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full  py-6 `}>
           <motion.div
             className=" flex w-full  items-center mx-auto  ml-[-.1rem] border-none"
             initial="hidden"
@@ -60,7 +60,7 @@ const Navbar = ({
             {isAboveMediumScreens ? (
               <div className="flex justify-between ">
                 <button
-                  className="flex flex-row  items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500"
+                  className="flex p-1 flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500 bg-opacity-50"
                   onClick={handleSettingClick}>
                   <img src={reportsvg} alt="" width={20} height={20} />
                   <Links
@@ -71,7 +71,7 @@ const Navbar = ({
                 </button>
 
                 <button
-                  className="flex flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500"
+                  className="flex p-1 flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500 bg-opacity-50"
                   onClick={handleSettingClick}>
                   <img src={settingsvg} alt="" width={20} height={20} />
                   <Links
@@ -82,7 +82,7 @@ const Navbar = ({
                 </button>
 
                 <button
-                  className="flex flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500"
+                  className="flex p-1 flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500 bg-opacity-50 "
                   onClick={handleSettingClick}>
                   <img src={loginsvg} alt="" width={20} height={20} />
                   <Links

@@ -29,10 +29,7 @@ function App() {
     <div className="flex flex-col items-center justify-center h-screen bg-yellow-200">
       <TimerProvider>
         <SoundProvider>
-          <div
-            className={`w-full mb-32 overflow-hidden shadow-md ${
-              isTopOfPage ? "" : "bg-blue-500"
-            }`}>
+          <div className="w-full mb-36 overflow-hidden shadow-md ">
             <Navbar
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
@@ -41,10 +38,7 @@ function App() {
             />
           </div>
 
-          <div
-            className={`w-full   overflow-hidden shadow-md ${
-              isTopOfPage ? "" : "bg-blue-500"
-            }`}>
+          <div>
             <Hero
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
