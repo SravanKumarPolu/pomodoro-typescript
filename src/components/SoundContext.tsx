@@ -12,6 +12,7 @@ import React, {
 type SoundContextProps = {
   selectedAlarm: string;
   setSelectedAlarm: Dispatch<SetStateAction<string>>;
+  setAlarm: (alarm: string) => void;
 };
 
 const SoundContext = createContext<SoundContextProps | undefined>(undefined);
@@ -23,9 +24,14 @@ type SoundProviderProps = {
 export const SoundProvider: React.FC<SoundProviderProps> = ({ children }) => {
   const [selectedAlarm, setSelectedAlarm] = useState<string>("");
 
+  const setAlarm = (alarm: string) => {
+    setSelectedAlarm(alarm);
+  };
+
   const contextValue: SoundContextProps = {
     selectedAlarm,
     setSelectedAlarm,
+    setAlarm,
   };
 
   return (
