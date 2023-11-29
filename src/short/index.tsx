@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { SelectedPage } from "@/shared/types";
+import skr from "@/assets/short-to-pomodo.mp3";
 
 import { useTimerContext } from "@/components/TimerContext";
 import { ControlButton } from "@/components/ButtonComponents";
-import { useSoundContext } from "@/components/SoundContext";
-
 type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
@@ -13,9 +12,7 @@ type Props = {
 const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue2 } = useTimerContext();
-  const { selectedAlarm } = useSoundContext();
   const [time, setTime] = useState(timerValue2 * 60);
-  const audioRef = useRef<HTMLAudioElement>(null);
 
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
@@ -24,10 +21,10 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
       remainingSeconds
     ).padStart(2, "0")}`;
   };
-
   useEffect(() => {
     setTime(timerValue2 * 60);
   }, [timerValue2]);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -39,10 +36,8 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
     } else if (time === 0) {
       setIsActive(false);
       setTime(timerValue2 * 60);
-      console.log("Selected Alarm:", selectedAlarm);
       const audio = audioRef.current;
-      console.log("Audio Element:", audio);
-      if (audio && selectedAlarm) {
+      if (audio) {
         audio.play().catch((error: any) => {
           console.error(error);
         });
@@ -54,7 +49,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
     }
 
     return () => clearInterval(interval);
-  }, [isActive, time, setSelectedPage, selectedAlarm]);
+  }, [isActive, time, setSelectedPage]);
 
   const toggleTimer = () => {
     setIsActive(!isActive);
@@ -74,7 +69,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
         <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
           {formatTime(time)}
-          <audio ref={audioRef} preload="none" src={selectedAlarm}></audio>
+          <audio ref={audioRef} preload="none" src={skr}></audio>
         </div>
 
         <ControlButton

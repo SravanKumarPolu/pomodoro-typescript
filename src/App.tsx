@@ -26,10 +26,13 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-lavender-200">
+    <div className="flex flex-col items-center justify-center h-screen bg-yellow-200">
       <TimerProvider>
         <SoundProvider>
-          <div className="w-full mb-16 overflow-hidden shadow-md">
+          <div
+            className={`w-full mb-32 overflow-hidden shadow-md ${
+              isTopOfPage ? "" : "bg-blue-500"
+            }`}>
             <Navbar
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
@@ -38,13 +41,14 @@ function App() {
             />
           </div>
 
-          <div className="w-full p-4 mt-16">
-            <div className=" rounded-lg overflow-hidden   ">
-              <Hero
-                selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
-              />
-            </div>
+          <div
+            className={`w-full   overflow-hidden shadow-md ${
+              isTopOfPage ? "" : "bg-blue-500"
+            }`}>
+            <Hero
+              selectedPage={selectedPage}
+              setSelectedPage={setSelectedPage}
+            />
           </div>
         </SoundProvider>
       </TimerProvider>
