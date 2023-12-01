@@ -1,7 +1,9 @@
-// SoundContext.tsx
 import Bird from "@/assets/bird.mp3";
 import Wood from "@/assets/wood.mp3";
 import Digital from "@/assets/digital.mp3";
+import Bell from "@/assets/pomo-to-short.mp3";
+import Kitchen from "@/assets/long-to-pomodoro.mp3";
+
 import React, {
   createContext,
   useContext,
@@ -11,12 +13,12 @@ import React, {
   SetStateAction,
 } from "react";
 
-// Define the sound options
 const soundOptions = [
+  { label: "Kitchen", value: Kitchen },
   { label: "Bird", value: Bird },
   { label: "Wood", value: Wood },
+  { label: "Bell", value: Bell },
   { label: "Digital", value: Digital },
-  // Add more options as needed
 ];
 
 type SoundContextProps = {
