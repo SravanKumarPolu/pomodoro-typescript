@@ -13,7 +13,7 @@ import React, {
   SetStateAction,
 } from "react";
 
-const soundOptions = [
+const alarmOptions = [
   { label: "Kitchen", value: Kitchen },
   { label: "Bird", value: Bird },
   { label: "Wood", value: Wood },
@@ -27,7 +27,7 @@ type SoundContextProps = {
   setSelectedAlarm: Dispatch<SetStateAction<string>>;
   setSelectedSound: Dispatch<SetStateAction<string>>;
   setAlarm: (alarm: string) => void;
-  soundOptions: { label: string; value: string }[];
+  alarmOptions: { label: string; value: string }[];
 };
 
 const SoundContext = createContext<SoundContextProps | undefined>(undefined);
@@ -50,7 +50,7 @@ export const SoundProvider: React.FC<SoundProviderProps> = ({ children }) => {
     setSelectedAlarm,
     setSelectedSound,
     setAlarm,
-    soundOptions,
+    alarmOptions,
   };
 
   return (

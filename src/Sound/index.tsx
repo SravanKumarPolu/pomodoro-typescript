@@ -14,7 +14,7 @@ const Sound: React.FC<Props> = () => {
     selectedSound,
     setSelectedAlarm,
 
-    soundOptions,
+    alarmOptions,
   } = useSoundContext();
 
   const handleAlarmChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -87,7 +87,7 @@ const Sound: React.FC<Props> = () => {
             className="bg-gray-200 p-1 rounded-sm"
             value={selectedAlarm}
             onChange={handleAlarmChange}>
-            {soundOptions.map((option) => (
+            {alarmOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
