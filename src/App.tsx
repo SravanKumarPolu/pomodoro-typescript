@@ -24,14 +24,12 @@ function App() {
   function handleClose(): void {
     throw new Error("Function not implemented.");
   }
-  const flexBetween = "flex items-center justify-between";
 
-  const appBackground = isTopOfPage ? "" : "bg-pink-500 drop-shadow";
   return (
     <div
       className={`flex flex-col items-center justify-center  h-screen ${
         isTopOfPage ? "bg-yellow-200" : "bg-pink-500 "
-      } drop-shadow`}>
+      }  drop-shadow`}>
       <TimerProvider>
         <SoundProvider>
           <div className="w-full mb-36 overflow-hidden shadow-md ">

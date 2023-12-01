@@ -16,13 +16,11 @@ type Props = {
 
 const Hero: React.FC<Props> = ({
   selectedPage,
-  isTopOfPage,
+
   setSelectedPage,
 }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
-  const flexBetween = "flex items-center justify-between";
 
-  const heroBackground = isTopOfPage ? "" : "bg-pink-500 drop-shadow";
   const [remainingTime, setRemainingTime] = useState<number>(25 * 60);
 
   useEffect(() => {
