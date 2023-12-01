@@ -13,8 +13,7 @@ const Sound: React.FC<Props> = () => {
     selectedAlarm,
     selectedSound,
     setSelectedAlarm,
-    setSelectedSound,
-    setAlarm,
+
     soundOptions,
   } = useSoundContext();
 

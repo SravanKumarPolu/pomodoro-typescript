@@ -1,17 +1,21 @@
 import React, { useEffect, useState, useRef } from "react";
 import { SelectedPage } from "@/shared/types";
-import skr from "@/assets/short-to-pomodo.mp3";
 
 import { useTimerContext } from "@/components/TimerContext";
 import { ControlButton } from "@/components/ButtonComponents";
+import { useSoundContext } from "@/components/SoundContext";
+
 type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
 };
 
+// ... (previous imports)
+
 const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue2 } = useTimerContext();
+  const { selectedAlarm } = useSoundContext();
   const [time, setTime] = useState(timerValue2 * 60);
 
   const formatTime = (seconds: number) => {
@@ -21,9 +25,11 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
       remainingSeconds
     ).padStart(2, "0")}`;
   };
+
   useEffect(() => {
     setTime(timerValue2 * 60);
   }, [timerValue2]);
+
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -69,7 +75,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
         <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
           {formatTime(time)}
-          <audio ref={audioRef} preload="none" src={skr}></audio>
+          <audio ref={audioRef} preload="auto" src={selectedAlarm} />
         </div>
 
         <ControlButton

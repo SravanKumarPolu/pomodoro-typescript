@@ -21,7 +21,7 @@ const soundOptions = [
 
 type SoundContextProps = {
   selectedAlarm: string;
-  selectedSound: string;
+  selectedSound: string; // Update this to be the key of the selected sound, not the URL
   setSelectedAlarm: Dispatch<SetStateAction<string>>;
   setSelectedSound: Dispatch<SetStateAction<string>>;
   setAlarm: (alarm: string) => void;
@@ -36,7 +36,7 @@ type SoundProviderProps = {
 
 export const SoundProvider: React.FC<SoundProviderProps> = ({ children }) => {
   const [selectedAlarm, setSelectedAlarm] = useState<string>("");
-  const [selectedSound, setSelectedSound] = useState<string>("");
+  const [selectedSound, setSelectedSound] = useState<string>(""); // Update this to be the key of the selected sound, not the URL
 
   const setAlarm = (alarm: string) => {
     setSelectedAlarm(alarm);
