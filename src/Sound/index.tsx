@@ -116,7 +116,7 @@ const Sound: React.FC<Props> = () => {
         <img src={SoundSvg} width={20} height={20} />
         <h2 className="ml-1">Sound</h2>
       </div>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between pt-2">
         <span>Alarm Sound</span>
         <div className="flex flex-col">
           <select
@@ -141,9 +141,9 @@ const Sound: React.FC<Props> = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between py-2">
         <span>Ticking Sound</span>
-        <div className="flex flex-col">
+        <div className="flex flex-col  ">
           <select
             className="bg-gray-200 p-1 rounded-sm"
             value={selectedTicking || "None"}
