@@ -34,16 +34,16 @@ const tickingOptions = [
 
 type SoundContextProps = {
   selectedAlarm: string;
-  selectedSound: string; // Update this to be the key of the selected sound, not the URL
+
   setSelectedAlarm: Dispatch<SetStateAction<string>>;
-  setSelectedSound: Dispatch<SetStateAction<string>>;
+
   setAlarm: (alarm: string) => void;
   alarmOptions: { label: string; value: string }[];
 
   selectedTicking: string;
-  selectedTickingSound: string;
+
   setSelectedTicking: Dispatch<SetStateAction<string>>;
-  setSelectedTickingSound: Dispatch<SetStateAction<string>>;
+
   setTicking: (alarm: string) => void;
   tickingOptions: { label: string; value: string }[];
 };
@@ -56,8 +56,7 @@ type SoundProviderProps = {
 
 export const SoundProvider: React.FC<SoundProviderProps> = ({ children }) => {
   const [selectedAlarm, setSelectedAlarm] = useState<string>("");
-  const [selectedSound, setSelectedSound] = useState<string>("");
-  const [selectedTickingSound, setSelectedTickingSound] = useState<string>("");
+
   const [selectedTicking, setSelectedTicking] = useState<string>("");
 
   const setAlarm = (alarm: string) => {
@@ -70,15 +69,11 @@ export const SoundProvider: React.FC<SoundProviderProps> = ({ children }) => {
 
   const contextValue: SoundContextProps = {
     selectedAlarm,
-    selectedSound,
     setSelectedAlarm,
-    setSelectedSound,
     setAlarm,
     alarmOptions,
     selectedTicking,
-    selectedTickingSound,
     setSelectedTicking,
-    setSelectedTickingSound,
     setTicking,
     tickingOptions,
   };
