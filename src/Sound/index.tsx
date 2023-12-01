@@ -12,10 +12,8 @@ const Sound: React.FC<Props> = () => {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const {
     selectedAlarm,
-    selectedSound,
     setSelectedAlarm,
     selectedTicking,
-    selectedTickingSound,
     setSelectedTicking,
     tickingOptions,
     alarmOptions,
@@ -68,6 +66,7 @@ const Sound: React.FC<Props> = () => {
       };
     }
   }, [audio]);
+
   useEffect(() => {
     if (audio) {
       audio.addEventListener("loadeddata", () =>
@@ -94,17 +93,6 @@ const Sound: React.FC<Props> = () => {
       }
     };
   }, []);
-
-  useEffect(() => {
-    if (audio && selectedSound) {
-      audio.pause();
-      audio.src = selectedSound;
-      audio.play();
-    } else {
-      audio?.pause();
-    }
-  }, [selectedSound, audio]);
-
   useEffect(() => {
     if (audio && selectedAlarm) {
       audio.pause();
@@ -113,6 +101,15 @@ const Sound: React.FC<Props> = () => {
     }
   }, [selectedAlarm, audio]);
 
+  useEffect(() => {
+    if (audio && selectedTicking) {
+      audio.pause();
+      audio.src = selectedTicking;
+      audio.play();
+    } else {
+      audio?.pause();
+    }
+  }, [selectedTicking, audio]);
   return (
     <div className="flex flex-col w-[20rem] p-2 border-b-2 border-white-500">
       <div className="flex flex-row p-1">
@@ -149,7 +146,7 @@ const Sound: React.FC<Props> = () => {
         <div className="flex flex-col">
           <select
             className="bg-gray-200 p-1 rounded-sm"
-            value={selectedAlarm}
+            value={selectedTicking || "None"}
             onChange={handleTicklingChange}>
             {tickingOptions.map((option) => (
               <option key={option.value} value={option.value}>

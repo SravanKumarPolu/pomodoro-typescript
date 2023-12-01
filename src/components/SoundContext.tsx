@@ -25,6 +25,7 @@ const alarmOptions = [
   { label: "Digital", value: Digital },
 ];
 const tickingOptions = [
+  { label: "None", value: "" },
   { label: "TickingFast", value: TickingFast },
   { label: "TickingSlow", value: TickingSlow },
   { label: "BrownNoise", value: BrownNoise },
