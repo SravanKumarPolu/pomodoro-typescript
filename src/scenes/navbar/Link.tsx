@@ -36,7 +36,7 @@ const Link = ({
       className={`${
         selectedPage === (src || lowerCasePage) ? "text-white " : ""
       }
-          transition duration-500 hover:text-gray-300
+          transition duration-500 hover:text-gray-300 py-2 px-3
           `}
       href={`#${src || lowerCasePage}`}
       onClick={handleClick}>

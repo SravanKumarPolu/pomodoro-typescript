@@ -60,9 +60,15 @@ const Navbar = ({
             {isAboveMediumScreens ? (
               <div className="flex justify-between ">
                 <button
-                  className="flex p-1 flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500 bg-opacity-50"
+                  className="flex  flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500 bg-opacity-50"
                   onClick={handleSettingClick}>
-                  <img src={reportsvg} alt="" width={20} height={20} />
+                  <Links
+                    src={reportsvg}
+                    width={20}
+                    height={20}
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
                   <Links
                     page="Report"
                     selectedPage={selectedPage}
@@ -71,9 +77,15 @@ const Navbar = ({
                 </button>
 
                 <button
-                  className="flex p-1 flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500 bg-opacity-50"
+                  className="flex  flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500 bg-opacity-50"
                   onClick={handleSettingClick}>
-                  <img src={settingsvg} alt="" width={20} height={20} />
+                  <Links
+                    src={settingsvg}
+                    width={20}
+                    height={20}
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
                   <Links
                     page="Setting"
                     selectedPage={selectedPage}
@@ -82,9 +94,15 @@ const Navbar = ({
                 </button>
 
                 <button
-                  className="flex p-1 flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500 bg-opacity-50 "
+                  className="flex  flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500 bg-opacity-50 "
                   onClick={handleSettingClick}>
-                  <img src={loginsvg} alt="" width={20} height={20} />
+                  <Links
+                    src={loginsvg}
+                    width={20}
+                    height={20}
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
                   <Links
                     page="Login"
                     selectedPage={selectedPage}
