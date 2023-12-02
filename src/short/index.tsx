@@ -10,8 +10,6 @@ type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-// ... (previous imports)
-
 const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue2 } = useTimerContext();
