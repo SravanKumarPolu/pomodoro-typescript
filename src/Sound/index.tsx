@@ -95,7 +95,7 @@ const Sound: React.FC<Props> = () => {
   }, []);
   useEffect(() => {
     if (audio && selectedAlarm) {
-      audio.pause();
+      audio?.pause();
       audio.src = selectedAlarm;
       audio.play();
     }

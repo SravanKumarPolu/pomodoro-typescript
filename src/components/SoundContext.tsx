@@ -1,3 +1,13 @@
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  Dispatch,
+  SetStateAction,
+} from "react";
+
+// Import your mp3 files
 import Bird from "@/assets/bird.mp3";
 import Wood from "@/assets/wood.mp3";
 import Digital from "@/assets/digital.mp3";
@@ -8,15 +18,6 @@ import TickingSlow from "@/assets/ticking-slow.mp3";
 import BrownNoise from "@/assets/brown.mp3";
 import WhiteNoise from "@/assets/white.mp3";
 
-import React, {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  Dispatch,
-  SetStateAction,
-} from "react";
-
 const alarmOptions = [
   { label: "Kitchen", value: Kitchen },
   { label: "Bird", value: Bird },
@@ -24,6 +25,7 @@ const alarmOptions = [
   { label: "Bell", value: Bell },
   { label: "Digital", value: Digital },
 ];
+
 const tickingOptions = [
   { label: "None", value: "" },
   { label: "TickingFast", value: TickingFast },
@@ -34,17 +36,12 @@ const tickingOptions = [
 
 type SoundContextProps = {
   selectedAlarm: string;
-
   setSelectedAlarm: Dispatch<SetStateAction<string>>;
-
   setAlarm: (alarm: string) => void;
   alarmOptions: { label: string; value: string }[];
-
   selectedTicking: string;
-
   setSelectedTicking: Dispatch<SetStateAction<string>>;
-
-  setTicking: (alarm: string) => void;
+  setTicking: (ticking: string) => void;
   tickingOptions: { label: string; value: string }[];
 };
 
@@ -55,8 +52,7 @@ type SoundProviderProps = {
 };
 
 export const SoundProvider: React.FC<SoundProviderProps> = ({ children }) => {
-  const [selectedAlarm, setSelectedAlarm] = useState<string>("");
-
+  const [selectedAlarm, setSelectedAlarm] = useState<string>(Kitchen);
   const [selectedTicking, setSelectedTicking] = useState<string>("");
 
   const setAlarm = (alarm: string) => {

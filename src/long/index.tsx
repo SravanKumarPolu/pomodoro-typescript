@@ -2,8 +2,9 @@
 import { useEffect, useState, useRef } from "react";
 import { SelectedPage } from "@/shared/types";
 import { ControlButton } from "@/components/ButtonComponents";
-import skr from "@/assets/long-to-pomodoro.mp3";
+
 import { useTimerContext } from "@/components/TimerContext";
+import { useSoundContext } from "@/components/SoundContext";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -14,7 +15,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue3 } = useTimerContext();
   const [time, setTime] = useState(timerValue3 * 60);
-
+  const { selectedAlarm } = useSoundContext();
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
@@ -35,9 +36,15 @@ const LongBreak = ({ setSelectedPage }: Props) => {
       setTime(timerValue3 * 60);
       const audio = audioRef.current;
       if (audio) {
-        audio.play().catch((error: any) => {
-          console.error(error);
-        });
+        audio
+          .play()
+          .then(() => {
+            console.log("Audio playback initiated successfully");
+          })
+          .catch((error: any) => {
+            console.error("Error initiating audio playback:", error);
+          });
+
         const audioDuration = 10000;
         setTimeout(() => {
           setSelectedPage(SelectedPage.Pomodoro);
@@ -65,7 +72,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
         />
         <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
           {formatTime(time)}
-          <audio ref={audioRef} preload="none" src={skr}></audio>
+          <audio ref={audioRef} preload="auto" src={selectedAlarm} />
         </div>
 
         <ControlButton
