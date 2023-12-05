@@ -78,7 +78,7 @@ const Hero: React.FC<Props> = ({
         className={`flex h-[36rem] mt-0 flex-col items-center justify-center pt-2 p-10 ${
           isAboveMediumScreens ? "w-5/6" : "w-full"
         } bg-pink-500 rounded text-white absolute`}>
-        <div className="flex flex-col gap-2 mb-2 items-center justify-around bg-pink-400">
+        <div className="flex flex-col items-center justify-center p-2 bg-gradient-to-b from-pink-600 via-pink-500 to-pink-400">
           <div className="flex flex-row m-2">
             <button
               className="m-2 p-1 bg-white bg-opacity-50 rounded xs:mx-1 xs:text-xs active:bg-slate-400 focus-within:bg-slate-400 hover:bg-slate-400 "
@@ -110,7 +110,7 @@ const Hero: React.FC<Props> = ({
           </div>
           {renderPage()}
         </div>
-        <div className="flex flex-wrapper bg-white p-6 rounded-lg h-[19rem] shadow-lg">
+        <div className="flex flex-wrapper bg-gray-200 p-3 m-1 rounded-sm h-[19rem] shadow-lg">
           <TodoWrapper />
         </div>
       </div>
