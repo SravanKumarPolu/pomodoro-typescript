@@ -9,7 +9,23 @@ const Themes = ({}: Props) => {
 
         <h2>Theme</h2>
       </div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      <div className="flex flex-col">
+        <div className="flex flex-row justify-between">
+          <h3>Color Themes</h3>
+          <div className="flex flex-row gap-2">
+            <button className=" bg-red-400 w-5 h-5 rounded"></button>
+            <button className=" bg-green-400 w-5 h-5 rounded"></button>
+            <button className=" bg-blue-400 w-5 h-5 rounded"></button>
+            <button className=" bg-violet-400 w-5 h-5 rounded"></button>
+            <button className=" bg-orange-400 w-5 h-5 rounded"></button>
+            <button className=" bg-indigo-400 w-5 h-5 rounded"></button>
+            <button className=" bg-amber-500 w-5 h-5 rounded"></button>
+            <button className=" bg-emerald-400 w-5 h-5 rounded"></button>
+            <button className=" bg-purple-400 w-5 h-5 rounded"></button>
+          </div>
+        </div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
     </div>
   );
 };

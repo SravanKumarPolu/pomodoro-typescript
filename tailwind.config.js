@@ -31,6 +31,7 @@ export default {
         " tertiary-300": "#FFCECB",
         "fuchsia-200": "#f0abfc",
         "sky-200": "#7dd3fc",
+        "amber-400": "rgb(251 191 36)",
       },
       backgroundImage: (theme) => ({
         "gradient-yellowred": "linear-gradient(90deg,#FF616A 0%,#FFC837 100%)",
