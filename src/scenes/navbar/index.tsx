@@ -43,9 +43,9 @@ const Navbar = ({
     <>
       <nav>
         <div
-          className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full  py-6 `}>
+          className={` ${navbarBackground} ${flexBetween}  top-0 z-30 w-full  py-6 `}>
           <motion.div
-            className=" flex w-full  items-center mx-auto  ml-[-.1rem] border-none"
+            className=" flex w-full flex-col justify-center items-center mx-auto  ml-[-.1rem] border-none md:flex-row"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
@@ -55,7 +55,7 @@ const Navbar = ({
               visible: { opacity: 1, x: 0 },
             }}>
             <HText>
-              <span className="pl-2">Pomoto</span>
+              <span className="pl-2">Works & Breaks</span>
             </HText>
             {isAboveMediumScreens ? (
               <div className="flex justify-between ">

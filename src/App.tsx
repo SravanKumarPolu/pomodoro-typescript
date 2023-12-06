@@ -27,26 +27,28 @@ function App() {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center  h-screen ${
+      className={`flex flex-col  justify-center  relative h-screen ${
         isTopOfPage ? "bg-yellow-200" : "bg-pink-500 "
       }  drop-shadow`}>
       <TimerProvider>
         <SoundProvider>
-          <div className="w-full mb-36 overflow-hidden shadow-md ">
-            <Navbar
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-              isTopOfPage={isTopOfPage}
-              onClose={handleClose}
-            />
-          </div>
+          <div className="flex flex-col">
+            <div className="w-full  top-0   overflow-hidden shadow-md absolute ">
+              <Navbar
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+                isTopOfPage={isTopOfPage}
+                onClose={handleClose}
+              />
+            </div>
 
-          <div>
-            <Hero
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-              isTopOfPage={isTopOfPage}
-            />
+            <div className="mt-40 ">
+              <Hero
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+                isTopOfPage={isTopOfPage}
+              />
+            </div>
           </div>
         </SoundProvider>
       </TimerProvider>
