@@ -90,7 +90,7 @@ const Hero: React.FC<Props> = ({
               />
             </button>
             <button
-              className="m-2 p-1 bg-white bg-opacity-50  rounded xs:mx-1 xs:text-xs focus-within:bg-slate-400 hover:bg-slate-400 active:bg-slate-400"
+              className="my-2 py-1 bg-white bg-opacity-50  rounded xs:mx-1 xs:text-xs focus-within:bg-slate-400 hover:bg-slate-400 active:bg-slate-400"
               onClick={() => setSelectedPage(SelectedPage.ShortBreak)}>
               <Link
                 page="ShortBreak"
