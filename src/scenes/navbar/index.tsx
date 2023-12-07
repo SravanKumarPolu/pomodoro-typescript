@@ -45,7 +45,7 @@ const Navbar = ({
         <div
           className={` ${navbarBackground} ${flexBetween}  top-0 z-30 w-full  py-6 `}>
           <motion.div
-            className=" flex w-full flex-col justify-center items-center mx-auto  ml-[-.1rem] border-none md:flex-row"
+            className=" flex w-full  relative flex-col justify-center items-center mx-auto  ml-[-.1rem] border-none md:flex-row"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
@@ -111,7 +111,7 @@ const Navbar = ({
                 </button>
               </div>
             ) : (
-              <div className="flex justify-around items-center ">
+              <div className="flex justify-around items-center relative ">
                 <button
                   className="flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
                   onClick={handleSettingClick}>
@@ -125,7 +125,7 @@ const Navbar = ({
                 </button>
 
                 <button
-                  className="flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  className="flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2  "
                   onClick={handleSettingClick}>
                   <Links
                     src={settingsvg}

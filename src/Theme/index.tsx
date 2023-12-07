@@ -35,11 +35,11 @@ const Themes = ({}: Props) => {
         <h2>Theme</h2>
       </div>
       <div className="flex flex-col">
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between my-2">
           <h3>Color Themes</h3>
-          <div className="flex w-36 flex-wrap flex-row gap-2">
+          <div className="flex w-36  flex-wrap flex-row gap-1">
             {displayedColors.map((color, index) => (
-              <button key={index} className={`w-5 h-5 rounded ${color}`} />
+              <button key={index} className={`w-5 h-5  rounded ${color}`} />
             ))}
             {!showAllColors && (
               <button
