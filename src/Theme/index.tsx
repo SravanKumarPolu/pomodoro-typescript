@@ -17,7 +17,7 @@ const Popup = ({
       {isOpen && (
         <div className="fixed bottom-[2rem] z-10 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none ">
           <div className="relative w-auto max-w-3xl mx-auto my-6">
-            <div className="relative  flex flex-col w-full  bg-gray-300 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+            <div className="relative  flex flex-col w-full  bg-gray-100 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
               <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                 <button
                   className="p-1 ml-auto  border-0  text-black  float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -43,7 +43,7 @@ const Popup = ({
 };
 
 const Themes = ({}: Props) => {
-  const [showAllColors, setShowAllColors] = useState(false);
+  const [showAllColors] = useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
 
   const colorButtons = [
