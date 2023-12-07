@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ThemeSvg from "@/assets/theme.svg";
-
+import removesvg from "@/assets/remove.svg";
 type Props = {};
 
 const Popup = ({
@@ -15,19 +15,25 @@ const Popup = ({
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+        <div className="fixed bottom-[2rem] z-10 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none ">
           <div className="relative w-auto max-w-3xl mx-auto my-6">
-            <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+            <div className="relative  flex flex-col w-full  bg-gray-300 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
               <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                 <button
-                  className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                  className="p-1 ml-auto  border-0  text-black  float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                   onClick={onClose}>
-                  <span className="text-red h-6 w-6 text-2xl block outline-none focus:outline-none">
-                    ×
+                  <span className="text-red h-6 w-6  text-2xl block outline-none focus:outline-none">
+                    <img
+                      width={24}
+                      height={24}
+                      src={removesvg}
+                      alt=""
+                      className="filter grayscale bg-red "
+                    />
                   </span>
                 </button>
               </div>
-              <div className="relative p-6 flex-auto">{children}</div>
+              <div className="relative p-6  flex-auto">{children}</div>
             </div>
           </div>
         </div>
@@ -79,7 +85,7 @@ const Themes = ({}: Props) => {
       <div className="flex flex-col">
         <div className="flex flex-row justify-between my-2">
           <h3>Color Themes</h3>
-          <div className="flex w-36  flex-wrap flex-row gap-1">
+          <div className="flex   flex-wrap flex-row gap-1">
             {displayedColors.map((color, index) => (
               <button
                 key={index}
@@ -94,9 +100,9 @@ const Themes = ({}: Props) => {
 
       <Popup isOpen={isPopupOpen} onClose={closePopup}>
         {/* Content of your popup goes here */}
-        <div className="flex w-36  flex-wrap flex-row gap-1">
+        <div className="flex w-[13rem]   flex-wrap flex-row gap-1">
           {allColorButtons.map((color, index) => (
-            <button key={index} className={`w-5 h-5  rounded ${color}`} />
+            <button key={index} className={`w-14 h-14  rounded ${color}`} />
           ))}
         </div>
       </Popup>
