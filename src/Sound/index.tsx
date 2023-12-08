@@ -111,7 +111,7 @@ const Sound: React.FC<Props> = () => {
     }
   }, [selectedTicking, audio]);
   return (
-    <div className="flex flex-col w-[20rem] p-2 border-b-2 border-white-500">
+    <div className="flex flex-col w-[20rem] p-2 ">
       <div className="flex flex-row justify-between pt-2">
         <span>Alarm Sound</span>
         <div className="flex flex-col">

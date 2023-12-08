@@ -17,7 +17,7 @@ const Task = ({ label }: Props) => {
   };
 
   return (
-    <div className="w-[20rem] p-2 border-b-2 border-white-500">
+    <div className="w-[20rem] p-2 ">
       <div>
         <div className="flex items-center mb-4  justify-between">
           <label htmlFor="toggle1">Auto Switch Tasks {label}</label>

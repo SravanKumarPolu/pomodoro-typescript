@@ -28,7 +28,7 @@ const Setting = ({ onClose }: Props) => {
   return (
     <div className="w-[24rm]  z-10 fixed p-4  m-2 mt-24 top-11 sm:mt-10 sm:w-[24rem] sm:right-[4rem] sm:fixed">
       <div className="bg-white rounded shadow-lg">
-        <div className="flex justify-between p-4 border-b-2 border-white-500">
+        <div className="flex justify-between p-4 ">
           <h1 className="text-lg font-semibold">Setting</h1>
           <button className="cursor-pointer" onClick={onClose}>
             <img
@@ -41,9 +41,9 @@ const Setting = ({ onClose }: Props) => {
           </button>
         </div>
         <div className="p-4 flex flex-col ">
-          <div>
+          <div className="border-b-2 border-white-500 ">
             <div
-              className="flex flex-row"
+              className="flex flex-row cursor-pointer"
               onClick={() => toggleAccordion("timer")}>
               <img src={TimerSvg} width={20} height={20} />
               <h2>Timer</h2>
@@ -53,9 +53,9 @@ const Setting = ({ onClose }: Props) => {
             </div>
           </div>
 
-          <div>
+          <div className="border-b-2 border-white-500">
             <div
-              className="flex flex-row"
+              className="flex flex-row cursor-pointer"
               onClick={() => toggleAccordion("task")}>
               <img src={TaskSvg} width={20} height={20} />
               <h2>Task</h2>
@@ -65,9 +65,9 @@ const Setting = ({ onClose }: Props) => {
             </div>
           </div>
 
-          <div>
+          <div className="border-b-2 border-white-500">
             <div
-              className="flex flex-row p-1"
+              className="flex flex-row p-1 cursor-pointer"
               onClick={() => toggleAccordion("sound")}>
               <img src={SoundSvg} width={20} height={20} />
               <h2 className="ml-1">Sound</h2>
@@ -77,9 +77,9 @@ const Setting = ({ onClose }: Props) => {
             </div>
           </div>
 
-          <div>
+          <div className="border-b-2 border-white-500">
             <div
-              className="flex flex-row p-1 gap-1"
+              className="flex flex-row p-1 gap-1 cursor-pointer"
               onClick={() => toggleAccordion("theme")}>
               <img src={ThemeSvg} width={15} height={15} />
               <h2>Theme</h2>

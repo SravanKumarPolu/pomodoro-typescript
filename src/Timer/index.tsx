@@ -16,7 +16,7 @@ const Timer = () => {
   };
 
   return (
-    <div className="w-[20rem] p-2 border-b-2 border-white-500">
+    <div className="w-[20rem] p-2 ">
       <div className="flex flex-row gap-2">
         {/* Pass setSelectedPage as a prop */}
         <PomodoroTimer />
