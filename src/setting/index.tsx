@@ -35,7 +35,7 @@ const Setting = ({ onClose }: Props) => {
 
           <Sound />
 
-          <Theme />
+          <Theme label={""} />
           <Notifications />
         </div>
       </div>
