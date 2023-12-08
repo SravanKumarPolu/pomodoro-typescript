@@ -100,12 +100,12 @@ const Themes = ({ label }: Props) => {
             ))}
           </div>
         </div>
-        <div>
+        <div className="flex flex-row justify-between py-2">
           <label htmlFor="toggle1">Dark mode {label}</label>
           <div
             onClick={handleToggle}
             className={`w-16 h-8 bg-gray-300 rounded-full corsor-pointer p-1 ${
-              isChecked ? "bg-green-500" : ""
+              isChecked ? "bg-gray-700" : ""
             }`}>
             <div
               className={`w-6 h-6 bg-white rounded-full shodow-md  transform ${
@@ -114,7 +114,6 @@ const Themes = ({ label }: Props) => {
             transition-tranform duration-500`}></div>
           </div>
         </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
       </div>
 
       <Popup isOpen={isPopupOpen} onClose={closePopup}>
