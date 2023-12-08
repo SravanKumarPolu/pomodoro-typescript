@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ThemeSvg from "@/assets/theme.svg";
+
 import removesvg from "@/assets/remove.svg";
 type Props = {
   label: string;
@@ -83,10 +83,6 @@ const Themes = ({ label }: Props) => {
 
   return (
     <div className="flex flex-col w-[20rem] p-2 border-b-2 border-white-500">
-      <div className="flex flex-row p-1 gap-1">
-        <img src={ThemeSvg} width={15} height={15} />
-        <h2>Theme</h2>
-      </div>
       <div className="flex flex-col">
         <div className="flex flex-row justify-between my-2">
           <h3>Color Themes</h3>

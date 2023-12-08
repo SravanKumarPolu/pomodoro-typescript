@@ -1,6 +1,6 @@
 // Sound.tsx
 import React, { useEffect, useState } from "react";
-import SoundSvg from "@/assets/sound.svg";
+
 import { useSoundContext } from "@/components/SoundContext";
 
 type Props = {};
@@ -112,10 +112,6 @@ const Sound: React.FC<Props> = () => {
   }, [selectedTicking, audio]);
   return (
     <div className="flex flex-col w-[20rem] p-2 border-b-2 border-white-500">
-      <div className="flex flex-row p-1">
-        <img src={SoundSvg} width={20} height={20} />
-        <h2 className="ml-1">Sound</h2>
-      </div>
       <div className="flex flex-row justify-between pt-2">
         <span>Alarm Sound</span>
         <div className="flex flex-col">
