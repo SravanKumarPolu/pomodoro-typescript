@@ -1,4 +1,5 @@
 // Setting.tsx
+import { useState } from "react";
 import { SelectedPage } from "@/shared/types";
 import removesvg from "@/assets/remove.svg";
 import Timer from "@/Timer";
@@ -18,6 +19,12 @@ type Props = {
 };
 
 const Setting = ({ onClose }: Props) => {
+  const [accordionOpen, setAccordionOpen] = useState<string | null>(null);
+
+  const toggleAccordion = (section: string) => {
+    setAccordionOpen((prev) => (prev === section ? null : section));
+  };
+
   return (
     <div className="w-[24rm]  z-10 fixed p-4  m-2 mt-24 top-11 sm:mt-10 sm:w-[24rem] sm:right-[4rem] sm:fixed">
       <div className="bg-white rounded shadow-lg">
@@ -35,35 +42,51 @@ const Setting = ({ onClose }: Props) => {
         </div>
         <div className="p-4 flex flex-col ">
           <div>
-            <div className="flex flex-row ">
+            <div
+              className="flex flex-row"
+              onClick={() => toggleAccordion("timer")}>
               <img src={TimerSvg} width={20} height={20} />
               <h2>Timer</h2>
             </div>
-            <Timer />
+            <div className={accordionOpen === "timer" ? "block" : "hidden"}>
+              <Timer />
+            </div>
           </div>
 
           <div>
-            <div className="flex flex-row">
+            <div
+              className="flex flex-row"
+              onClick={() => toggleAccordion("task")}>
               <img src={TaskSvg} width={20} height={20} />
               <h2>Task</h2>
             </div>
-            <Task label={""} />
+            <div className={accordionOpen === "task" ? "block" : "hidden"}>
+              <Task label={""} />
+            </div>
           </div>
 
           <div>
-            <div className="flex flex-row p-1">
+            <div
+              className="flex flex-row p-1"
+              onClick={() => toggleAccordion("sound")}>
               <img src={SoundSvg} width={20} height={20} />
               <h2 className="ml-1">Sound</h2>
             </div>
-            <Sound />
+            <div className={accordionOpen === "sound" ? "block" : "hidden"}>
+              <Sound />
+            </div>
           </div>
 
           <div>
-            <div className="flex flex-row p-1 gap-1">
+            <div
+              className="flex flex-row p-1 gap-1"
+              onClick={() => toggleAccordion("theme")}>
               <img src={ThemeSvg} width={15} height={15} />
               <h2>Theme</h2>
             </div>
-            <Theme label={""} />
+            <div className={accordionOpen === "theme" ? "block" : "hidden"}>
+              <Theme label={""} />
+            </div>
           </div>
 
           <Notifications />
