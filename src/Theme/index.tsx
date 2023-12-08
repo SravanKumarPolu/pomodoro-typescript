@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import ThemeSvg from "@/assets/theme.svg";
 import removesvg from "@/assets/remove.svg";
-type Props = {};
+type Props = {
+  label: string;
+};
 
 const Popup = ({
   isOpen,
@@ -42,7 +44,7 @@ const Popup = ({
   );
 };
 
-const Themes = ({}: Props) => {
+const Themes = ({ label }: Props) => {
   const [showAllColors] = useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
 
@@ -67,7 +69,10 @@ const Themes = ({}: Props) => {
   ];
 
   const displayedColors = showAllColors ? allColorButtons : colorButtons;
-
+  const [isChecked, setIsChecked] = useState(false);
+  const handleToggle = () => {
+    setIsChecked(!isChecked);
+  };
   const openPopup = () => {
     setPopupOpen(true);
   };
@@ -93,6 +98,20 @@ const Themes = ({}: Props) => {
                 onClick={openPopup}
               />
             ))}
+          </div>
+        </div>
+        <div>
+          <label htmlFor="toggle1">Dark mode {label}</label>
+          <div
+            onClick={handleToggle}
+            className={`w-16 h-8 bg-gray-300 rounded-full corsor-pointer p-1 ${
+              isChecked ? "bg-green-500" : ""
+            }`}>
+            <div
+              className={`w-6 h-6 bg-white rounded-full shodow-md  transform ${
+                isChecked ? "translate-x-full" : ""
+              }
+            transition-tranform duration-500`}></div>
           </div>
         </div>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
