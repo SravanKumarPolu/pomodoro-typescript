@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import removesvg from "@/assets/remove.svg";
 type Props = {
   label: string;
-  getColor: (color: string) => void;
 };
 
 const Popup = ({
@@ -45,7 +44,7 @@ const Popup = ({
   );
 };
 
-const Themes = ({ label, getColor }: Props) => {
+const Themes = ({ label }: Props) => {
   const [showAllColors] = useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
 
@@ -81,12 +80,7 @@ const Themes = ({ label, getColor }: Props) => {
   const closePopup = () => {
     setPopupOpen(false);
   };
-  const [activeColor, setActiveColor] = useState("");
-  const handleChange = (e: any) => {
-    const { value } = e.target;
-    setActiveColor(value);
-    getColor(value);
-  };
+
   return (
     <div className="flex flex-col w-[20rem] p-2 border-b-2 border-white-500">
       <div className="flex flex-col">
@@ -122,12 +116,7 @@ const Themes = ({ label, getColor }: Props) => {
         {/* Content of your popup goes here */}
         <div className="flex w-[13rem]   flex-wrap flex-row gap-1">
           {allColorButtons.map((color, index) => (
-            <button
-              onChange={handleChange}
-              value={activeColor}
-              key={index}
-              className={`w-14 h-14  rounded ${color}`}
-            />
+            <button key={index} className={`w-14 h-14  rounded ${color}`} />
           ))}
         </div>
       </Popup>
