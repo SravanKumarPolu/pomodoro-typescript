@@ -1,13 +1,32 @@
-// colorContext.tsx
-
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 type ColorContextProps = {
   selectedColor: string;
   setSelectedColor: React.Dispatch<React.SetStateAction<string>>;
   colorButtons: string[];
+  setColor: (color: string) => void;
   allColorButtons: string[];
 };
+
+const colorButtons = [
+  "bg-red-400",
+  "bg-green-400",
+  "bg-blue-400",
+  "bg-violet-400",
+  "bg-orange-400",
+];
+
+const allColorButtons = [
+  "bg-red-400",
+  "bg-green-400",
+  "bg-blue-400",
+  "bg-violet-400",
+  "bg-orange-400",
+  "bg-indigo-400",
+  "bg-amber-500",
+  "bg-emerald-400",
+  "bg-purple-400",
+];
 
 const ColorContext = createContext<ColorContextProps | undefined>(undefined);
 
@@ -16,36 +35,22 @@ type ColorProviderProps = {
 };
 
 export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
-  const [selectedColor, setSelectedColor] = useState<string>(""); // Initial color state
+  const [selectedColor, setSelectedColor] = useState<string>("bg-green-400"); // Initial color state
 
-  const colorButtons = [
-    "bg-red-400",
-    "bg-green-400",
-    "bg-blue-400",
-    "bg-violet-400",
-    "bg-orange-400",
-  ];
+  const setColor = (color: string) => {
+    setSelectedColor(color);
+  };
 
-  const allColorButtons = [
-    "bg-red-400",
-    "bg-green-400",
-    "bg-blue-400",
-    "bg-violet-400",
-    "bg-orange-400",
-    "bg-indigo-400",
-    "bg-amber-500",
-    "bg-emerald-400",
-    "bg-purple-400",
-  ];
+  const contextValue: ColorContextProps = {
+    selectedColor,
+    setSelectedColor,
+    colorButtons,
+    setColor,
+    allColorButtons,
+  };
 
   return (
-    <ColorContext.Provider
-      value={{
-        selectedColor,
-        setSelectedColor,
-        colorButtons,
-        allColorButtons,
-      }}>
+    <ColorContext.Provider value={contextValue}>
       {children}
     </ColorContext.Provider>
   );

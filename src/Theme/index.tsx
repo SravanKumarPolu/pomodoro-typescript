@@ -18,7 +18,7 @@ const Popup = ({
   return (
     <>
       {isOpen && (
-        <div className="fixed bottom-[2rem] z-10 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none ">
+        <div className="fixed bottom-[2rem] z-10  flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none ">
           <div className="relative w-auto max-w-3xl mx-auto my-6">
             <div className="relative  flex flex-col w-full  bg-gray-100 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
               <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
@@ -63,14 +63,15 @@ const Themes = ({ label }: Props) => {
   const closePopup = () => {
     setPopupOpen(false);
   };
-  // const handleColorButtonClick = (color: string) => {
-  //   setSelectedColor(color);
-  //   closePopup(); // Close the popup when a color is selected
-  // };
+  const handleColorButtonClick = (color: string) => {
+    setSelectedColor(color);
+    console.log("hie");
+    closePopup(); // Close the popup when a color is selected
+  };
 
   return (
     <div className="flex flex-col w-[20rem] p-2 border-b-2 border-white-500">
-      <div className="flex flex-col">
+      <div className={`flex flex-col ${selectedColor}`}>
         <div className="flex flex-row justify-between my-2">
           <h3>Color Themes</h3>
           <div className="flex   flex-wrap flex-row gap-1">
@@ -103,7 +104,11 @@ const Themes = ({ label }: Props) => {
         {/* Content of your popup goes here */}
         <div className="flex w-[13rem]   flex-wrap flex-row gap-1">
           {allColorButtons.map((color, index) => (
-            <button key={index} className={`w-14 h-14  rounded ${color}`} />
+            <button
+              onClick={() => handleColorButtonClick(color)}
+              key={index}
+              className={`w-14 h-14  rounded ${color}`}
+            />
           ))}
         </div>
       </Popup>
