@@ -5,6 +5,7 @@ import { SelectedPage } from "./shared/types";
 import Hero from "./scenes/hero";
 import { TimerProvider } from "./components/TimerContext";
 import { SoundProvider } from "./components/SoundContext";
+import { ColorProvider } from "./components/ColorContex";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
@@ -30,28 +31,30 @@ function App() {
       className={`flex flex-col  justify-center  relative h-screen ${
         isTopOfPage ? "bg-yellow-200" : "bg-pink-500 "
       }  drop-shadow`}>
-      <TimerProvider>
-        <SoundProvider>
-          <div className="flex flex-col">
-            <div className="w-full  top-0   overflow-hidden shadow-md absolute ">
-              <Navbar
-                selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
-                isTopOfPage={isTopOfPage}
-                onClose={handleClose}
-              />
-            </div>
+      <ColorProvider>
+        <TimerProvider>
+          <SoundProvider>
+            <div className="flex flex-col">
+              <div className="w-full  top-0   overflow-hidden shadow-md absolute ">
+                <Navbar
+                  selectedPage={selectedPage}
+                  setSelectedPage={setSelectedPage}
+                  isTopOfPage={isTopOfPage}
+                  onClose={handleClose}
+                />
+              </div>
 
-            <div className="mt-40 ">
-              <Hero
-                selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
-                isTopOfPage={isTopOfPage}
-              />
+              <div className="mt-40 ">
+                <Hero
+                  selectedPage={selectedPage}
+                  setSelectedPage={setSelectedPage}
+                  isTopOfPage={isTopOfPage}
+                />
+              </div>
             </div>
-          </div>
-        </SoundProvider>
-      </TimerProvider>
+          </SoundProvider>
+        </TimerProvider>
+      </ColorProvider>
     </div>
   );
 }
