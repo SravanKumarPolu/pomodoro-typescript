@@ -21,9 +21,9 @@ const Hero: React.FC<Props> = ({
   setSelectedPage,
 }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
-
-  const [remainingTime, setRemainingTime] = useState<number>(25 * 60);
   const { selectedColor } = useColor();
+  const [remainingTime, setRemainingTime] = useState<number>(25 * 60);
+
   useEffect(() => {
     let timer: NodeJS.Timeout;
 
@@ -76,7 +76,7 @@ const Hero: React.FC<Props> = ({
   return (
     <div className="flex items-center justify-center p-2">
       <div
-        className={` ${selectedColor} flex h-[36rem] mt-0 flex-col items-center justify-center pt-2 p-10 ${
+        className={`${selectedColor} flex h-[36rem] mt-0 flex-col items-center justify-center pt-2 p-10 ${
           isAboveMediumScreens ? "w-5/6" : "w-full"
         }  rounded-sm text-white absolute`}>
         <div className="flex  flex-col items-center justify-center p-2 bg-gradient-to-b from-pink-600 via-pink-500 to-pink-400">

@@ -48,8 +48,7 @@ const Popup = ({
 const Themes = ({ label }: Props) => {
   const [showAllColors] = useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
-  const { colorButtons, allColorButtons, setSelectedColor, selectedColor } =
-    useColor();
+  const { colorButtons, allColorButtons, setSelectedColor } = useColor();
 
   const displayedColors = showAllColors ? allColorButtons : colorButtons;
   const [isChecked, setIsChecked] = useState(false);
