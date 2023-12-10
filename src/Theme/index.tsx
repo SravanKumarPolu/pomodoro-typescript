@@ -71,7 +71,7 @@ const Themes = ({ label }: Props) => {
 
   return (
     <div className="flex flex-col w-[20rem] p-2 border-b-2 border-white-500">
-      <div className={`flex flex-col ${selectedColor}`}>
+      <div className="flex flex-col">
         <div className="flex flex-row justify-between my-2">
           <h3>Color Themes</h3>
           <div className="flex   flex-wrap flex-row gap-1">
