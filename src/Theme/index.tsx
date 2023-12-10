@@ -1,9 +1,7 @@
-// Themes.tsx
-
 import React, { useState } from "react";
+
 import removesvg from "@/assets/remove.svg";
 import { useColor } from "@/components/ColorContex";
-
 type Props = {
   label: string;
 };
@@ -20,7 +18,7 @@ const Popup = ({
   return (
     <>
       {isOpen && (
-        <div className="fixed bottom-[2rem] z-10 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+        <div className="fixed bottom-[2rem] z-10 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none ">
           <div className="relative w-auto max-w-3xl mx-auto my-6">
             <div className="relative  flex flex-col w-full  bg-gray-100 border-0 rounded-lg shadow-lg outline-none focus:outline-none">
               <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
@@ -33,7 +31,7 @@ const Popup = ({
                       height={24}
                       src={removesvg}
                       alt=""
-                      className="filter grayscale bg-red"
+                      className="filter grayscale bg-red "
                     />
                   </span>
                 </button>
@@ -58,7 +56,6 @@ const Themes = ({ label }: Props) => {
   const handleToggle = () => {
     setIsChecked(!isChecked);
   };
-
   const openPopup = () => {
     setPopupOpen(true);
   };
@@ -66,11 +63,10 @@ const Themes = ({ label }: Props) => {
   const closePopup = () => {
     setPopupOpen(false);
   };
-
-  const handleColorButtonClick = (color: string) => {
-    setSelectedColor(color);
-    closePopup(); // Close the popup when a color is selected
-  };
+  // const handleColorButtonClick = (color: string) => {
+  //   setSelectedColor(color);
+  //   closePopup(); // Close the popup when a color is selected
+  // };
 
   return (
     <div className="flex flex-col w-[20rem] p-2 border-b-2 border-white-500">
@@ -81,10 +77,8 @@ const Themes = ({ label }: Props) => {
             {displayedColors.map((color, index) => (
               <button
                 key={index}
-                className={`w-5 h-5  rounded ${color} ${
-                  selectedColor === color ? "border-2 border-black" : ""
-                }`}
-                onClick={() => handleColorButtonClick(color)}
+                className={`w-5 h-5  rounded ${color}`}
+                onClick={openPopup}
               />
             ))}
           </div>
@@ -109,11 +103,7 @@ const Themes = ({ label }: Props) => {
         {/* Content of your popup goes here */}
         <div className="flex w-[13rem]   flex-wrap flex-row gap-1">
           {allColorButtons.map((color, index) => (
-            <button
-              key={index}
-              className={`w-14 h-14  rounded ${color}`}
-              onClick={() => handleColorButtonClick(color)}
-            />
+            <button key={index} className={`w-14 h-14  rounded ${color}`} />
           ))}
         </div>
       </Popup>
