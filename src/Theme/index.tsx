@@ -54,6 +54,7 @@ const Themes = ({ label }: Props) => {
   const [isChecked, setIsChecked] = useState(false);
   const handleToggle = () => {
     setIsChecked(!isChecked);
+    console.log("hie");
   };
   const openPopup = () => {
     setPopupOpen(true);
@@ -64,7 +65,7 @@ const Themes = ({ label }: Props) => {
   };
   const handleColorButtonClick = (color: string) => {
     setSelectedColor(color);
-    console.log("hie");
+
     closePopup(); // Close the popup when a color is selected
   };
 

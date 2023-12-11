@@ -3,7 +3,6 @@ import Navbar from "@/scenes/navbar";
 import { useEffect, useState } from "react";
 import { SelectedPage } from "./shared/types";
 import Hero from "./scenes/hero";
-import { useColor } from "./components/ColorContex";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
@@ -23,11 +22,11 @@ function App() {
   function handleClose(): void {
     throw new Error("Function not implemented.");
   }
-  const { selectedDark } = useColor();
+
   return (
     <div
       className={`flex flex-col  justify-center  relative h-screen ${
-        isTopOfPage ? { selectedDark } : "bg-pink-500 "
+        isTopOfPage ? " " : "bg-pink-500 "
       }  drop-shadow`}>
       <div className="flex flex-col">
         <div className="w-full  top-0   overflow-hidden shadow-md absolute ">
