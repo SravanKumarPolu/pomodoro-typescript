@@ -2,8 +2,11 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 
 type ColorContextProps = {
   selectedColor: string;
+  selectedDark: string;
+  setSelectedDark: React.Dispatch<React.SetStateAction<string>>;
   setSelectedColor: React.Dispatch<React.SetStateAction<string>>;
   colorButtons: string[];
+  darkMode: string[];
   setColor: (color: string) => void;
   allColorButtons: string[];
 };
@@ -27,7 +30,7 @@ const allColorButtons = [
   "bg-emerald-400",
   "bg-purple-400",
 ];
-
+const darkMode = ["rgb(55, 65, 81)"];
 const ColorContext = createContext<ColorContextProps | undefined>(undefined);
 
 type ColorProviderProps = {
@@ -35,8 +38,8 @@ type ColorProviderProps = {
 };
 
 export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
-  const [selectedColor, setSelectedColor] = useState<string>("bg-green-400"); // Initial color state
-
+  const [selectedColor, setSelectedColor] = useState<string>("bg-red-400"); // Initial color state
+  const [selectedDark, setSelectedDark] = useState<string>("rgb(55, 65, 81)");
   const setColor = (color: string) => {
     setSelectedColor(color);
   };
@@ -46,6 +49,9 @@ export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
     setSelectedColor,
     colorButtons,
     setColor,
+    darkMode,
+    selectedDark,
+    setSelectedDark,
     allColorButtons,
   };
 

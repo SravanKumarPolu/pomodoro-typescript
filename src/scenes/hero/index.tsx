@@ -111,7 +111,7 @@ const Hero: React.FC<Props> = ({
           </div>
           {renderPage()}
         </div>
-        <div className="flex flex-wrapper bg-gray-200 p-3 m-1 rounded-sm h-[19rem] shadow-lg">
+        <div className="flex flex-wrapper bg-gray-200 p-2 m-1 rounded-lg h-[19rem] shadow-lg">
           <TodoWrapper />
         </div>
       </div>
