@@ -1,9 +1,18 @@
 // DarkModeContext.js
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 type DarkModeContextProps = {
-  toggleDarkMode: () => void;
+  setDarkMode: Dispatch<SetStateAction<string>>; // Correct type for setDarkMode
+  setDarkModeColor: Dispatch<SetStateAction<string>>; // Correct type for setDarkModeColor
   darkMode: string;
+  darkModeColor: string;
 };
 
 const DarkModeContext = createContext<DarkModeContextProps | undefined>(
@@ -17,14 +26,12 @@ type DarkModeProviderProps = {
 export const DarkModeProvider: React.FC<DarkModeProviderProps> = ({
   children,
 }) => {
-  const [darkMode, setDarkMode] = useState("light"); // Default to light mode
-
-  const toggleDarkMode = () => {
-    setDarkMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
-  };
+  const [darkMode, setDarkMode] = useState("bg-gray-100");
+  const [darkModeColor, setDarkModeColor] = useState("bg-gray-700");
 
   return (
-    <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
+    <DarkModeContext.Provider
+      value={{ darkMode, setDarkMode, setDarkModeColor, darkModeColor }}>
       {children}
     </DarkModeContext.Provider>
   );
