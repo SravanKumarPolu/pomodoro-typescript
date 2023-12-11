@@ -92,10 +92,10 @@ const Themes = ({ label }: Props) => {
               isChecked ? "bg-gray-700" : ""
             }`}>
             <div
-              className={`w-6 h-6 bg-white rounded-full shodow-md  transform ${
+              className={`w-6 h-6 bg-white rounded-full shodow-md transform ${
                 isChecked ? "translate-x-full" : ""
               }
-            transition-tranform duration-500`}></div>
+        transition-transform duration-500`}></div>
           </div>
         </div>
       </div>
