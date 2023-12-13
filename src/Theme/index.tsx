@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 import removesvg from "@/assets/remove.svg";
 import { useColor } from "@/components/ColorContex";
-import { DarkModeContext } from "@/components/DarkModeContext";
+import { useDarkMode } from "@/components/DarkModeContext";
 type Props = {
   label: string;
 };
@@ -69,12 +69,7 @@ const Themes = ({ label }: Props) => {
 
     closePopup(); // Close the popup when a color is selected
   };
-  const darkModeContext = useContext(DarkModeContext);
-
-  if (!darkModeContext) {
-    return null;
-  }
-  const { isDarkMode, toggleDarkMode } = darkModeContext;
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
   return (
     <div className="flex flex-col w-[20rem] p-2 border-b-2 border-white-500">
       <div className="flex flex-col">

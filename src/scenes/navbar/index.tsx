@@ -9,6 +9,7 @@ import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Setting from "@/setting";
 import { useState } from "react";
+import { useDarkMode } from "@/components/DarkModeContext";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -29,7 +30,7 @@ const Navbar = ({
   const navbarBackground = isTopOfPage ? "" : "bg-pink-200 drop-shadow";
 
   const [showSetting, setShowSetting] = useState(false);
-
+  const { isDarkMode } = useDarkMode();
   const handleSettingClick = () => {
     setSelectedPage(SelectedPage.Setting);
     setShowSetting(true);
