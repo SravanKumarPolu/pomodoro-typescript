@@ -118,9 +118,11 @@ const Navbar = ({
                 </button>
               </div>
             ) : (
-              <div className="flex justify-around items-center relative ">
+              <div className="flex  justify-around items-center relative ">
                 <button
-                  className="flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative ${
+                    isDarkMode ? "bg-white bg-opacity-80" : ""
+                  }`}
                   onClick={handleSettingClick}>
                   <Links
                     src={reportsvg}
@@ -132,7 +134,9 @@ const Navbar = ({
                 </button>
 
                 <button
-                  className="flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2  "
+                  className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative ${
+                    isDarkMode ? "bg-white bg-opacity-80" : ""
+                  }`}
                   onClick={handleSettingClick}>
                   <Links
                     src={settingsvg}
@@ -144,7 +148,9 @@ const Navbar = ({
                 </button>
 
                 <button
-                  className="flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative "
+                  className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative ${
+                    isDarkMode ? "bg-white bg-opacity-80" : ""
+                  }`}
                   onClick={handleSettingClick}>
                   <Links
                     src={loginsvg}

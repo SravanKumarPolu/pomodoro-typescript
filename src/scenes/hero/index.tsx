@@ -75,15 +75,18 @@ const Hero: React.FC<Props> = ({
   };
   const { isDarkMode } = useDarkMode();
   return (
-    <div
-      className={`flex items-center justify-center p-2 w-auto ${
-        isDarkMode ? "bg-white-700" : ""
-      }`}>
+    <div className="flex items-center justify-center p-2">
       <div
-        className={`${selectedColor} flex h-[36rem] mt-0 flex-col items-center justify-center py-2 p-10 ${
+        className={`${isDarkMode ? "bg-slate-700" : selectedColor}
+        } flex h-[36rem] mt-0 flex-col items-center justify-center pt-2 p-10 ${
           isAboveMediumScreens ? "w-5/6" : "w-full"
         }  rounded-sm text-white absolute`}>
-        <div className="flex  flex-col items-center justify-center p-2 bg-gradient-to-b from-pink-600 via-pink-500 to-pink-400">
+        <div
+          className={`flex  flex-col items-center justify-center p-2 ${
+            isDarkMode
+              ? "bg-white-700"
+              : "bg-gradient-to-b from-pink-600 via-pink-500 to-pink-400"
+          }`}>
           <div className="flex flex-row m-2">
             <button
               className="m-1 xs:m-2 xs:p-1 bg-white bg-opacity-50 rounded xs:mx-1 xs:text-xs active:bg-slate-400 focus-within:bg-slate-400 hover:bg-slate-400 "

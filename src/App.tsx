@@ -29,7 +29,7 @@ function App() {
       className={`flex flex-col  justify-center  relative h-screen ${
         isTopOfPage ? " " : "bg-pink-500 "
       }  drop-shadow`}>
-      <div className="flex flex-col ">
+      <div className="flex flex-col  justify-center">
         <div
           className={`w-full  top-0   overflow-hidden shadow-md absolute ${
             isDarkMode ? "bg-gray-700" : ""
@@ -42,7 +42,7 @@ function App() {
           />
         </div>
 
-        <div className="mt-40 bg-pink">
+        <div className="mt-40 ">
           <Hero
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
