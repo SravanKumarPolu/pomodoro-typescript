@@ -1,11 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface DarkModeContextProps {
   isDarkMode: boolean;

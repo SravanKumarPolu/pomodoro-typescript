@@ -61,7 +61,9 @@ const Navbar = ({
             {isAboveMediumScreens ? (
               <div className="flex justify-between ">
                 <button
-                  className="flex  flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500 bg-opacity-50"
+                  className={`flex  flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative  bg-opacity-50 ${
+                    isDarkMode ? "bg-white bg-opacity-80" : "bg-pink-500"
+                  }`}
                   onClick={handleSettingClick}>
                   <Links
                     src={reportsvg}
@@ -78,7 +80,9 @@ const Navbar = ({
                 </button>
 
                 <button
-                  className="flex  flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500 bg-opacity-50"
+                  className={`flex  flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative  bg-opacity-50 ${
+                    isDarkMode ? "bg-white bg-opacity-80" : "bg-pink-500"
+                  }`}
                   onClick={handleSettingClick}>
                   <Links
                     src={settingsvg}
@@ -95,7 +99,9 @@ const Navbar = ({
                 </button>
 
                 <button
-                  className="flex  flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative bg-pink-500 bg-opacity-50 "
+                  className={`flex  flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative  bg-opacity-50 ${
+                    isDarkMode ? "bg-white bg-opacity-80" : "bg-pink-500"
+                  }`}
                   onClick={handleSettingClick}>
                   <Links
                     src={loginsvg}

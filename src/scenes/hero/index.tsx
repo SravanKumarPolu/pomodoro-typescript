@@ -8,6 +8,7 @@ import LongBreak from "@/long";
 import { useEffect, useState } from "react";
 import TodoWrapper from "@/todolist/TodoWrapper";
 import { useColor } from "@/components/ColorContex";
+import { useDarkMode } from "@/components/DarkModeContext";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -72,11 +73,14 @@ const Hero: React.FC<Props> = ({
         );
     }
   };
-
+  const { isDarkMode } = useDarkMode();
   return (
-    <div className="flex items-center justify-center p-2">
+    <div
+      className={`flex items-center justify-center p-2 w-auto ${
+        isDarkMode ? "bg-white-700" : ""
+      }`}>
       <div
-        className={`${selectedColor} flex h-[36rem] mt-0 flex-col items-center justify-center pt-2 p-10 ${
+        className={`${selectedColor} flex h-[36rem] mt-0 flex-col items-center justify-center py-2 p-10 ${
           isAboveMediumScreens ? "w-5/6" : "w-full"
         }  rounded-sm text-white absolute`}>
         <div className="flex  flex-col items-center justify-center p-2 bg-gradient-to-b from-pink-600 via-pink-500 to-pink-400">
