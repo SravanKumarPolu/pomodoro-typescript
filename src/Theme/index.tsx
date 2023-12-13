@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import removesvg from "@/assets/remove.svg";
 import { useColor } from "@/components/ColorContex";
+import { DarkModeContext } from "@/components/DarkModeContext";
 type Props = {
   label: string;
 };
@@ -68,7 +69,12 @@ const Themes = ({ label }: Props) => {
 
     closePopup(); // Close the popup when a color is selected
   };
+  const darkModeContext = useContext(DarkModeContext);
 
+  if (!darkModeContext) {
+    return null;
+  }
+  const { isDarkMode, toggleDarkMode } = darkModeContext;
   return (
     <div className="flex flex-col w-[20rem] p-2 border-b-2 border-white-500">
       <div className="flex flex-col">
@@ -85,17 +91,16 @@ const Themes = ({ label }: Props) => {
           </div>
         </div>
         <div className="flex flex-row justify-between py-2">
-          <label htmlFor="toggle1">Dark mode {label}</label>
+          <label htmlFor="toggle1">Dark mode</label>
           <div
-            onClick={handleToggle}
-            className={`w-16 h-8 bg-gray-300 rounded-full corsor-pointer p-1 ${
-              isChecked ? "bg-gray-700" : ""
+            onClick={toggleDarkMode}
+            className={`w-16 h-8 bg-gray-300 rounded-full cursor-pointer p-1 ${
+              isDarkMode ? "bg-gray-700" : ""
             }`}>
             <div
-              className={`w-6 h-6 bg-white rounded-full shodow-md  transform ${
-                isChecked ? "translate-x-full" : ""
-              }
-            transition-tranform duration-500`}></div>
+              className={`w-6 h-6 bg-white rounded-full shadow-md transform ${
+                isDarkMode ? "translate-x-full" : ""
+              } transition-transform duration-500`}></div>
           </div>
         </div>
       </div>
