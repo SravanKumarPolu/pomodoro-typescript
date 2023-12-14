@@ -75,11 +75,11 @@ const Hero: React.FC<Props> = ({
   };
   const { isDarkMode } = useDarkMode();
   return (
-    <div className="flex items-center justify-center ">
+    <div className="mt-28 h-screen ">
       <div
         className={`${isDarkMode ? "bg-slate-700" : selectedColor}
         } flex h-auto  flex-col items-center justify-center  ${
-          isAboveMediumScreens ? "w-5/6" : "w-full"
+          isAboveMediumScreens ? "w-full" : "w-full"
         }  rounded-sm text-white absolute`}>
         <div
           className={`flex  flex-col items-center justify-center p-2 ${

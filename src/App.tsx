@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { SelectedPage } from "./shared/types";
 import Hero from "./scenes/hero";
 import { useDarkMode } from "./components/DarkModeContext";
+import { useColor } from "./components/ColorContex";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
@@ -23,34 +24,29 @@ function App() {
   function handleClose(): void {
     throw new Error("Function not implemented.");
   }
+  const { selectedColor } = useColor();
   const { isDarkMode } = useDarkMode();
   return (
-    <div
-      className={`flex flex-col  justify-center  relative h-screen ${
-        isTopOfPage ? " " : "bg-pink-500 "
-      }  drop-shadow`}>
-      <div className="flex flex-col  justify-center">
-        <div
-          className={`w-full  top-0   overflow-hidden shadow-md absolute ${
-            isDarkMode ? "bg-gray-700" : ""
-          }`}>
-          <Navbar
-            selectedPage={selectedPage}
-            setSelectedPage={setSelectedPage}
-            isTopOfPage={isTopOfPage}
-            onClose={handleClose}
-          />
-        </div>
-
-        <div className="mt-40 ">
-          <Hero
-            selectedPage={selectedPage}
-            setSelectedPage={setSelectedPage}
-            isTopOfPage={isTopOfPage}
-          />
-        </div>
+    <main>
+      <div
+        className={`w-full    top-0   overflow-hidden shadow-md  ${
+          isDarkMode ? "bg-gray-700" : ""
+        }`}>
+        <Navbar
+          selectedPage={selectedPage}
+          setSelectedPage={setSelectedPage}
+          isTopOfPage={isTopOfPage}
+          onClose={handleClose}
+        />
       </div>
-    </div>
+      <section className="xl:padding-l wide:padding-r padding-b ">
+        <Hero
+          selectedPage={selectedPage}
+          setSelectedPage={setSelectedPage}
+          isTopOfPage={isTopOfPage}
+        />
+      </section>
+    </main>
   );
 }
 
