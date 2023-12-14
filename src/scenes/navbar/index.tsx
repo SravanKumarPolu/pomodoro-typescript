@@ -59,14 +59,15 @@ const Navbar = ({
               <span className="pl-2">Works & Breaks</span>
             </HText>
             {isAboveMediumScreens ? (
-              <div className="flex justify-between ">
+              <div className="flex flex-row ">
                 <button
-                  className={`flex  flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative  bg-opacity-50 ${
+                  className={`flex  flex-row mx-1 items-center  px-2  hover:filter hover:brightness-125 cursor-pointer border-none rounded-sm  relative  bg-opacity-50 ${
                     isDarkMode ? "bg-white bg-opacity-80" : "bg-pink-500"
                   }`}
                   onClick={handleSettingClick}>
                   <Links
                     src={reportsvg}
+                    className=" hover:filter hover:brightness-125 "
                     width={20}
                     height={20}
                     selectedPage={selectedPage}
@@ -80,12 +81,13 @@ const Navbar = ({
                 </button>
 
                 <button
-                  className={`flex  flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative  bg-opacity-50 ${
+                  className={`flex  flex-row mx-1 items-center px-2  hover:filter hover:brightness-125 cursor-pointer border-none rounded-sm  relative  bg-opacity-50 ${
                     isDarkMode ? "bg-white bg-opacity-80" : "bg-pink-500"
                   }`}
                   onClick={handleSettingClick}>
                   <Links
                     src={settingsvg}
+                    className=" hover:filter hover:brightness-125 "
                     width={20}
                     height={20}
                     selectedPage={selectedPage}
@@ -97,14 +99,14 @@ const Navbar = ({
                     setSelectedPage={setSelectedPage}
                   />
                 </button>
-
                 <button
-                  className={`flex  flex-row items-center m-2 cursor-pointer border-none rounded-md mx-2 relative  bg-opacity-50 ${
+                  className={`flex  flex-row mx-1 items-center px-2  hover:filter hover:brightness-125 cursor-pointer border-none rounded-sm  relative  bg-opacity-50 ${
                     isDarkMode ? "bg-white bg-opacity-80" : "bg-pink-500"
                   }`}
                   onClick={handleSettingClick}>
                   <Links
                     src={loginsvg}
+                    className=" hover:filter hover:brightness-125 "
                     width={20}
                     height={20}
                     selectedPage={selectedPage}
@@ -120,7 +122,7 @@ const Navbar = ({
             ) : (
               <div className="flex  justify-around items-center relative ">
                 <button
-                  className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative ${
+                  className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md px-2 relative ${
                     isDarkMode ? "bg-white bg-opacity-80" : ""
                   }`}
                   onClick={handleSettingClick}>
@@ -134,7 +136,7 @@ const Navbar = ({
                 </button>
 
                 <button
-                  className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative ${
+                  className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md px-2 relative ${
                     isDarkMode ? "bg-white bg-opacity-80" : ""
                   }`}
                   onClick={handleSettingClick}>
@@ -148,7 +150,7 @@ const Navbar = ({
                 </button>
 
                 <button
-                  className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md mx-2 relative ${
+                  className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md px-2 relative ${
                     isDarkMode ? "bg-white bg-opacity-80" : ""
                   }`}
                   onClick={handleSettingClick}>

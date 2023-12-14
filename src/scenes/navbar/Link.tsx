@@ -1,11 +1,13 @@
 // Link.tsx
 import { SelectedPage } from "@/shared/types";
+import { ClassNames } from "@emotion/react";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
 type Props = {
   page?: string;
   src?: string;
   width?: number;
+  className?: string;
   height?: number;
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
@@ -15,6 +17,7 @@ const Link = ({
   page,
   src,
   width,
+  className,
   height,
   selectedPage,
   setSelectedPage,
@@ -33,14 +36,24 @@ const Link = ({
 
   return (
     <AnchorLink
-      className={`${
+      className={`flex flex-row  items-center  ${
         selectedPage === (src || lowerCasePage) ? "text-white " : ""
       }
-          transition duration-500 hover:text-gray-300 py-2 px-3
+         transition duration-500  hover:text-gray-300 py-1 px-[.5px]
           `}
       href={`#${src || lowerCasePage}`}
       onClick={handleClick}>
-      {src ? <img src={src} alt="" width={width} height={height} /> : page}
+      {src ? (
+        <img
+          src={src}
+          className={className}
+          alt=""
+          width={width}
+          height={height}
+        />
+      ) : (
+        page
+      )}
     </AnchorLink>
   );
 };
