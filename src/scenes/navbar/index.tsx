@@ -44,7 +44,7 @@ const Navbar = ({
     <>
       <nav>
         <div
-          className={` ${navbarBackground} ${flexBetween}  top-0 z-30 w-full  py-6 `}>
+          className={` ${navbarBackground} ${flexBetween}  top-0 z-30 w-full pb-10 sm:py-4 `}>
           <motion.div
             className=" flex w-full  relative flex-col justify-center items-center mx-auto  ml-[-.1rem] border-none md:flex-row"
             initial="hidden"
@@ -120,7 +120,7 @@ const Navbar = ({
                 </button>
               </div>
             ) : (
-              <div className="flex  justify-around items-center relative ">
+              <div className="flex   items-center relative ">
                 <button
                   className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md px-2 relative ${
                     isDarkMode ? "bg-white bg-opacity-80" : ""

@@ -1,6 +1,6 @@
 // Link.tsx
 import { SelectedPage } from "@/shared/types";
-import { ClassNames } from "@emotion/react";
+
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
 type Props = {

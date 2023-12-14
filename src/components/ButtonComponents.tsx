@@ -32,7 +32,7 @@ export const ControlButton: React.FC<{
   onClick: () => void;
 }> = ({ text, onClick }) => (
   <button
-    className="m-2 px-2  rounded bg-white bg-opacity-50"
+    className="m12 px-2  rounded-sm bg-white bg-opacity-50"
     onClick={onClick}>
     {text}
   </button>

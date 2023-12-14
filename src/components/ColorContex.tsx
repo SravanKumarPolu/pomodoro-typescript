@@ -11,22 +11,22 @@ type ColorContextProps = {
 };
 
 const colorButtons = [
-  "bg-red-400",
-  "bg-green-400",
-  "bg-blue-400",
-  "bg-violet-400",
-  "bg-orange-400",
+  "bg-red-300",
+  "bg-green-300",
+  "bg-blue-300",
+  "bg-violet-300",
+  "bg-orange-300",
 ];
 
 const allColorButtons = [
-  "bg-red-400",
-  "bg-green-400",
-  "bg-blue-400",
-  "bg-violet-400",
-  "bg-orange-400",
-  "bg-indigo-400",
-  "bg-amber-500",
-  "bg-emerald-400",
+  "bg-red-300",
+  "bg-green-300",
+  "bg-blue-300",
+  "bg-violet-300",
+  "bg-orange-300",
+  "bg-indigo-300",
+  "bg-amber-300",
+  "bg-emerald-300",
   "bg-purple-400",
 ];
 
