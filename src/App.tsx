@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { SelectedPage } from "./shared/types";
 import Hero from "./scenes/hero";
 import { useDarkMode } from "./components/DarkModeContext";
-import { useColor } from "./components/ColorContex";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
@@ -24,13 +23,16 @@ function App() {
   function handleClose(): void {
     throw new Error("Function not implemented.");
   }
-  const { selectedColor } = useColor();
+
   const { isDarkMode } = useDarkMode();
   return (
-    <main>
+    <main
+      className={`w-full    top-0   overflow-hidden shadow-md  ${
+        isDarkMode ? "bg-gray-700" : " "
+      }`}>
       <div
         className={`w-full    top-0   overflow-hidden shadow-md  ${
-          isDarkMode ? "bg-gray-700" : ""
+          isDarkMode ? "bg-gray-700" : " "
         }`}>
         <Navbar
           selectedPage={selectedPage}
