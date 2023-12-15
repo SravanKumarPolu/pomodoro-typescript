@@ -60,7 +60,7 @@ const Navbar = ({
                 visible: { opacity: 1, x: 0 },
               }}>
               <HText>
-                <span className="pl-2">Works & Breaks</span>
+                <span className="pl-2">Task & Breaks</span>
               </HText>
               {isAboveMediumScreens ? (
                 <div className="flex flex-row ">
@@ -132,8 +132,8 @@ const Navbar = ({
                     onClick={handleSettingClick}>
                     <Links
                       src={reportsvg}
-                      width={20}
-                      height={20}
+                      width={24}
+                      height={24}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
                     />
@@ -146,8 +146,8 @@ const Navbar = ({
                     onClick={handleSettingClick}>
                     <Links
                       src={settingsvg}
-                      width={20}
-                      height={20}
+                      width={24}
+                      height={24}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
                     />
@@ -160,8 +160,8 @@ const Navbar = ({
                     onClick={handleSettingClick}>
                     <Links
                       src={loginsvg}
-                      width={20}
-                      height={20}
+                      width={24}
+                      height={24}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
                     />

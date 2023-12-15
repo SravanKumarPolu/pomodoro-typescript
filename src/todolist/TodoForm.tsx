@@ -29,8 +29,8 @@ const TodoForm: React.FC<Props> = ({ addTodo }) => {
           <button
             type="submit"
             className=" flex justify-center items-center flex-row todo-btn text-white  mt-2 p-2 rounded-lg">
-            <img src={AddSvg} />
-            <span>Add</span>
+            <img src={AddSvg} width={20} height={24} />
+            <span>Task</span>
           </button>
         </form>
       ) : (
