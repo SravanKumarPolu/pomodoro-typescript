@@ -18,7 +18,7 @@ const EditTodoForm = ({ editTodo, task }: Props) => {
 
   return (
     <div className="ml-4 ">
-      <form onSubmit={handleSubmit} className=" flex flex-row">
+      <form onSubmit={handleSubmit} className=" flex sm:flex-row flex-col">
         <input
           type="text"
           className="todo-input m-1 p-3 border-2 text-black rounded"
