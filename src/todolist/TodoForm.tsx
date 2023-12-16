@@ -44,7 +44,7 @@ const TodoForm: React.FC<Props> = ({ addTodo }) => {
           />
           <button
             type="submit"
-            className="todo-btn text-white  mt-2 p-2 rounded-lg">
+            className="todo-btn text-white  mt-2 p-2 rounded">
             Add Task
           </button>
         </form>
