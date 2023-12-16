@@ -43,7 +43,7 @@ const Navbar = ({
   return (
     <>
       <header
-        className=" absolute z-20 w-full 
+        className=" absolute z-20 w-full  
     
     ">
         <nav>

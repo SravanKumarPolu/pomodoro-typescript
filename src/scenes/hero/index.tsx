@@ -75,7 +75,7 @@ const Hero: React.FC<Props> = ({
   };
   const { isDarkMode } = useDarkMode();
   return (
-    <div className="mt-28 h-screen  ">
+    <div className="mt-[6rem] h-screen  ">
       <div
         className={`${isDarkMode ? "bg-slate-700" : selectedColor}
         } flex h-auto  flex-col items-center justify-center  ${

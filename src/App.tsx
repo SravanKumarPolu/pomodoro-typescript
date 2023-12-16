@@ -41,7 +41,7 @@ function App() {
           onClose={handleClose}
         />
       </div>
-      <section className="xl:padding-l wide:padding-r padding-b pt-5 ">
+      <section className="xl:padding-l wide:padding-r padding-b  ">
         <Hero
           selectedPage={selectedPage}
           setSelectedPage={setSelectedPage}
