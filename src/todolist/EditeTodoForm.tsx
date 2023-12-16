@@ -1,6 +1,6 @@
 // EditTodoForm.tsx
 import { useState } from "react";
-import updateSvg from "@/assets/update.svg";
+import updateSvg from "@/assets/taskUpdate.svg";
 type Props = {
   task: any; // Change the type to the complete Todo object
   editTodo: (id: string, newTask: string) => void;
