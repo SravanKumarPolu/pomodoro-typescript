@@ -11,18 +11,10 @@ type Props = {
 
 const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
-  const { timerValue1 } = useTimerContext();
+  const { timerValue1, formatTime } = useTimerContext();
   const [time, setTime] = useState(timerValue1);
   const audioRef = useRef<HTMLAudioElement>(null);
   const { selectedAlarm } = useSoundContext();
-
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds
-    ).padStart(2, "0")}`;
-  };
 
   useEffect(() => {
     setTime(timerValue1 * 60);

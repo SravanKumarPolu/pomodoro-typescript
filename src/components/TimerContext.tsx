@@ -14,6 +14,7 @@ interface TimerContextProps {
   timerValue2: number;
   handleTimerChange2: Dispatch<SetStateAction<number>>;
   timerValue3: number;
+  formatTime: (seconds: number) => string;
   handleTimerChange3: Dispatch<SetStateAction<number>>;
 }
 
@@ -25,7 +26,13 @@ interface TimerProviderProps {
 
 export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
   const [timerValue1, setTimerValue1] = useState<number>(25);
-
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${String(minutes).padStart(2, "0")}:${String(
+      remainingSeconds
+    ).padStart(2, "0")}`;
+  };
   const handleTimerChange1: TimerContextProps["handleTimerChange1"] = (
     newValue
   ) => {
@@ -59,6 +66,7 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
         handleTimerChange2,
         handleTimerChange1,
         timerValue3,
+        formatTime,
         handleTimerChange3,
       }}>
       {children}

@@ -13,16 +13,10 @@ type Props = {
 
 const LongBreak = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
-  const { timerValue3 } = useTimerContext();
+  const { timerValue3, formatTime } = useTimerContext();
   const [time, setTime] = useState(timerValue3 * 60);
   const { selectedAlarm } = useSoundContext();
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds
-    ).padStart(2, "0")}`;
-  };
+
   const audioRef = useRef<HTMLAudioElement>(null);
   useEffect(() => {
     let interval: NodeJS.Timeout;

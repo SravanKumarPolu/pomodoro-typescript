@@ -12,17 +12,9 @@ type Props = {
 
 const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
-  const { timerValue2 } = useTimerContext();
+  const { timerValue2, formatTime } = useTimerContext();
   const { selectedAlarm } = useSoundContext();
   const [time, setTime] = useState(timerValue2);
-
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds
-    ).padStart(2, "0")}`;
-  };
 
   useEffect(() => {
     setTime(timerValue2 * 60);
