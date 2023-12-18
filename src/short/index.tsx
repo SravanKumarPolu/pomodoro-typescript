@@ -14,7 +14,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue2 } = useTimerContext();
   const { selectedAlarm } = useSoundContext();
-  const [time, setTime] = useState(timerValue2 * 60);
+  const [time, setTime] = useState(timerValue2);
 
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);

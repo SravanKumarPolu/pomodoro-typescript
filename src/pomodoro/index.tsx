@@ -12,7 +12,7 @@ type Props = {
 const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue1 } = useTimerContext();
-  const [time, setTime] = useState(timerValue1 * 60);
+  const [time, setTime] = useState(timerValue1);
   const audioRef = useRef<HTMLAudioElement>(null);
   const { selectedAlarm } = useSoundContext();
 
