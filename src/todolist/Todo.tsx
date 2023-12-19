@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useTimerContext } from "@/components/TimerContext";
 
 type Props = {
   task: {
@@ -19,6 +20,13 @@ const Todo: React.FC<Props> = ({
   deleteTodo,
   editTodo,
 }) => {
+  const { timerValue1, formatTime } = useTimerContext();
+
+  const currentTime = new Date();
+  const finishedTime = new Date(
+    currentTime.getTime() + timerValue1 * 60 * 1000
+  );
+
   return (
     <div className="flex flex-col md:flex-row justify-between items-center w-full px-4 py-2 bg-gray-800 text-white mb-2">
       <p
@@ -26,6 +34,9 @@ const Todo: React.FC<Props> = ({
         onClick={() => toggleComplete(task.id)}>
         {task.task}
       </p>
+
+      {/* Display the time when the task will be completed */}
+      <span>{formatTime(timerValue1)}</span>
       <div className="flex gap-2">
         <FontAwesomeIcon icon={faPenSquare} onClick={() => editTodo(task.id)} />
         <FontAwesomeIcon icon={faTrash} onClick={() => deleteTodo(task.id)} />

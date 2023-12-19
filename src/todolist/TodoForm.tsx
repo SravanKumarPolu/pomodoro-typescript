@@ -2,17 +2,24 @@
 import useMediaQuery from "../hooks/useMediaQuery";
 import React, { useState } from "react";
 import AddSvg from "@/assets/add.svg";
+
 type Props = {
   addTodo: (todo: string) => void;
+  timerIsActive: boolean;
+  startTimer: () => void; // Assuming startTimer is a function
 };
 
-const TodoForm: React.FC<Props> = ({ addTodo }) => {
+const TodoForm: React.FC<Props> = ({ addTodo, timerIsActive, startTimer }) => {
   const [value, setValue] = useState("");
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     addTodo(value);
     setValue("");
+    if (!timerIsActive) {
+      startTimer();
+    }
   };
 
   return (

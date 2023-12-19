@@ -14,7 +14,7 @@ type Todo = {
 
 const TodoWrapper: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-
+  const [timerIsActive, setTimerIsActive] = useState(false);
   const addTodo = (todo: string) => {
     setTodos((prevTodos) => [
       ...prevTodos,
@@ -54,7 +54,12 @@ const TodoWrapper: React.FC = () => {
 
   return (
     <div className="flex flex-col h-[30rem] items-center mx-auto    text-black ">
-      <TodoForm addTodo={addTodo} />
+      <TodoForm
+        addTodo={addTodo}
+        startTimer={() => setTimerIsActive(true)}
+        timerIsActive={timerIsActive}
+      />
+
       {todos.map((todo) =>
         todo.isEditing ? (
           <EditTodoForm key={todo.id} editTodo={editTask} task={todo} />

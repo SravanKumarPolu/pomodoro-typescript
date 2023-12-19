@@ -1,3 +1,4 @@
+// pomodoro/index.tsx
 import React, { useEffect, useRef, useState } from "react";
 import { SelectedPage } from "@/shared/types";
 import { ControlButton } from "../components/ButtonComponents";
@@ -11,7 +12,7 @@ type Props = {
 
 const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
-  const { timerValue1, formatTime } = useTimerContext();
+  const { timerValue1, formatTime } = useTimerContext(); // Use timerValue2 and formatTime for Short Break
   const [time, setTime] = useState(timerValue1);
   const audioRef = useRef<HTMLAudioElement>(null);
   const { selectedAlarm } = useSoundContext();
@@ -19,6 +20,10 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   useEffect(() => {
     setTime(timerValue1 * 60);
   }, [timerValue1]);
+
+  const toggleTimer = () => {
+    setIsActive(!isActive);
+  };
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -43,11 +48,8 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
     }
 
     return () => clearInterval(interval);
-  }, [isActive, time, setSelectedPage]);
+  }, [isActive, time, setSelectedPage, timerValue1]);
 
-  const toggleTimer = () => {
-    setIsActive(!isActive);
-  };
   return (
     <div className="flex justify-center items-center flex-col">
       <div className="flex flex-row m-2 items-center gap-4">

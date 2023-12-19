@@ -14,8 +14,8 @@ interface TimerContextProps {
   timerValue2: number;
   handleTimerChange2: Dispatch<SetStateAction<number>>;
   timerValue3: number;
-  formatTime: (seconds: number) => string;
   handleTimerChange3: Dispatch<SetStateAction<number>>;
+  formatTime: (time: number) => string; // Updated to accept time as a parameter
 }
 
 const TimerContext = createContext<TimerContextProps | undefined>(undefined);
@@ -26,13 +26,18 @@ interface TimerProviderProps {
 
 export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
   const [timerValue1, setTimerValue1] = useState<number>(25);
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
+  const [timerValue2, setTimerValue2] = useState<number>(5);
+  const [timerValue3, setTimerValue3] = useState<number>(15);
+
+  const formatTime = (time: number) => {
+    // Updated to accept time as a parameter
+    const minutes = Math.floor(time / 60);
+    const remainingSeconds = Math.floor(time % 60);
     return `${String(minutes).padStart(2, "0")}:${String(
       remainingSeconds
     ).padStart(2, "0")}`;
   };
+
   const handleTimerChange1: TimerContextProps["handleTimerChange1"] = (
     newValue
   ) => {
@@ -41,7 +46,6 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
     );
   };
 
-  const [timerValue2, setTimerValue2] = useState<number>(5);
   const handleTimerChange2: TimerContextProps["handleTimerChange2"] = (
     newValue
   ) => {
@@ -50,24 +54,24 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children }) => {
     );
   };
 
-  const [timerValue3, setTimervalue3] = useState<number>(15);
   const handleTimerChange3: TimerContextProps["handleTimerChange3"] = (
     newValue
   ) => {
-    setTimervalue3((prevTimerValue) =>
+    setTimerValue3((prevTimerValue) =>
       typeof newValue === "function" ? newValue(prevTimerValue) : newValue
     );
   };
+
   return (
     <TimerContext.Provider
       value={{
         timerValue1,
         timerValue2,
-        handleTimerChange2,
         handleTimerChange1,
+        handleTimerChange2,
         timerValue3,
-        formatTime,
         handleTimerChange3,
+        formatTime,
       }}>
       {children}
     </TimerContext.Provider>
