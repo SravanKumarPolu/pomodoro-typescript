@@ -78,16 +78,16 @@ const Hero: React.FC<Props> = ({
     <div className="mt-[6rem] h-screen  ">
       <div
         className={`${isDarkMode ? "bg-slate-700" : selectedColor}
-        } flex h-auto  flex-col items-center justify-center  ${
+        } flex h-auto  py-9 flex-col items-center justify-center  ${
           isAboveMediumScreens ? "w-full" : "w-full"
         }  rounded-sm text-white absolute`}>
         <div
-          className={`flex  flex-col items-center justify-center p-2 ${
+          className={`flex  flex-col items-center rounded-2xl justify-center p-2 ${
             isDarkMode
               ? "bg-white-700"
               : "bg-gradient-to-b from-gray-600 via-pink-500 to-selectedColor-400"
           }`}>
-          <div className="flex flex-row  py-10">
+          <div className="flex flex-row  py-8">
             <button
               className="m-1 xs:m-2 xs:p-1 bg-white bg-opacity-50 rounded-sm xs:mx-1 xs:text-xs active:bg-slate-400 focus-within:bg-slate-400 hover:bg-slate-400 "
               onClick={() => setSelectedPage(SelectedPage.Pomodoro)}>

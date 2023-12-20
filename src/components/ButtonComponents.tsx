@@ -1,41 +1,18 @@
-// Pomodoro.tsx
-import React, { Dispatch, SetStateAction } from "react";
-
-interface PomodoroProps {
-  initialTime: number;
-  time: number;
-  isActive: boolean;
-  setIsActive: Dispatch<SetStateAction<boolean>>;
-  setTimer: Dispatch<SetStateAction<number>>; // Include setTimer in the interface
-}
-
-const Pomodoro: React.FC<PomodoroProps> = ({ time }) => {
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds
-    ).padStart(2, "0")}`;
-  };
-
-  return (
-    <div>
-      <div>
-        <p>{formatTime(time)}</p>
-      </div>
-    </div>
-  );
-};
+import React from "react";
 
 export const ControlButton: React.FC<{
-  text: string;
+  text: string | React.ReactNode;
   onClick: () => void;
 }> = ({ text, onClick }) => (
   <button
-    className="m12 px-2  rounded-sm bg-white bg-opacity-50"
+    className="m-2 px-2 rounded-sm bg-white bg-opacity-50"
     onClick={onClick}>
-    {text}
+    {typeof text === "string" ? (
+      text
+    ) : (
+      <span className="p-1" style={{ display: "flex", alignItems: "center" }}>
+        {text}
+      </span>
+    )}
   </button>
 );
-
-export default Pomodoro;

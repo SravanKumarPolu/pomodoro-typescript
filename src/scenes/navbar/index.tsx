@@ -10,6 +10,7 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import Setting from "@/setting";
 import { useState } from "react";
 import { useDarkMode } from "@/components/DarkModeContext";
+import { useColor } from "@/components/ColorContex";
 
 type Props = {
   selectedPage: SelectedPage;

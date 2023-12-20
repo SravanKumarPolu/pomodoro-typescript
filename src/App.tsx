@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { SelectedPage } from "./shared/types";
 import Hero from "./scenes/hero";
 import { useDarkMode } from "./components/DarkModeContext";
+import { useColor } from "./components/ColorContex";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
@@ -25,15 +26,13 @@ function App() {
   }
 
   const { isDarkMode } = useDarkMode();
+  const { selectedColor } = useColor();
   return (
     <main
       className={`w-full    top-0   overflow-hidden shadow-md  ${
-        isDarkMode ? "bg-gray-700" : " "
+        isDarkMode ? "bg-gray-700" : selectedColor
       }`}>
-      <div
-        className={`w-full    top-0   overflow-hidden shadow-md  ${
-          isDarkMode ? "bg-gray-700" : " "
-        }`}>
+      <div>
         <Navbar
           selectedPage={selectedPage}
           setSelectedPage={setSelectedPage}

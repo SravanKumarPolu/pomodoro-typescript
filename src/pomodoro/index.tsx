@@ -4,7 +4,8 @@ import { SelectedPage } from "@/shared/types";
 import { ControlButton } from "../components/ButtonComponents";
 import { useSoundContext } from "@/components/SoundContext";
 import { useTimerContext } from "@/components/TimerContext";
-
+import playSvg from "@/assets/play.svg";
+import pauseSvg from "@/assets/pause.svg";
 type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
@@ -74,7 +75,13 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
       </div>
 
       <ControlButton
-        text={isActive ? "Pause" : "Play"}
+        text={
+          isActive ? (
+            <img src={pauseSvg} alt="Pause" />
+          ) : (
+            <img src={playSvg} alt="Play" />
+          )
+        }
         onClick={() => toggleTimer()}
       />
     </div>

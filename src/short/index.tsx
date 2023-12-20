@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { SelectedPage } from "@/shared/types";
-
+import playSvg from "@/assets/play.svg";
+import pauseSvg from "@/assets/pause.svg";
 import { useTimerContext } from "@/components/TimerContext";
 import { ControlButton } from "@/components/ButtonComponents";
 import { useSoundContext } from "@/components/SoundContext";
@@ -75,7 +76,13 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
       </div>
 
       <ControlButton
-        text={isActive ? "Pause" : "Play"}
+        text={
+          isActive ? (
+            <img src={pauseSvg} alt="Pause" />
+          ) : (
+            <img src={playSvg} alt="Play" />
+          )
+        }
         onClick={() => toggleTimer()}
       />
     </div>
