@@ -6,6 +6,8 @@ import playSvg from "@/assets/play.svg";
 import pauseSvg from "@/assets/pause.svg";
 import { useTimerContext } from "@/components/TimerContext";
 import { useSoundContext } from "@/components/SoundContext";
+import resetSvg from "@/assets/reset.svg";
+import nextSvg from "@/assets/next.svg";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -52,7 +54,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
     <div className="flex justify-center items-center flex-col">
       <div className="flex flex-row m-2 items-center gap-4">
         <ControlButton
-          text="Reset"
+          text={<img src={resetSvg} alt="Reset" />}
           onClick={() => {
             toggleTimer();
             setTime(timerValue3 * 60);
@@ -65,7 +67,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
         </div>
 
         <ControlButton
-          text="Next"
+          text={<img src={nextSvg} alt="Next" />}
           onClick={() => setSelectedPage(SelectedPage.Pomodoro)}
         />
       </div>

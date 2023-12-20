@@ -6,6 +6,8 @@ import { useSoundContext } from "@/components/SoundContext";
 import { useTimerContext } from "@/components/TimerContext";
 import playSvg from "@/assets/play.svg";
 import pauseSvg from "@/assets/pause.svg";
+import resetSvg from "@/assets/reset.svg";
+import nextSvg from "@/assets/next.svg";
 type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
@@ -55,7 +57,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
     <div className="flex justify-center items-center flex-col">
       <div className="flex flex-row m-2 items-center gap-4">
         <ControlButton
-          text="Reset"
+          text={<img src={resetSvg} alt="Reset" />}
           onClick={() => {
             setIsActive(false);
             setTime(timerValue1 * 60);
@@ -69,7 +71,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
           </div>
         </div>
         <ControlButton
-          text="Next"
+          text={<img src={nextSvg} alt="Next" />}
           onClick={() => setSelectedPage(SelectedPage.ShortBreak)}
         />
       </div>
