@@ -22,10 +22,10 @@ const Todo: React.FC<Props> = ({
 }) => {
   const { timerValue1, formatTime } = useTimerContext();
 
-  const currentTime = new Date();
-  const finishedTime = new Date(
-    currentTime.getTime() + timerValue1 * 60 * 1000
-  );
+  // const currentTime = new Date();
+  // const finishedTime = new Date(
+  //   currentTime.getTime() + timerValue1 * 60 * 1000
+  // );
 
   return (
     <div className="flex flex-col md:flex-row justify-between items-center w-full px-4 py-2 bg-gray-800 text-white mb-2">
