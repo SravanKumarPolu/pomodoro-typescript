@@ -38,7 +38,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
     if (isActive && time > 0) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime - 1);
-        setProgress((prevProgress) =>
+        setProgress((_prevProgress) =>
           Math.floor(((timerValue1 * 60 - time) / (timerValue1 * 60)) * 100)
         );
       }, 1000);
