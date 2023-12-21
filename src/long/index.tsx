@@ -54,9 +54,16 @@ const LongBreak = ({ setSelectedPage }: Props) => {
     setProgress(100);
     const audio = audioRef.current;
     if (audio) {
-      audio.play().catch((error: any) => {
-        console.error(error);
-      });
+      var audioPlay = audio.play();
+      audioPlay
+        .then(() => {
+          setTimeout(() => {
+            console.log("hi");
+          }, 2000);
+        })
+        .catch((error: any) => {
+          console.error(error);
+        });
       const audioDuration = 10000;
       setTimeout(() => {
         setSelectedPage(SelectedPage.Pomodoro);
