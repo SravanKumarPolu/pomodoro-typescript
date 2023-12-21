@@ -8,6 +8,7 @@ import { useTimerContext } from "@/components/TimerContext";
 import { useSoundContext } from "@/components/SoundContext";
 import resetSvg from "@/assets/reset.svg";
 import nextSvg from "@/assets/next.svg";
+import ProgressBar from "@/components/ProgressBar";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -19,35 +20,48 @@ const LongBreak = ({ setSelectedPage }: Props) => {
   const { timerValue3, formatTime } = useTimerContext();
   const [time, setTime] = useState(timerValue3 * 60);
   const { selectedAlarm } = useSoundContext();
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    setTime(timerValue3 * 60);
+    setProgress(0);
+  }, [timerValue3]);
 
   const audioRef = useRef<HTMLAudioElement>(null);
+  const toggleTimer = () => {
+    setIsActive(!isActive);
+  };
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
     if (isActive && time > 0) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime - 1);
+        setProgress((_prevProgress: any) =>
+          Math.floor(((timerValue3 * 60 - time) / (timerValue3 * 60)) * 100)
+        );
       }, 1000);
     } else if (time === 0) {
-      setIsActive(false);
-      setTime(timerValue3 * 60);
-      const audio = audioRef.current;
-      if (audio) {
-        audio.play().catch((error: any) => {
-          console.error(error);
-        });
-        const audioDuration = 10000;
-        setTimeout(() => {
-          setSelectedPage(SelectedPage.Pomodoro);
-        }, audioDuration);
-      }
+      handleTimerCompletion();
     }
 
     return () => clearInterval(interval);
-  }, [isActive, time, setSelectedPage]);
+  }, [isActive, time, setSelectedPage, timerValue3]);
 
-  const toggleTimer = () => {
-    setIsActive(!isActive);
+  const handleTimerCompletion = () => {
+    setIsActive(false);
+    setTime(timerValue3 * 60);
+    setProgress(100);
+    const audio = audioRef.current;
+    if (audio) {
+      audio.play().catch((error: any) => {
+        console.error(error);
+      });
+      const audioDuration = 10000;
+      setTimeout(() => {
+        setSelectedPage(SelectedPage.Pomodoro);
+      }, audioDuration);
+    }
   };
 
   return (
@@ -82,6 +96,9 @@ const LongBreak = ({ setSelectedPage }: Props) => {
         }
         onClick={() => toggleTimer()}
       />
+      <div className="container mx-auto mt-8">
+        <ProgressBar value={progress} />
+      </div>
     </div>
   );
 };
