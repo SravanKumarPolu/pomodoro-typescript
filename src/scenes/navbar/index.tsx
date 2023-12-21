@@ -65,7 +65,7 @@ const Navbar = ({
               {isAboveMediumScreens ? (
                 <div className="flex flex-row ">
                   <button
-                    className={`flex  flex-row mx-1 items-center  px-4  hover:filter hover:brightness-125 cursor-pointer border-none rounded-sm  relative  bg-opacity-50 ${
+                    className={`flex  flex-row mx-1 items-center  px-4 gap-[2px] hover:filter hover:brightness-125 cursor-pointer border-none rounded-sm  relative  bg-opacity-50 ${
                       isDarkMode ? "bg-white bg-opacity-80" : "bg-pink-500"
                     }`}
                     onClick={handleSettingClick}>
@@ -85,7 +85,7 @@ const Navbar = ({
                   </button>
 
                   <button
-                    className={`flex  flex-row mx-1 items-center px-4  hover:filter hover:brightness-125 cursor-pointer border-none rounded-sm  relative  bg-opacity-50 ${
+                    className={`flex  flex-row mx-1 items-center px-4 gap-[2px] hover:filter hover:brightness-125 cursor-pointer border-none rounded-sm  relative  bg-opacity-50 ${
                       isDarkMode ? "bg-white bg-opacity-80" : "bg-pink-500"
                     }`}
                     onClick={handleSettingClick}>
@@ -104,7 +104,7 @@ const Navbar = ({
                     />
                   </button>
                   <button
-                    className={`flex  flex-row mx-1 items-center px-4  hover:filter hover:brightness-125 cursor-pointer border-none rounded-sm  relative  bg-opacity-50 ${
+                    className={`flex  flex-row mx-1 items-center px-4 gap-[2px] hover:filter hover:brightness-125 cursor-pointer border-none rounded-sm  relative  bg-opacity-50 ${
                       isDarkMode ? "bg-white bg-opacity-80" : "bg-pink-500"
                     }`}
                     onClick={handleSettingClick}>

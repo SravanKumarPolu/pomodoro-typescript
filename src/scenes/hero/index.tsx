@@ -87,9 +87,19 @@ const Hero: React.FC<Props> = ({
               ? "bg-white-700"
               : "bg-gradient-to-b from-gray-600 via-pink-500 to-selectedColor-400"
           }`}>
-          <div className="flex flex-row  py-8">
+          <div className="flex flex-col gap-2 py-8 xs:flex-row">
             <button
-              className="m-1 xs:m-2 xs:p-1 bg-white bg-opacity-50 rounded-sm xs:mx-1 xs:text-xs active:bg-slate-400 focus-within:bg-slate-400 hover:bg-slate-400 "
+              className=" px-3 bg-white bg-opacity-50  rounded-sm  focus-within:bg-slate-400 hover:bg-slate-400 active:bg-slate-400"
+              onClick={() => setSelectedPage(SelectedPage.ShortBreak)}>
+              <Link
+                page="Short Break"
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
+            </button>
+            <button
+              className="px-3 bg-white bg-opacity-50 rounded-sm 
+               active:bg-slate-400 focus-within:bg-slate-400 hover:bg-slate-400 "
               onClick={() => setSelectedPage(SelectedPage.Pomodoro)}>
               <Link
                 page="Pomodoro"
@@ -99,19 +109,11 @@ const Hero: React.FC<Props> = ({
             </button>
 
             <button
-              className="my-1 xs:my-2 xs:p-1  bg-white bg-opacity-50  rounded-sm xs:mx-1 xs:text-xs focus-within:bg-slate-400 hover:bg-slate-400 active:bg-slate-400"
-              onClick={() => setSelectedPage(SelectedPage.ShortBreak)}>
-              <Link
-                page="ShortBreak"
-                selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
-              />
-            </button>
-            <button
-              className="m-1 xs:m-2 xs:p-1  rounded-sm xs:mx-1 xs:text-xs bg-white bg-opacity-50 focus-within:bg-slate-400 hover:bg-slate-400 active:bg-slate-400"
+              className=" px-3  rounded-sm  bg-white bg-opacity-50 focus-within:bg-slate-400
+               hover:bg-slate-400 active:bg-slate-400"
               onClick={() => setSelectedPage(SelectedPage.LongBreak)}>
               <Link
-                page="LongBreak"
+                page="Long Break"
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
               />
