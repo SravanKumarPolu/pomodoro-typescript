@@ -3,36 +3,22 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      linearGradientColors: {
+        "pink-gradient": ["#FF61D2", "#FE9090"],
+      },
       colors: {
         "gray-20": "#F8F4EB",
         "gray-50": "#EFE6E6",
         "gray-100": "#DFCCCC",
         "gray-300": "#EBEBEB",
+
         "primary-100": "#FFE1E0",
         "primary-300": "#FFA6A3",
         "primary-500": "#FF6B66",
         "primary-600": "#801914",
         "primary-700": "#610804",
-        "lavender-400": "#d96be8 ",
-        "lavender-200": "#eb92f7 ",
-        "cyan-200": "#a5f3fc",
-        "salmon-200": "#FA8072",
-        "lavender-400": "#c850d8 ",
-        "lavender-600": "#ed1ce6 ",
-        "ivory-200": "#fffff0",
-        "coral-200": "#FF6F61",
-        "goldenrod-200": "#DAA520",
-        "lilac-200": "#C8A2C8",
-        "olive-200": "#BAB86C",
-        "mint-200": "#98ff98",
-        "apricot-200": "#FDD5B1",
-        "secondary-400": "#FFCD58",
-        "secondary-500": "#FFC132",
-        " tertiary-300": "#FFCECB",
-        "fuchsia-200": "#f0abfc",
-        "sky-200": "#7dd3fc",
-        "amber-400": "rgb(251 191 36)",
       },
+
       backgroundImage: (theme) => ({
         "gradient-yellowred": "linear-gradient(90deg,#FF616A 0%,#FFC837 100%)",
         "mobile-home": "url('./assets/HomePageGraphic.png')",
