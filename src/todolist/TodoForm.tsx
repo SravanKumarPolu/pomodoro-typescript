@@ -1,7 +1,7 @@
 // TodoForm.tsx
 import useMediaQuery from "../hooks/useMediaQuery";
 import React, { useState } from "react";
-import AddSvg from "@/assets/add.svg";
+// import AddSvg from "@/assets/add.svg";
 
 type Props = {
   addTodo: (todo: string) => void;
@@ -33,12 +33,12 @@ const TodoForm: React.FC<Props> = ({ addTodo, timerIsActive, startTimer }) => {
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
-          <button
+          {/* <button
             type="submit"
             className=" flex justify-center items-center flex-row todo-btn text-white  mt-2 p-2 rounded-lg">
             <img src={AddSvg} width={20} height={24} />
             <span>Task</span>
-          </button>
+          </button> */}
         </form>
       ) : (
         <form onSubmit={handleSubmit} className="flex flex-col ">
@@ -49,12 +49,12 @@ const TodoForm: React.FC<Props> = ({ addTodo, timerIsActive, startTimer }) => {
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
-          <button
+          {/* <button
             type="submit"
             className="flex justify-center items-center flex-row todo-btn text-white  mt-2 p-2 rounded-lg">
             <img src={AddSvg} width={20} height={24} />
             <span>Task</span>
-          </button>
+          </button> */}
         </form>
       )}
     </div>
