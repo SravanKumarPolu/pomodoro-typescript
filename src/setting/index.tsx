@@ -26,9 +26,9 @@ const Setting = ({ onClose }: Props) => {
   };
 
   return (
-    <div className="w-[24rm]  z-10 fixed p-4  m-2 mt-24 top-11 sm:mt-10 sm:w-[24rem] sm:right-[4rem] sm:fixed">
+    <div className="w-full sm:w-[23rem] md:w-[24rem] lg:w-[30rem] xl:w-[35rem] 2xl:w-[40rem] z-10 fixed p-4 m-2 mt-24 top-11 sm:mt-10 sm:right-[4rem] sm:fixed">
       <div className="bg-white rounded shadow-lg">
-        <div className="flex justify-between p-4 border-b-2 border-white-500 ">
+        <div className="flex justify-between p-4 border-b-2 border-white-500">
           <h1 className="text-lg font-semibold">Setting</h1>
           <button className="cursor-pointer" onClick={onClose}>
             <img
@@ -40,8 +40,8 @@ const Setting = ({ onClose }: Props) => {
             />
           </button>
         </div>
-        <div className="p-4 flex flex-col ">
-          <div className="border-b-2 border-white-500 px-1 pb-1 ">
+        <div className="p-4 flex flex-col">
+          <div className="border-b-2 border-white-500 px-1 pb-1">
             <div
               className="flex flex-row cursor-pointer"
               onClick={() => toggleAccordion("timer")}>

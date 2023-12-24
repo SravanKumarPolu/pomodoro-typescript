@@ -44,7 +44,7 @@ type ColorProviderProps = {
 
 export const ColorProvider: React.FC<ColorProviderProps> = ({ children }) => {
   const [selectedColor, setSelectedColor] = useState<string>(
-    "bg-gradient-to-br from-pink-500 to-red-500"
+    "bg-gradient-to-br from-red-400 to-pink-500"
   ); // Initial color state
 
   const setColor = (color: string) => {
