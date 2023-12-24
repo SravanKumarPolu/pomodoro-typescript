@@ -19,12 +19,12 @@ const Popup = ({
   return (
     <>
       {isOpen && (
-        <div className="fixed bottom-[2rem] z-10  flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none ">
+        <div className="fixed bottom-[2rem] z-10  flex  overflow-x-hidden overflow-y-auto outline-none focus:outline-none ">
           <div className="relative w-[14rem]  my-6">
-            <div className="relative  flex flex-col items-center  bg-gray-100 border-0 rounded-lg shadow-lg outline-none ">
-              <div className="flex  justify-center items-center my-3  rounded">
+            <div className="relative  flex flex-col   bg-gray-100 border-0 rounded-lg shadow-lg outline-none ">
+              <div className="flex  mx-[5.5rem] items-center my-3  rounded">
                 <button
-                  className="p-1 ml-auto border-0 cursor-pointer bg-gray-300  text-3xl leading-none font-semibold outline-none focus:outline-none"
+                  className="p-1 ml-auto border-0  bg-gray-300  text-3xl leading-none font-semibold outline-none focus:outline-none"
                   onClick={onClose}>
                   <span className="text-red h-5  text-2xl block outline-none focus:outline-none">
                     <img

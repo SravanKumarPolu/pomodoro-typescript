@@ -26,7 +26,7 @@ const Setting = ({ onClose }: Props) => {
   };
 
   return (
-    <div className="w-full sm:w-[23rem] md:w-[24rem] lg:w-[30rem] xl:w-[35rem] 2xl:w-[40rem] z-10 fixed p-4 m-2 mt-24 top-11 sm:mt-10 sm:right-[4rem] sm:fixed">
+    <div className="w-[22rem] sm:w-[20rem] md:w-[24rem] lg:w-[30rem] xl:w-[35rem] 2xl:w-[40rem] z-10 fixed p-4 m-2 mt-24 top-11 sm:mt-10 sm:right-[4rem] sm:fixed">
       <div className="bg-white rounded shadow-lg">
         <div className="flex justify-between p-4 border-b-2 border-white-500">
           <h1 className="text-lg font-semibold">Setting</h1>
