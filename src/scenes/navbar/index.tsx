@@ -1,6 +1,6 @@
 // Navbar.tsx
 import { motion } from "framer-motion";
-import HText from "../../shared/HText";
+
 import settingsvg from "../../assets/setting.svg";
 import reportsvg from "../../assets/report.svg";
 import loginsvg from "../../assets/login.svg";
@@ -10,6 +10,7 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import Setting from "@/setting";
 import { useState } from "react";
 import { useDarkMode } from "@/components/DarkModeContext";
+import HText from "@/shared/HText";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -27,7 +28,9 @@ const Navbar = ({
 }: Props) => {
   const flexBetween = "flex items-center justify-between";
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
-  const navbarBackground = isTopOfPage ? "" : "bg-pink-200 drop-shadow";
+  const navbarBackground = isTopOfPage
+    ? ""
+    : "color-black HText-black bg-pink-300  drop-shadow";
 
   const [showSetting, setShowSetting] = useState(false);
   const { isDarkMode } = useDarkMode();
