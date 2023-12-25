@@ -14,7 +14,7 @@ const LongBreak = () => {
           id="timerValue"
           value={timerValue3}
           onChange={(e) => handleTimerChange3(parseInt(e.target.value))}
-          className="w-[6rem] h-[2rem] bg-gray-200 rounded-md p-1"
+          className="w-[5.5rem] h-[2rem] bg-gray-200 rounded-md p-1"
         />
       </div>
     </div>

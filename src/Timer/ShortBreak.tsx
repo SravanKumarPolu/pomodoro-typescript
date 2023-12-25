@@ -22,7 +22,7 @@ const ShortBreak = ({}: Props) => {
           id="timerValue"
           value={timerValue2}
           onChange={(e) => handleTimerChange2(parseInt(e.target.value))}
-          className="w-[6rem] h-[2rem] bg-gray-200 rounded-md p-1"
+          className="w-[5.5rem] h-[2rem] bg-gray-200 rounded-md p-1"
         />
       </div>
     </div>

@@ -16,7 +16,7 @@ const PomodoroTimer: React.FC = () => {
           id="timerValue"
           value={timerValue1}
           onChange={(e) => handleTimerChange1(parseInt(e.target.value))}
-          className="w-[6rem] h-[2rem] bg-gray-200 rounded-md p-1"
+          className="w-[5.5rem] h-[2rem] bg-gray-200 rounded-md p-1"
         />
       </div>
     </div>
