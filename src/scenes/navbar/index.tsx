@@ -33,6 +33,7 @@ const Navbar = ({
     : "color-black HText-black bg-pink-300  drop-shadow";
 
   const [showSetting, setShowSetting] = useState(false);
+
   const { isDarkMode } = useDarkMode();
   const handleSettingClick = (page: SelectedPage) => {
     setSelectedPage(page);
@@ -71,7 +72,8 @@ const Navbar = ({
                     className={`flex  flex-row mx-1 items-center  px-4 gap-[2px] hover:filter hover:brightness-125 cursor-pointer border-none rounded-sm  relative  bg-opacity-50 ${
                       isDarkMode ? "bg-white bg-opacity-80" : "bg-pink-500"
                     }`}
-                    onClick={() => handleSettingClick(SelectedPage.Report)}>
+                    // onClick={() => handleSettingClick(SelectedPage.Report)}
+                  >
                     <Links
                       src={reportsvg}
                       className=" hover:filter hover:brightness-125 "
@@ -109,7 +111,8 @@ const Navbar = ({
                     className={`flex  flex-row mx-1 items-center px-4 gap-[2px]  cursor-pointer border-none rounded-sm  relative  bg-opacity-50 ${
                       isDarkMode ? "bg-white bg-opacity-80" : "bg-pink-500"
                     }`}
-                    onClick={() => handleSettingClick(SelectedPage.Login)}>
+                    // onClick={() => handleSettingClick(SelectedPage.Login)}
+                  >
                     <Links
                       src={loginsvg}
                       width={20}
@@ -130,7 +133,8 @@ const Navbar = ({
                     className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md px-2 relative ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
-                    onClick={() => handleSettingClick(SelectedPage.Report)}>
+                    // onClick={() => handleSettingClick(SelectedPage.Report)}
+                  >
                     <Links
                       src={reportsvg}
                       width={24}
@@ -158,7 +162,8 @@ const Navbar = ({
                     className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md px-2 relative ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
-                    onClick={() => handleSettingClick(SelectedPage.Login)}>
+                    // onClick={() => handleSettingClick(SelectedPage.Login)}
+                  >
                     <Links
                       src={loginsvg}
                       width={24}
@@ -180,7 +185,6 @@ const Navbar = ({
             onClose={handleSettingClose}
           />
         )}
-        {selectedPage === SelectedPage.Report}
       </header>
     </>
   );
