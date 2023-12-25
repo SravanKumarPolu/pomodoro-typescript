@@ -69,14 +69,13 @@ const Navbar = ({
               {isAboveMediumScreens ? (
                 <div className="flex flex-row ">
                   <button
-                    className={`flex  flex-row mx-1 items-center  px-4 gap-[2px] hover:filter hover:brightness-125 cursor-pointer border-none rounded-sm  relative  bg-opacity-50 ${
-                      isDarkMode ? "bg-white bg-opacity-80" : "bg-pink-500"
-                    }`}
+                    className={`flex  hover:border hover:border-white  flex-row  mx-1 items-center px-4 gap-[2px] cursor-pointer  rounded-sm relative bg-opacity-50 ${
+                      isDarkMode ? "bg-white bg-opacity-80" : ""
+                    } `}
                     // onClick={() => handleSettingClick(SelectedPage.Report)}
                   >
                     <Links
                       src={reportsvg}
-                      className=" hover:filter hover:brightness-125 "
                       width={20}
                       height={20}
                       selectedPage={selectedPage}
@@ -90,8 +89,8 @@ const Navbar = ({
                   </button>
 
                   <button
-                    className={`flex  flex-row mx-1 items-center px-4 gap-[2px]  cursor-pointer border-none rounded-sm  relative  bg-opacity-50 ${
-                      isDarkMode ? "bg-white bg-opacity-80" : "bg-pink-500"
+                    className={`flex  flex-row mx-1 items-center px-4 gap-[2px]  cursor-pointer hover:border hover:border-white  rounded-sm  relative  bg-opacity-50 ${
+                      isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     onClick={() => handleSettingClick(SelectedPage.Setting)}>
                     <Links
@@ -108,8 +107,8 @@ const Navbar = ({
                     />
                   </button>
                   <button
-                    className={`flex  flex-row mx-1 items-center px-4 gap-[2px]  cursor-pointer border-none rounded-sm  relative  bg-opacity-50 ${
-                      isDarkMode ? "bg-white bg-opacity-80" : "bg-pink-500"
+                    className={`flex hover:border hover:border-white flex-row mx-1 items-center px-4 gap-[2px]  cursor-pointer  rounded-sm  relative  bg-opacity-50 ${
+                      isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     // onClick={() => handleSettingClick(SelectedPage.Login)}
                   >
@@ -130,7 +129,7 @@ const Navbar = ({
               ) : (
                 <div className="flex   items-center relative ">
                   <button
-                    className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md px-2 relative ${
+                    className={`flex flex-row  items-center m-2 cursor-pointer border-2 bg-black rounded-md px-2 relative ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     // onClick={() => handleSettingClick(SelectedPage.Report)}
@@ -145,7 +144,7 @@ const Navbar = ({
                   </button>
 
                   <button
-                    className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md px-2 relative ${
+                    className={`flex flex-row  items-center m-2 cursor-pointer border-2 rounded-md px-2 relative ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     onClick={() => handleSettingClick(SelectedPage.Setting)}>
