@@ -13,3 +13,9 @@ body,
   font-family: "DM Sans", sans-serif;
   @apply text-black;
 }
+/* .group:hover .stroke-current {
+  stroke: white;
+}
+.button:hover .stroke-current {
+  stroke: white;
+} */
