@@ -66,113 +66,123 @@ const Navbar = ({
               <HText>
                 <span className="pl-2">Task & Breaks</span>
               </HText>
-              {isAboveMediumScreens ? (
-                <div className="flex flex-row ">
-                  <button
-                    className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent focus:border-white active:border-white hover:border-white  ${
-                      isDarkMode ? "bg-white bg-opacity-80" : ""
-                    }`}
-                    // onClick={() => handleSettingClick(SelectedPage.Report)}
-                  >
-                    <Links
-                      src={reportsvg}
-                      width={20}
-                      height={20}
-                      selectedPage={selectedPage}
-                      setSelectedPage={setSelectedPage}
-                    />
-                    <Links
-                      page="Report"
-                      selectedPage={selectedPage}
-                      setSelectedPage={setSelectedPage}
-                    />
-                  </button>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 1.5 }}
+                variants={{
+                  hidden: { opacity: 0, x: 150 },
+                  visible: { opacity: 1, x: 0 },
+                }}>
+                {isAboveMediumScreens ? (
+                  <div className="flex flex-row ">
+                    <button
+                      className={`flex flex-row mx-1  items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent focus-withing:border-white focus-within:border-white active:border-white hover:border-white  ${
+                        isDarkMode ? "bg-white bg-opacity-80" : ""
+                      }`}
+                      // onClick={() => handleSettingClick(SelectedPage.Report)}
+                    >
+                      <Links
+                        src={reportsvg}
+                        width={20}
+                        height={20}
+                        selectedPage={selectedPage}
+                        setSelectedPage={setSelectedPage}
+                      />
+                      <Links
+                        page="Report"
+                        selectedPage={selectedPage}
+                        setSelectedPage={setSelectedPage}
+                      />
+                    </button>
 
-                  <button
-                    className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white ${
-                      isDarkMode ? "bg-white bg-opacity-80" : ""
-                    }`}
-                    onClick={() => handleSettingClick(SelectedPage.Setting)}>
-                    <Links
-                      src={settingsvg}
-                      width={20}
-                      height={20}
-                      selectedPage={selectedPage}
-                      setSelectedPage={setSelectedPage}
-                    />
-                    <Links
-                      page="Setting"
-                      selectedPage={selectedPage}
-                      setSelectedPage={setSelectedPage}
-                    />
-                  </button>
-                  <button
-                    className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50  border border-transparent hover:border-white ${
-                      isDarkMode ? "bg-white bg-opacity-80" : ""
-                    }`}
-                    // onClick={() => handleSettingClick(SelectedPage.Login)}
-                  >
-                    <Links
-                      src={loginsvg}
-                      width={20}
-                      height={20}
-                      selectedPage={selectedPage}
-                      setSelectedPage={setSelectedPage}
-                    />
-                    <Links
-                      page="Login"
-                      selectedPage={selectedPage}
-                      setSelectedPage={setSelectedPage}
-                    />
-                  </button>
-                </div>
-              ) : (
-                <div className="flex   items-center relative ">
-                  <button
-                    className={`flex flex-row  items-center m-2 cursor-pointer   rounded-md px-2 relative ${
-                      isDarkMode ? "bg-white bg-opacity-80" : ""
-                    }`}
-                    // onClick={() => handleSettingClick(SelectedPage.Report)}
-                  >
-                    <Links
-                      src={reportsvg}
-                      width={24}
-                      height={24}
-                      selectedPage={selectedPage}
-                      setSelectedPage={setSelectedPage}
-                    />
-                  </button>
+                    <button
+                      className={`flex flex-row mx-1  items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white  focusa:border-white focus-within:border-white ${
+                        isDarkMode ? "bg-white bg-opacity-80" : ""
+                      }`}
+                      onClick={() => handleSettingClick(SelectedPage.Setting)}>
+                      <Links
+                        src={settingsvg}
+                        width={20}
+                        height={20}
+                        selectedPage={selectedPage}
+                        setSelectedPage={setSelectedPage}
+                      />
+                      <Links
+                        page="Setting"
+                        selectedPage={selectedPage}
+                        setSelectedPage={setSelectedPage}
+                      />
+                    </button>
+                    <button
+                      className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50  border border-transparent  hover:border-white  focus-within:border-white ${
+                        isDarkMode ? "bg-white bg-opacity-80" : ""
+                      }`}
+                      // onClick={() => handleSettingClick(SelectedPage.Login)}
+                    >
+                      <Links
+                        src={loginsvg}
+                        width={20}
+                        height={20}
+                        selectedPage={selectedPage}
+                        setSelectedPage={setSelectedPage}
+                      />
+                      <Links
+                        page="Login"
+                        selectedPage={selectedPage}
+                        setSelectedPage={setSelectedPage}
+                      />
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex   items-center relative ">
+                    <button
+                      className={`flex flex-row  items-center m-2 cursor-pointer   rounded-md px-2 relative ${
+                        isDarkMode ? "bg-white bg-opacity-80" : ""
+                      }`}
+                      // onClick={() => handleSettingClick(SelectedPage.Report)}
+                    >
+                      <Links
+                        src={reportsvg}
+                        width={24}
+                        height={24}
+                        selectedPage={selectedPage}
+                        setSelectedPage={setSelectedPage}
+                      />
+                    </button>
 
-                  <button
-                    className={`flex flex-row  items-center m-2 cursor-pointer  rounded-md px-2 relative ${
-                      isDarkMode ? "bg-white bg-opacity-80" : ""
-                    }`}
-                    onClick={() => handleSettingClick(SelectedPage.Setting)}>
-                    <Links
-                      src={settingsvg}
-                      width={24}
-                      height={24}
-                      selectedPage={selectedPage}
-                      setSelectedPage={setSelectedPage}
-                    />
-                  </button>
+                    <button
+                      className={`flex flex-row  items-center m-2 cursor-pointer  rounded-md px-2 relative ${
+                        isDarkMode ? "bg-white bg-opacity-80" : ""
+                      }`}
+                      onClick={() => handleSettingClick(SelectedPage.Setting)}>
+                      <Links
+                        src={settingsvg}
+                        width={24}
+                        height={24}
+                        selectedPage={selectedPage}
+                        setSelectedPage={setSelectedPage}
+                      />
+                    </button>
 
-                  <button
-                    className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md px-2 relative ${
-                      isDarkMode ? "bg-white bg-opacity-80" : ""
-                    }`}
-                    // onClick={() => handleSettingClick(SelectedPage.Login)}
-                  >
-                    <Links
-                      src={loginsvg}
-                      width={24}
-                      height={24}
-                      selectedPage={selectedPage}
-                      setSelectedPage={setSelectedPage}
-                    />
-                  </button>
-                </div>
-              )}
+                    <button
+                      className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md px-2 relative ${
+                        isDarkMode ? "bg-white bg-opacity-80" : ""
+                      }`}
+                      // onClick={() => handleSettingClick(SelectedPage.Login)}
+                    >
+                      <Links
+                        src={loginsvg}
+                        width={24}
+                        height={24}
+                        selectedPage={selectedPage}
+                        setSelectedPage={setSelectedPage}
+                      />
+                    </button>
+                  </div>
+                )}
+              </motion.div>
             </motion.div>
           </div>
         </nav>
