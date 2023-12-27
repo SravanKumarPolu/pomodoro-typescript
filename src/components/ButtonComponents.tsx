@@ -5,7 +5,7 @@ export const ControlButton: React.FC<{
   onClick: () => void;
 }> = ({ text, onClick }) => (
   <button
-    className="m-2 px-2 rounded-sm bg-white bg-opacity-50"
+    className="m-2 px-3 py-1 rounded-sm hover:bg-white hover:bg-opacity-50"
     onClick={onClick}>
     {typeof text === "string" ? (
       text

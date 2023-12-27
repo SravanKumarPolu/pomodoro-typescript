@@ -47,12 +47,12 @@ const Navbar = ({
   return (
     <>
       <header
-        className=" absolute z-20 w-full  
+        className=" absolute z-20 w-full   
     
     ">
-        <nav>
+        <nav className="sticky">
           <div
-            className={` ${navbarBackground} ${flexBetween}  fixed  top-0 z-30 w-full pb-10 sm:py-4 `}>
+            className={` ${navbarBackground} ${flexBetween} fixed   top-0 z-30 w-full pb-5 sm:py-4 `}>
             <motion.div
               className=" flex w-full  relative flex-col justify-center items-center mx-auto  ml-[-.1rem] border-none md:flex-row"
               initial="hidden"
@@ -69,7 +69,7 @@ const Navbar = ({
               {isAboveMediumScreens ? (
                 <div className="flex flex-row ">
                   <button
-                    className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white ${
+                    className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent focus:border-white active:border-white hover:border-white  ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     // onClick={() => handleSettingClick(SelectedPage.Report)}
