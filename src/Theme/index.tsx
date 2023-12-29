@@ -53,7 +53,8 @@ const Popup = ({
 const Themes = ({}: Props) => {
   const [showAllColors] = useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
-  const { colorButtons, allColorButtons, setSelectedColor } = useColor();
+  const { colorButtons, allColorButtons, setSelectedColor, selectedColor } =
+    useColor();
 
   const displayedColors = showAllColors ? allColorButtons : colorButtons;
 
@@ -107,8 +108,9 @@ const Themes = ({}: Props) => {
             <button
               onClick={() => handleColorButtonClick(color)}
               key={index}
-              className={`w-14 h-14   rounded ${color}`}
-            />
+              className={`w-14 h-14   rounded ${color} ${
+                selectedColor === color ? "selected-color" : ""
+              }`}></button>
           ))}
         </div>
       </Popup>
