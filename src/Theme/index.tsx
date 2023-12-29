@@ -108,9 +108,18 @@ const Themes = ({}: Props) => {
             <button
               onClick={() => handleColorButtonClick(color)}
               key={index}
-              className={`w-14 h-14   rounded ${color} ${
-                selectedColor === color ? "selected-color" : ""
-              }`}></button>
+              className={`w-14 h-14   rounded-sm ${color} ${
+                selectedColor === color ? "selected-color" : " "
+              }`}>
+              {selectedColor === color ? (
+                <span className="checkmark">&#10004;</span>
+              ) : (
+                ""
+              )}
+              {/* {selectedColor === color && (
+                <span className="checkmark">&#10004;</span>
+              )} */}
+            </button>
           ))}
         </div>
       </Popup>

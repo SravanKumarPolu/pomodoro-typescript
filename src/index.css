@@ -17,6 +17,12 @@ body,
   border: 2px solid black;
   position: relative;
 }
+.checkmark {
+  color: white;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  position: absolute;
+}
 /* .group:hover .stroke-current {
   stroke: white;
 }
