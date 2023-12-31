@@ -24,9 +24,8 @@ body,
   position: absolute;
 }
 .active-link {
-  text-decoration: none;
-  font-weight: bold;
-  color: red;
+  /* background-color: rgb(148 163 184); */
+  color: black;
 }
 /* .group:hover .stroke-current {
   stroke: white;
