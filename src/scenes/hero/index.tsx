@@ -1,5 +1,5 @@
 import { SelectedPage } from "@/shared/types";
-import Link from "../navbar/Link";
+
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Pomodoro from "@/pomodoro";
 import ShortBreak from "@/short";
@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import TodoWrapper from "@/todolist/TodoWrapper";
 import { useColor } from "@/components/ColorContex";
 import { useDarkMode } from "@/components/DarkModeContext";
+import Link from "@/components/ActiveComponent";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -93,6 +94,7 @@ const Hero: React.FC<Props> = ({
               onClick={() => setSelectedPage(SelectedPage.ShortBreak)}>
               <Link
                 page="Short Break"
+                isActive={selectedPage === "ShortBreak"}
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
               />
@@ -103,6 +105,7 @@ const Hero: React.FC<Props> = ({
               onClick={() => setSelectedPage(SelectedPage.Pomodoro)}>
               <Link
                 page="Pomodoro"
+                isActive={selectedPage === "Pomodoro"}
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
               />
@@ -114,6 +117,7 @@ const Hero: React.FC<Props> = ({
               onClick={() => setSelectedPage(SelectedPage.LongBreak)}>
               <Link
                 page="Long Break"
+                isActive={selectedPage === "LongBreak"}
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
               />
