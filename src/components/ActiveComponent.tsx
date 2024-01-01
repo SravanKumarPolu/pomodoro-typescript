@@ -9,14 +9,17 @@ type LinkProps = {
 
 const Link: React.FC<LinkProps> = ({
   page,
-  selectedPage,
+
   setSelectedPage,
   isActive,
 }) => {
   return (
     <a
       href="#"
-      className={`text-white ${isActive ? "active-link" : ""}`}
+      className={`px-3 bg-white bg-opacity-50 rounded-sm 
+      active:bg-slate-400 focus-within:bg-slate-400 hover:bg-slate-400 ${
+        isActive ? "active-link" : ""
+      }`}
       onClick={() => setSelectedPage(page as SelectedPage)}>
       {page}
     </a>

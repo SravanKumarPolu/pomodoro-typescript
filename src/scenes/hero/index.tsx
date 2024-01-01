@@ -90,7 +90,7 @@ const Hero: React.FC<Props> = ({
           }`}>
           <div className="flex flex-col gap-2 py-8 xs:flex-row">
             <button
-              className=" px-3 bg-white bg-opacity-50  rounded-sm  focus-within:bg-slate-400 hover:bg-slate-400 active:bg-slate-400"
+              className=" text-white"
               onClick={() => setSelectedPage(SelectedPage.ShortBreak)}>
               <Link
                 page="Short Break"
@@ -100,8 +100,7 @@ const Hero: React.FC<Props> = ({
               />
             </button>
             <button
-              className="px-3 bg-white bg-opacity-50 rounded-sm 
-               active:bg-slate-400 focus-within:bg-slate-400 hover:bg-slate-400 "
+              className="text-white "
               onClick={() => setSelectedPage(SelectedPage.Pomodoro)}>
               <Link
                 page="Pomodoro"
@@ -112,8 +111,7 @@ const Hero: React.FC<Props> = ({
             </button>
 
             <button
-              className=" px-3  rounded-sm  bg-white bg-opacity-50 focus-within:bg-slate-400
-               hover:bg-slate-400 active:bg-slate-400"
+              className=" text-white"
               onClick={() => setSelectedPage(SelectedPage.LongBreak)}>
               <Link
                 page="Long Break"

@@ -11,6 +11,7 @@ import Setting from "@/setting";
 import { useState } from "react";
 import { useDarkMode } from "@/components/DarkModeContext";
 import HText from "@/shared/HText";
+import Button from "@/components/NavActiveButton";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -77,12 +78,12 @@ const Navbar = ({
                 }}>
                 {isAboveMediumScreens ? (
                   <div className="flex flex-row ">
-                    <button
+                    <Button
                       className={`flex flex-row mx-1  items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent focus-withing:border-white focus-within:border-white active:border-white hover:border-white  ${
                         isDarkMode ? "bg-white bg-opacity-80" : ""
                       }`}
-                      // onClick={() => handleSettingClick(SelectedPage.Report)}
-                    >
+                      isActive={selectedPage === SelectedPage.Report}
+                      onClick={() => setSelectedPage(SelectedPage.Report)}>
                       <Links
                         src={reportsvg}
                         width={20}
@@ -95,12 +96,13 @@ const Navbar = ({
                         selectedPage={selectedPage}
                         setSelectedPage={setSelectedPage}
                       />
-                    </button>
+                    </Button>
 
-                    <button
+                    <Button
                       className={`flex flex-row mx-1  items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white  focusa:border-white focus-within:border-white ${
                         isDarkMode ? "bg-white bg-opacity-80" : ""
                       }`}
+                      isActive={selectedPage === SelectedPage.Setting}
                       onClick={() => handleSettingClick(SelectedPage.Setting)}>
                       <Links
                         src={settingsvg}
@@ -114,11 +116,13 @@ const Navbar = ({
                         selectedPage={selectedPage}
                         setSelectedPage={setSelectedPage}
                       />
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                       className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50  border border-transparent  hover:border-white  focus-within:border-white ${
                         isDarkMode ? "bg-white bg-opacity-80" : ""
                       }`}
+                      isActive={selectedPage === SelectedPage.Login}
+                      onClick={() => setSelectedPage(SelectedPage.Login)}
                       // onClick={() => handleSettingClick(SelectedPage.Login)}
                     >
                       <Links
@@ -133,7 +137,7 @@ const Navbar = ({
                         selectedPage={selectedPage}
                         setSelectedPage={setSelectedPage}
                       />
-                    </button>
+                    </Button>
                   </div>
                 ) : (
                   <div className="flex   items-center relative ">
