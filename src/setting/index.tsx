@@ -89,7 +89,7 @@ const Setting = ({ onClose }: Props) => {
             </div>
           </div>
 
-          <Notifications />
+          {/* <Notifications /> */}
         </div>
       </div>
     </div>

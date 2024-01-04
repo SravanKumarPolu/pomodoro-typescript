@@ -72,7 +72,7 @@ const Themes = ({}: Props) => {
   };
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   return (
-    <div className="flex flex-col w-auto p-2 border-b-2 border-white-500">
+    <div className="flex flex-col w-auto p-2 ">
       <div className="flex flex-col">
         <div className="flex flex-row justify-between my-2">
           <h3>Color Themes</h3>
