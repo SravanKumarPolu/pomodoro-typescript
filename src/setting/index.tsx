@@ -9,7 +9,7 @@ import Theme from "@/Theme";
 import TaskSvg from "@/assets/task.svg";
 import ThemeSvg from "@/assets/theme.svg";
 import SoundSvg from "@/assets/sound.svg";
-import Notifications from "@/notification";
+
 import TimerSvg from "@/assets/Timer.svg";
 
 type Props = {
