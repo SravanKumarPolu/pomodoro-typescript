@@ -2,15 +2,15 @@
   "manifest_version": 3,
   "name": "Task + Breaks",
   "version": "1.0.0",
+  "icons": {
+    "32": "icon32.png"
+  },
   "description": "Timer with Breaks",
   "action": {
     "default_popup": "index.html",
     "default_icon": {
-      "32": "pomodoro.png"
+      "32": "icon32.png"
     }
   },
-  "permissions": ["scripting"],
-  "icons": {
-    "32": "pomodoro.png"
-  }
+  "permissions": ["scripting"]
 }
