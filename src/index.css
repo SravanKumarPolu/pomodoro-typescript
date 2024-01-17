@@ -4,37 +4,39 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
 #root,
 .app {
   height: 100%;
   width: 100%;
   font-family: "DM Sans", sans-serif;
-  @apply text-black;
+  color: black; /* Instead of @apply text-black */
 }
+
 html,
 body {
-  width: 400px;
-  height: 100px;
+  height: 100%;
 }
+
+@media (max-width: 100px) {
+  body {
+    width: 80vh;
+    height: 100px;
+  }
+}
+
 .selected-color {
   border: 2px solid black;
   position: relative;
 }
+
 .checkmark {
   color: white;
   transform: translate(-50%, -50%);
   font-size: 1.5rem;
   position: absolute;
 }
+
 .active-link {
   /* background-color: rgb(148 163 184); */
   color: black;
 }
-/* .group:hover .stroke-current {
-  stroke: white;
-}
-.button:hover .stroke-current {
-  stroke: white;
-} */
