@@ -12,5 +12,5 @@
       "32": "icon32.png"
     }
   },
-  "permissions": ["scripting"]
+  "permissions": ["scripting", "activeTab"]
 }
