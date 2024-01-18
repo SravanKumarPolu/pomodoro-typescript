@@ -79,7 +79,7 @@ const Navbar = ({
                 {isAboveMediumScreens ? (
                   <div className="flex flex-row ">
                     <Button
-                      className={`flex flex-row mx-1  items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent focus-withing:border-white focus-within:border-white active:border-white hover:border-white  ${
+                      className={`flex flex-row mx-1  items-center px-4 gap-[2px]   rounded-sm relative bg-opacity-50    ${
                         isDarkMode ? "bg-white bg-opacity-80" : ""
                       }`}
                       isActive={selectedPage === SelectedPage.Report}
@@ -118,7 +118,7 @@ const Navbar = ({
                       />
                     </Button>
                     <Button
-                      className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50  border border-transparent  hover:border-white  focus-within:border-white ${
+                      className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-pointer rounded-sm relative ${
                         isDarkMode ? "bg-white bg-opacity-80" : ""
                       }`}
                       isActive={selectedPage === SelectedPage.Login}
@@ -142,7 +142,7 @@ const Navbar = ({
                 ) : (
                   <div className="flex   items-center relative ">
                     <button
-                      className={`flex flex-row  items-center m-2 cursor-pointer   rounded-md px-2 relative ${
+                      className={`flex flex-row  items-center m-2   rounded-md px-2 relative ${
                         isDarkMode ? "bg-white bg-opacity-80" : ""
                       }`}
                       // onClick={() => handleSettingClick(SelectedPage.Report)}
@@ -171,7 +171,7 @@ const Navbar = ({
                     </button>
 
                     <button
-                      className={`flex flex-row border-none items-center m-2 cursor-pointer border-2 rounded-md px-2 relative ${
+                      className={`flex flex-row border-none items-center m-2  border-2 rounded-md px-2 relative ${
                         isDarkMode ? "bg-white bg-opacity-80" : ""
                       }`}
                       // onClick={() => handleSettingClick(SelectedPage.Login)}

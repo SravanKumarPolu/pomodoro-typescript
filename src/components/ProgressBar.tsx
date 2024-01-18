@@ -16,7 +16,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ value }) => (
     <div className="flex h-[.7rem]  mb-4 overflow-hidden text-xs bg-teal-500 rounded ">
       <div
         style={{ width: `${value}%` }}
-        className="flex flex-col justify-center ml-1 bg-blue-800 text-xs  text-center whitespace-nowrap text-white">
+        className="flex flex-col justify-center  bg-blue-800 text-xs  text-center whitespace-nowrap text-white">
         {value}%
       </div>
     </div>
