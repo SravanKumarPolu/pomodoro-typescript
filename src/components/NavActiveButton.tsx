@@ -13,14 +13,16 @@ const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
   className,
-
+  disabled = false,
   isActive,
 }) => {
   return (
     <a
       href="#"
-      className={` ${className} ${isActive ? "border-white " : ""} `}
-      onClick={onClick}>
+      className={` ${className} ${isActive ? "border-white " : ""} 
+      ${disabled ? " opacity-50 cursor-not-allowed" : ""}
+      `}
+      onClick={disabled ? undefined : onClick}>
       {children}
     </a>
   );
