@@ -17,7 +17,7 @@ type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
   isTopOfPage: boolean;
-
+  disabled: boolean;
   onClose: () => void;
 };
 
@@ -25,6 +25,7 @@ const Navbar = ({
   selectedPage,
   setSelectedPage,
   isTopOfPage,
+  disabled = false,
   onClose,
 }: Props) => {
   const flexBetween = "flex items-center justify-between";
@@ -79,10 +80,11 @@ const Navbar = ({
                 {isAboveMediumScreens ? (
                   <div className="flex flex-row ">
                     <Button
-                      className={`flex flex-row mx-1  items-center px-4 gap-[2px]   rounded-sm relative bg-opacity-50    ${
+                      className={`cursor-not-allowed flex flex-row mx-1 text-opacity-0 items-center px-4 gap-[2px]   rounded-sm relative    ${
                         isDarkMode ? "bg-white bg-opacity-80" : ""
-                      }`}
+                      } ${disabled ? " opacity-50 cursor-not-allowed" : ""}`}
                       isActive={selectedPage === SelectedPage.Report}
+                      disabled={true}
                       onClick={() => setSelectedPage(SelectedPage.Report)}>
                       <Links
                         src={reportsvg}
@@ -92,6 +94,7 @@ const Navbar = ({
                         setSelectedPage={setSelectedPage}
                       />
                       <Links
+                        className=""
                         page="Report"
                         selectedPage={selectedPage}
                         setSelectedPage={setSelectedPage}

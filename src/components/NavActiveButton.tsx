@@ -6,18 +6,20 @@ type ButtonProps = {
   onClick: () => void;
   className: string;
   isActive: boolean;
+  disabled?: boolean;
 };
 
 const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
   className,
+
   isActive,
 }) => {
   return (
     <a
       href="#"
-      className={`text-white ${className} ${isActive ? "border-white " : ""}`}
+      className={` ${className} ${isActive ? "border-white " : ""} `}
       onClick={onClick}>
       {children}
     </a>
