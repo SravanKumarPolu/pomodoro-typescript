@@ -21,8 +21,9 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [time, setTime] = useState(timerValue1 * 60);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [progress, setProgress] = useState(0); // Initial value set to 0
-  const { selectedAlarm } = useSoundContext();
+  const { selectedAlarm, selectedTicking } = useSoundContext();
 
+  const tickingRef = useRef<HTMLAudioElement>(null);
   useEffect(() => {
     setTime(timerValue1 * 60);
     setProgress(0);
@@ -41,12 +42,23 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
         setProgress((_prevProgress) =>
           Math.floor(((timerValue1 * 60 - time) / (timerValue1 * 60)) * 100)
         );
+        const tickingAudio = tickingRef.current;
+        if (tickingAudio) {
+          tickingAudio.play();
+        }
       }, 1000);
     } else if (time === 0) {
       handleTimerCompletion();
     }
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      const tickingAudio = tickingRef.current;
+      if (tickingAudio) {
+        tickingAudio.pause();
+        tickingAudio.currentTime = 0;
+      }
+    };
   }, [isActive, time, setSelectedPage, timerValue1]);
 
   const handleTimerCompletion = () => {
@@ -86,6 +98,10 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
           <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
             <div className="flex flex-row m-2 items-center gap-4">
+              <audio
+                ref={tickingRef}
+                preload="auto"
+                src={selectedTicking}></audio>
               {formatTime(time)}
               <audio ref={audioRef} preload="none" src={selectedAlarm}></audio>
             </div>

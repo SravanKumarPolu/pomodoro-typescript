@@ -29,11 +29,11 @@ const Sound: React.FC<Props> = () => {
     const selectedTicking = event.target.value;
     setSelectedTicking(selectedTicking === "None" ? "" : selectedTicking);
 
-    if (audio && !audio.paused) {
-      audio.pause();
-      audio.src = selectedTicking;
-      audio.play();
-    }
+    // if (audio && !audio.paused) {
+    //   audio.pause();
+    //   audio.src = selectedTicking;
+    //   audio.play();
+    // }
   };
 
   const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
