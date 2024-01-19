@@ -1,14 +1,12 @@
-// Sound.tsx
 import React, { useEffect, useState } from "react";
-
 import { useSoundContext } from "@/components/SoundContext";
 
 type Props = {};
 
 const Sound: React.FC<Props> = () => {
-  const [, setDurationTickling] = useState(0);
-  const [tickingVolume, setTicklingVolume] = useState(0.5);
+  const [, setDuration] = useState(0);
   const [volume, setVolume] = useState(0.5);
+  const [tickingVolume, setTickingVolume] = useState(0.5);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const {
     selectedAlarm,
@@ -18,68 +16,6 @@ const Sound: React.FC<Props> = () => {
     tickingOptions,
     alarmOptions,
   } = useSoundContext();
-
-  const handleAlarmChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedAlarm(event.target.value);
-  };
-
-  const handleTicklingChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    const selectedTicking = event.target.value;
-    setSelectedTicking(selectedTicking === "None" ? "" : selectedTicking);
-
-    // if (audio && !audio.paused) {
-    //   audio.pause();
-    //   audio.src = selectedTicking;
-    //   audio.play();
-    // }
-  };
-
-  const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newVolume = parseFloat(event.target.value);
-    if (audio) {
-      audio.volume = newVolume;
-      setVolume(newVolume);
-    }
-  };
-
-  const handleTicklingVolumeChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const newVolume = parseFloat(event.target.value);
-    if (audio) {
-      audio.volume = newVolume;
-      setTicklingVolume(newVolume);
-    }
-  };
-  useEffect(() => {
-    if (audio) {
-      audio.addEventListener("loadeddata", () =>
-        setDurationTickling(audio.duration)
-      );
-
-      return () => {
-        audio.removeEventListener("loadeddata", () =>
-          setDurationTickling(audio.duration)
-        );
-      };
-    }
-  }, [audio]);
-
-  useEffect(() => {
-    if (audio) {
-      audio.addEventListener("loadeddata", () =>
-        setDurationTickling(audio.duration)
-      );
-
-      return () => {
-        audio.removeEventListener("loadeddata", () =>
-          setDurationTickling(audio.duration)
-        );
-      };
-    }
-  }, [audio]);
 
   useEffect(() => {
     const newAudio = new Audio();
@@ -93,23 +29,46 @@ const Sound: React.FC<Props> = () => {
       }
     };
   }, []);
-  useEffect(() => {
-    if (audio && selectedAlarm) {
-      audio?.pause();
-      audio.src = selectedAlarm;
-      audio.play();
-    }
-  }, [selectedAlarm, audio]);
 
-  useEffect(() => {
-    if (audio && selectedTicking) {
+  const setupAudioEventListeners = () => {
+    if (!audio) return;
+
+    const loadedDataHandler = () => setDuration(audio.duration);
+
+    audio.addEventListener("loadeddata", loadedDataHandler);
+
+    return () => {
+      audio.removeEventListener("loadeddata", loadedDataHandler);
+    };
+  };
+
+  useEffect(setupAudioEventListeners, [audio]);
+
+  const handleSoundChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+    setSound: React.Dispatch<React.SetStateAction<string>>
+  ) => {
+    const selectedSound = event.target.value;
+    setSound(selectedSound === "None" ? "" : selectedSound);
+
+    if (audio && selectedSound) {
       audio.pause();
-      audio.src = selectedTicking;
+      audio.src = selectedSound;
       audio.play();
-    } else {
-      audio?.pause();
     }
-  }, [selectedTicking, audio]);
+  };
+
+  const handleVolumeChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    setVolume: React.Dispatch<React.SetStateAction<number>>
+  ) => {
+    const newVolume = parseFloat(event.target.value);
+    if (audio) {
+      audio.volume = newVolume;
+      setVolume(newVolume);
+    }
+  };
+
   return (
     <div className="flex flex-col w-auto p-2 ">
       <div className="flex flex-row justify-between pt-2">
@@ -118,7 +77,7 @@ const Sound: React.FC<Props> = () => {
           <select
             className="bg-gray-200 p-1 rounded-sm"
             value={selectedAlarm}
-            onChange={handleAlarmChange}>
+            onChange={(e) => handleSoundChange(e, setSelectedAlarm)}>
             {alarmOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -132,7 +91,7 @@ const Sound: React.FC<Props> = () => {
               value={volume}
               max={1}
               step={0.01}
-              onChange={handleVolumeChange}
+              onChange={(e) => handleVolumeChange(e, setVolume)}
             />
           </div>
         </div>
@@ -143,7 +102,7 @@ const Sound: React.FC<Props> = () => {
           <select
             className="bg-gray-200 p-1 rounded-sm"
             value={selectedTicking || "None"}
-            onChange={handleTicklingChange}>
+            onChange={(e) => handleSoundChange(e, setSelectedTicking)}>
             {tickingOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -156,7 +115,7 @@ const Sound: React.FC<Props> = () => {
               value={tickingVolume}
               max={1}
               step={0.01}
-              onChange={handleTicklingVolumeChange}
+              onChange={(e) => handleVolumeChange(e, setTickingVolume)}
             />
           </div>
         </div>
