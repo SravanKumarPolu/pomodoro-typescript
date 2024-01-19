@@ -145,10 +145,14 @@ const Navbar = ({
                   </div>
                 ) : (
                   <div className="flex   items-center relative ">
-                    <button
+                    <Button
                       className={`flex flex-row  items-center m-2   rounded-md px-2 relative ${
                         isDarkMode ? "bg-white bg-opacity-80" : ""
                       }`}
+                      isActive={selectedPage === SelectedPage.Report}
+                      disabled={true}
+                      onClick={() => setSelectedPage(SelectedPage.Report)}
+
                       // onClick={() => handleSettingClick(SelectedPage.Report)}
                     >
                       <Links
@@ -158,7 +162,7 @@ const Navbar = ({
                         selectedPage={selectedPage}
                         setSelectedPage={setSelectedPage}
                       />
-                    </button>
+                    </Button>
 
                     <button
                       className={`flex flex-row  items-center m-2 cursor-pointer  rounded-md px-2 relative ${
@@ -174,10 +178,13 @@ const Navbar = ({
                       />
                     </button>
 
-                    <button
+                    <Button
                       className={`flex flex-row border-none items-center m-2  border-2 rounded-md px-2 relative ${
                         isDarkMode ? "bg-white bg-opacity-80" : ""
                       }`}
+                      isActive={selectedPage === SelectedPage.Login}
+                      onClick={() => setSelectedPage(SelectedPage.Login)}
+                      disabled={true}
                       // onClick={() => handleSettingClick(SelectedPage.Login)}
                     >
                       <Links
@@ -187,7 +194,7 @@ const Navbar = ({
                         selectedPage={selectedPage}
                         setSelectedPage={setSelectedPage}
                       />
-                    </button>
+                    </Button>
                   </div>
                 )}
               </motion.div>
