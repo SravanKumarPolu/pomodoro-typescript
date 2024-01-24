@@ -35,26 +35,25 @@ const Link = ({
   };
 
   return (
-    <AnchorLink
-      className={`flex flex-row  items-center  ${
+    <div
+      className={`flex flex-row items-center ${
         selectedPage === (src || lowerCasePage) ? "text-white " : "text-white "
-      }
-         transition duration-500   py-1 px-[.5px]
-          `}
-      href={`#${src || lowerCasePage}`}
+      } transition duration-500 py-1 px-[.5px]`}
       onClick={handleClick}>
-      {src ? (
-        <img
-          src={src}
-          className={className}
-          alt=""
-          width={width}
-          height={height}
-        />
-      ) : (
-        page
-      )}
-    </AnchorLink>
+      <AnchorLink href={`#${src || lowerCasePage}`}>
+        {src ? (
+          <img
+            src={src}
+            className={className}
+            alt=""
+            width={width}
+            height={height}
+          />
+        ) : (
+          page
+        )}
+      </AnchorLink>
+    </div>
   );
 };
 

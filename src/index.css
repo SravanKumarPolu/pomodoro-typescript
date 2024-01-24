@@ -5,17 +5,13 @@
 @tailwind utilities;
 
 #root,
+html,
+body,
 .app {
   height: 100%;
   width: 100%;
   font-family: "DM Sans", sans-serif;
   color: black; /* Instead of @apply text-black */
-}
-
-html,
-body {
-  height: 100%;
-  width: 100%;
 }
 
 @media (max-width: 100px) {
