@@ -3,6 +3,7 @@ import Navbar from "@/scenes/navbar";
 import { useEffect, useState } from "react";
 import { SelectedPage } from "./shared/types";
 import Hero from "./scenes/hero";
+
 import { useDarkMode } from "./components/DarkModeContext";
 import { useColor } from "./components/ColorContex";
 
