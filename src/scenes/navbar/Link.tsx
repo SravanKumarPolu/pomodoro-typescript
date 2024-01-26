@@ -35,12 +35,13 @@ const Link = ({
   };
 
   return (
-    <div
+    <AnchorLink
       className={`flex flex-row items-center ${
         selectedPage === (src || lowerCasePage) ? "text-white " : "text-white "
       } transition duration-500 py-1 px-[.5px]`}
+      href={`#${src || lowerCasePage}`}
       onClick={handleClick}>
-      <AnchorLink href={`#${src || lowerCasePage}`}>
+      <div>
         {src ? (
           <img
             src={src}
@@ -52,8 +53,8 @@ const Link = ({
         ) : (
           page
         )}
-      </AnchorLink>
-    </div>
+      </div>
+    </AnchorLink>
   );
 };
 
