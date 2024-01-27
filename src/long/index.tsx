@@ -19,7 +19,9 @@ const LongBreak = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue3, formatTime } = useTimerContext();
   const [time, setTime] = useState(timerValue3 * 60);
-  const { selectedAlarm } = useSoundContext();
+  const tickingRef = useRef<HTMLAudioElement>(null);
+
+  const { selectedAlarm, selectedTicking, setTicking } = useSoundContext();
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -27,10 +29,36 @@ const LongBreak = ({ setSelectedPage }: Props) => {
     setProgress(0);
   }, [timerValue3]);
 
-  const audioRef = useRef<HTMLAudioElement>(null);
+  useEffect(() => {
+    setTicking(selectedTicking);
+  }, [selectedTicking, setTicking]);
+
+  useEffect(() => {
+    const tickingAudio = tickingRef.current;
+    if (isActive && tickingAudio) {
+      tickingAudio.play();
+      tickingAudio.loop = true;
+    } else if (!isActive && tickingAudio) {
+      tickingAudio.pause();
+      tickingAudio.currentTime = 0;
+    }
+  }, [isActive]);
   const toggleTimer = () => {
     setIsActive(!isActive);
+    const tickingAudio = tickingRef.current;
+    if (tickingAudio) {
+      if (!isActive) {
+        tickingAudio.play();
+        tickingAudio.loop = true;
+      } else {
+        tickingAudio.pause();
+        tickingAudio.currentTime = 0;
+      }
+    }
   };
+
+  const audioRef = useRef<HTMLAudioElement>(null);
+
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
@@ -83,8 +111,10 @@ const LongBreak = ({ setSelectedPage }: Props) => {
           }}
         />
         <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
+          <audio ref={tickingRef} preload="auto" src={selectedTicking} />
           {formatTime(time)}
-          <audio ref={audioRef} preload="none" src={selectedAlarm}></audio>
+
+          <audio ref={audioRef} preload="auto" src={selectedAlarm} />
         </div>
 
         <ControlButton

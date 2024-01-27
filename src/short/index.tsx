@@ -107,7 +107,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
         />
 
         <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
-          <audio ref={tickingRef} src={selectedTicking} />
+          <audio ref={tickingRef} preload="auto" src={selectedTicking} />
           {formatTime(time)}
           <audio ref={audioRef} preload="auto" src={selectedAlarm} />
         </div>

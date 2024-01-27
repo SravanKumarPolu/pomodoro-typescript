@@ -119,9 +119,9 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
           <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
             <div className="flex flex-row m-2 items-center gap-4">
-              <audio ref={tickingRef} src={selectedTicking} />
+              <audio ref={tickingRef} preload="auto" src={selectedTicking} />
               {formatTime(time)}
-              <audio ref={audioRef} preload="none" src={selectedAlarm}></audio>
+              <audio ref={audioRef} preload="auto" src={selectedAlarm}></audio>
             </div>
           </div>
           <ControlButton
