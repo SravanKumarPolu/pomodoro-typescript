@@ -100,8 +100,8 @@ const LongBreak = ({ setSelectedPage }: Props) => {
   };
 
   return (
-    <div className="flex justify-center items-center flex-col">
-      <div className="flex flex-row m-2 items-center gap-4">
+    <div className="flex justify-center  items-center flex-col">
+      <div className="flex flex-row  m-2 items-center gap-4">
         <ControlButton
           text={<img src={resetSvg} alt="Reset" />}
           onClick={() => {
