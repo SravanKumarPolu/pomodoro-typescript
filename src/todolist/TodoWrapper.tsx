@@ -53,7 +53,7 @@ const TodoWrapper: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-[30rem] items-center mx-auto    text-black ">
+    <div className="flex flex-col h-auto items-center mx-auto    text-black ">
       <TodoForm
         addTodo={addTodo}
         startTimer={() => setTimerIsActive(true)}

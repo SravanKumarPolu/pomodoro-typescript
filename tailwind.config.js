@@ -28,12 +28,6 @@ export default {
         dmsans: ["DM Sans", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
       },
-      content: {
-        evolvetext: "url('./assets/EvolveText.png')",
-        abstractwaves: "url('./assets/AbstractWaves.png')",
-        sparkles: "url('./assets/Sparkles.png')",
-        circles: "url('./assets/Circles.png')",
-      },
     },
     screens: {
       xs: "480px",
@@ -41,5 +35,16 @@ export default {
       md: "1060px",
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".inset-shadow": {
+          boxShadow:
+            "0 5px 6px rgba(0,0,0,.7), 0 5px 15px rgba(0,0,0,.1),inset 0 0 10px rgba(0,0,0,.5)",
+        },
+      };
+
+      addUtilities(newUtilities, ["responsive", "Active", "hover", "focus"]);
+    },
+  ],
 };

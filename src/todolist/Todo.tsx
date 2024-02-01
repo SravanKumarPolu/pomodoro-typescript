@@ -30,7 +30,7 @@ const Todo: React.FC<Props> = ({
   return (
     <div className="flex flex-col md:flex-row justify-between items-center w-full px-4 py-2 bg-gray-800 text-white mb-2">
       <p
-        className="flex  h-8 cursor-pointer mb-2  justify-center items-center md:mr-2 md:mb-0"
+        className="flex   h-8 cursor-pointer mb-2  justify-center items-center md:mr-2 md:mb-0"
         onClick={() => toggleComplete(task.id)}>
         {task.task}
       </p>

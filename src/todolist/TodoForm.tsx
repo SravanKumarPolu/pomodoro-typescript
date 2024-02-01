@@ -28,7 +28,7 @@ const TodoForm: React.FC<Props> = ({ addTodo, timerIsActive, startTimer }) => {
         <form onSubmit={handleSubmit} className="flex flex-row ">
           <input
             type="text"
-            className="todo-input m-1 py-2  p-3 border-2 rounded  w-[20rem]  "
+            className="todo-input m-1 outline-none py-2 hover:inset-shadow focus:inset-shadow active:inset-shadow border-none rounded-sm  p-3     w-[20rem] "
             placeholder="What is the task today ..."
             value={value}
             onChange={(e) => setValue(e.target.value)}
@@ -45,7 +45,7 @@ const TodoForm: React.FC<Props> = ({ addTodo, timerIsActive, startTimer }) => {
           <input
             type="text"
             className="todo-input m-1 py-2 p-3 border-2 rounded w-[300px] "
-            placeholder="What is the task today"
+            placeholder="What is the task today ..."
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
