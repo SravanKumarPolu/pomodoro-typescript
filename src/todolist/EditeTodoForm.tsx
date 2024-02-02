@@ -23,8 +23,7 @@ const EditTodoForm = ({ editTodo, task }: Props) => {
         <form onSubmit={handleSubmit} className="flex flex-row ">
           <input
             type="text"
-            className="todo-input m-1 py-2 p-3 border-2 rounded w-[20rem]   "
-            placeholder="What is the task today"
+            className="todo-input m-1 py-2 p-3  rounded-sm outline-none hover:inset-shadow focus:inset-shadow active:inset-shadow border-none w-[20rem]   "
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
@@ -39,7 +38,7 @@ const EditTodoForm = ({ editTodo, task }: Props) => {
         <form onSubmit={handleSubmit} className="flex flex-col ">
           <input
             type="text"
-            className="todo-input m-1 py-2 p-3 border-2 rounded w-[300px]  "
+            className="todo-input m-1 py-2 p-3 border-2 rounded-sm w-[300px]  "
             placeholder="What is the task today"
             value={value}
             onChange={(e) => setValue(e.target.value)}
