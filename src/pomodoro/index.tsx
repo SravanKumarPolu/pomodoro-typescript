@@ -15,16 +15,16 @@ type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
+const Index: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue1, formatTime } = useTimerContext();
   const [time, setTime] = useState(timerValue1 * 60);
   const audioRef = useRef<HTMLAudioElement>(null);
   const tickingRef = useRef<HTMLAudioElement>(null);
   const [progress, setProgress] = useState(0);
-
-  const { selectedAlarm, selectedTicking, setTicking } = useSoundContext();
   let pomodoroCount = 0;
+  const { selectedAlarm, selectedTicking, setTicking } = useSoundContext();
+
   useEffect(() => {
     setTime(timerValue1 * 60);
     setProgress(0);
@@ -101,9 +101,13 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
       const audioDuration = 10000;
       setTimeout(() => {
         pomodoroCount++;
+        console.log("Pomodoro count:", pomodoroCount);
+
         if (pomodoroCount % 4 === 0) {
+          console.log("Transitioning to Long Break");
           setSelectedPage(SelectedPage.LongBreak);
         } else {
+          console.log("Transitioning to Short Break");
           setSelectedPage(SelectedPage.ShortBreak);
         }
       }, audioDuration);
@@ -131,7 +135,13 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
           </div>
           <ControlButton
             text={<img src={nextSvg} alt="Next" />}
-            onClick={() => setSelectedPage(SelectedPage.ShortBreak)}
+            onClick={() => {
+              if (selectedPage === SelectedPage.ShortBreak) {
+                setSelectedPage(SelectedPage.LongBreak);
+              } else {
+                setSelectedPage(SelectedPage.ShortBreak);
+              }
+            }}
           />
         </div>
 
