@@ -88,7 +88,7 @@ const Hero: React.FC<Props> = ({
               ? "bg-white-700"
               : "bg-gradient-to-b from-gray-600 via-pink-500 to-selectedColor-400"
           }`}>
-          <div className="flex flex-col m-2 my-4 gap-2 xs:my-2 py-2 px-4 xs:flex-row">
+          <div className="flex flex-col m-2 my-4 gap-2  xs:my-2 py-2 px-4 xs:flex-row">
             <button
               className=" text-white"
               onClick={() => setSelectedPage(SelectedPage.ShortBreak)}>

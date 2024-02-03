@@ -24,7 +24,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [progress, setProgress] = useState(0);
 
   const { selectedAlarm, selectedTicking, setTicking } = useSoundContext();
-
+  let pomodoroCount = 0;
   useEffect(() => {
     setTime(timerValue1 * 60);
     setProgress(0);
@@ -100,7 +100,12 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
       const audioDuration = 10000;
       setTimeout(() => {
-        setSelectedPage(SelectedPage.ShortBreak);
+        pomodoroCount++;
+        if (pomodoroCount % 4 === 0) {
+          setSelectedPage(SelectedPage.LongBreak);
+        } else {
+          setSelectedPage(SelectedPage.ShortBreak);
+        }
       }, audioDuration);
     }
   };
