@@ -8,7 +8,7 @@ import React, {
 } from "react";
 
 // Import your mp3 files
-import Bird from "@/assets/bird.mp3";
+
 import Wood from "@/assets/wood.mp3";
 import Digital from "@/assets/digital.mp3";
 import Bell from "@/assets/pomo-to-short.mp3";
@@ -17,10 +17,18 @@ import TickingFast from "@/assets/ticking-fast.mp3";
 import TickingSlow from "@/assets/ticking-slow.mp3";
 import BrownNoise from "@/assets/brown.mp3";
 import WhiteNoise from "@/assets/white.mp3";
+import AlarmTone from "@/assets/AlarmTone.mp3";
+import WakeUp from "@/assets/WakeUp.mp3";
+import CuckooChimes from "@/assets/cuckoo-chimes.mp3";
+import TickleBuzzer from "@/assets/tickingbuzzer.mp3";
+import TickleTension from "@/assets/ticking-tension.mp3";
+import BackTickle from "@/assets/backmusic.mp3";
 
 const alarmOptions = [
   { label: "Kitchen", value: Kitchen },
-  { label: "Bird", value: Bird },
+  { label: "Alarm-Tone", value: AlarmTone },
+  { label: "WakeUp", value: WakeUp },
+  { label: "Cuckoo-Chimes", value: CuckooChimes },
   { label: "Wood", value: Wood },
   { label: "Bell", value: Bell },
   { label: "Digital", value: Digital },
@@ -28,8 +36,12 @@ const alarmOptions = [
 
 const tickingOptions = [
   { label: "None", value: "" },
+
   { label: "TickingFast", value: TickingFast },
   { label: "TickingSlow", value: TickingSlow },
+  { label: "Ticking-Tension", value: TickleTension },
+  { label: "Ticking-Buzzer", value: TickleBuzzer },
+  { label: "Back-Tickle", value: BackTickle },
   { label: "BrownNoise", value: BrownNoise },
   { label: "WhiteNoise", value: WhiteNoise },
 ];
