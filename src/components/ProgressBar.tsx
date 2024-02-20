@@ -11,6 +11,16 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ value }) => (
         <span className="text-md font-semibold inline-block text-white ">
           {value}%
         </span>
+        <svg height="100" width="100">
+          <circle
+            r="45"
+            cx="50"
+            cy="50"
+            stroke="green"
+            strokeWidth="3"
+            fill="transparent"
+          />{" "}
+        </svg>
       </div>
     </div>
     <div className="flex h-[.7rem]  mb-4 overflow-hidden text-xs bg-teal-500 rounded ">

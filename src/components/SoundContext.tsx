@@ -36,7 +36,6 @@ const alarmOptions = [
 
 const tickingOptions = [
   { label: "None", value: "" },
-
   { label: "TickingFast", value: TickingFast },
   { label: "TickingSlow", value: TickingSlow },
   { label: "Ticking-Tension", value: TickleTension },
