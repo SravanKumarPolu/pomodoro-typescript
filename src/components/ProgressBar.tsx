@@ -17,20 +17,17 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ value }) => {
           <span className="text-md font-semibold inline-block text-white ">
             {value}%
           </span>
-          <svg height="100" width="100">
+          <svg height="100" width="100" className="relative">
             <circle
               r={radius}
-              className="relative"
               cx="50"
               cy="50"
               stroke="blue"
               strokeWidth="3"
+              fillOpacity={0.34}
               strokeDasharray={strokeDasharray}
-              strokeDashoffset={strokeDashoffset}>
-              <span className="absolute text-md font-semibold inline-block text-white ">
-                {value}%
-              </span>
-            </circle>
+              strokeDashoffset={strokeDashoffset}></circle>
+            <span className="absolute">{value}%</span>
           </svg>
         </div>
       </div>
