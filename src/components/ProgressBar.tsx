@@ -1,3 +1,4 @@
+import { height } from "@fortawesome/free-solid-svg-icons/fa0";
 import React from "react";
 
 type ProgressBarProps = {
@@ -13,22 +14,25 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ value }) => {
   return (
     <div className="relative pt-1">
       <div className="flex mb-2 items-center justify-center">
-        <div className="text-right ">
-          <span className="text-md font-semibold inline-block text-white ">
+        <div className="text-right relative ">
+          <span className="text-md font-semibold inline-block text-white absolute mt-11 ml-9 ">
             {value}%
           </span>
-          <svg height="100" width="100" className="relative">
-            <circle
-              r={radius}
-              cx="50"
-              cy="50"
-              stroke="blue"
-              strokeWidth="3"
-              fillOpacity={0.34}
-              strokeDasharray={strokeDasharray}
-              strokeDashoffset={strokeDashoffset}></circle>
-            <span className="absolute">{value}%</span>
-          </svg>
+          <button
+            className="relative w-16 align-middle"
+            style={{ height: "100px" }}>
+            <svg height="100" width="100" className="relative">
+              <circle
+                r={radius}
+                cx="50"
+                cy="50"
+                stroke="blue"
+                strokeWidth="3"
+                fill={"transparent"}
+                strokeDasharray={strokeDasharray}
+                strokeDashoffset={strokeDashoffset}></circle>
+            </svg>
+          </button>
         </div>
       </div>
       <div className="flex h-[.7rem]  mb-4 overflow-hidden text-xs bg-teal-500 rounded ">
