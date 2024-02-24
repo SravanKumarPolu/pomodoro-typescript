@@ -1,12 +1,9 @@
-import { height } from "@fortawesome/free-solid-svg-icons/fa0";
 import React from "react";
-
 type ProgressBarProps = {
-  value: number; // Change the type to number for percentage
+  value: number;
+  radius: number;
 };
-
-const ProgressBar: React.FC<ProgressBarProps> = ({ value }) => {
-  const radius = 45;
+const ProgressBar: React.FC<ProgressBarProps> = ({ value, radius = 60 }) => {
   const circumference = 2 * Math.PI * radius;
   const strokeDasharray = `${circumference} ${circumference}`;
   const strokeDashoffset = circumference - (value / 100) * circumference;
@@ -15,17 +12,20 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ value }) => {
     <div className="relative pt-1">
       <div className="flex mb-2 items-center justify-center">
         <div className="text-right relative ">
-          <span className="text-md font-semibold inline-block text-white absolute mt-11 ml-9 ">
+          {/* <span className="text-md font-semibold inline-block text-white absolute mt-11 ml-9 ">
             {value}%
-          </span>
+          </span> */}
           <button
             className="relative w-16 align-middle"
-            style={{ height: "100px" }}>
-            <svg height="100" width="100" className="relative">
+            style={{ height: `${2 * radius}px` }}>
+            <svg
+              height={`${2 * radius}`}
+              width={`${2 * radius}`}
+              className="relative">
               <circle
-                r={radius}
-                cx="50"
-                cy="50"
+                r={radius - 6}
+                cx={radius}
+                cy={radius}
                 stroke="blue"
                 strokeWidth="3"
                 fill={"transparent"}
@@ -35,14 +35,15 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ value }) => {
           </button>
         </div>
       </div>
-      <div className="flex h-[.7rem]  mb-4 overflow-hidden text-xs bg-teal-500 rounded ">
+      {/* <div className="flex h-[.7rem]  mb-4 overflow-hidden text-xs bg-teal-500 rounded ">
         <div
           style={{ width: `${value}%` }}
           className="flex flex-col justify-center  bg-blue-800 text-xs  text-center whitespace-nowrap text-white">
           {value}%
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
+
 export default ProgressBar;

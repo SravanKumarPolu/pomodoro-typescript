@@ -118,10 +118,13 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
           />
 
           <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
-            <div className="flex flex-row m-2 items-center gap-4">
+            <div className="flex flex-row m-2 absolute items-center gap-4">
               <audio ref={tickingRef} preload="auto" src={selectedTicking} />
               {formatTime(time)}
               <audio ref={audioRef} preload="auto" src={selectedAlarm}></audio>
+            </div>
+            <div className="container relative items-center justify-center ml-[1rem] mr-[5.6rem]  mt-[.1rem]  ">
+              <ProgressBar value={progress} radius={70} />
             </div>
           </div>
           <ControlButton
@@ -146,10 +149,6 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
           }
           onClick={() => toggleTimer()}
         />
-
-        <div className="container mx-auto mt-8">
-          <ProgressBar value={progress} />
-        </div>
       </div>
     </>
   );
