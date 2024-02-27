@@ -27,7 +27,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ value, radius = 60 }) => {
                 cx={radius}
                 cy={radius}
                 stroke="blue"
-                strokeWidth="3"
+                strokeWidth="5"
                 fill={"transparent"}
                 strokeDasharray={strokeDasharray}
                 strokeDashoffset={strokeDashoffset}></circle>

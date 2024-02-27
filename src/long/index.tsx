@@ -110,13 +110,18 @@ const LongBreak = ({ setSelectedPage }: Props) => {
             setIsActive(false);
           }}
         />
+        {/* <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center"> */}
         <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
-          <audio ref={tickingRef} preload="auto" src={selectedTicking} />
-          {formatTime(time)}
+          <div className="flex flex-row m-2 absolute items-center gap-4">
+            <audio ref={tickingRef} preload="auto" src={selectedTicking} />
+            {formatTime(time)}
 
-          <audio ref={audioRef} preload="auto" src={selectedAlarm} />
+            <audio ref={audioRef} preload="auto" src={selectedAlarm} />
+          </div>
+          <div className="container relative items-center justify-center ml-[1rem] mr-[5.6rem]  mt-[.1rem]  ">
+            <ProgressBar value={progress} radius={70} />
+          </div>
         </div>
-
         <ControlButton
           text={<img src={nextSvg} alt="Next" />}
           onClick={() => setSelectedPage(SelectedPage.Pomodoro)}
@@ -133,9 +138,9 @@ const LongBreak = ({ setSelectedPage }: Props) => {
         }
         onClick={() => toggleTimer()}
       />
-      <div className="container mx-auto mt-8">
+      {/* <div className="container mx-auto mt-8">
         <ProgressBar value={progress} />
-      </div>
+      </div> */}
     </div>
   );
 };
