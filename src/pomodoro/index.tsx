@@ -66,10 +66,11 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
     if (isActive && time > 0) {
       interval = setInterval(() => {
-        setTime((prevTime) => prevTime - 1);
-        setProgress((_prevProgress) =>
-          Math.floor(((timerValue1 * 60 - time) / (timerValue1 * 60)) * 100)
-        );
+        setTime((prevTime) => {
+          const newTime = prevTime - 1;
+          Math.floor(((timerValue1 * 60 - newTime) / (timerValue1 * 60)) * 100);
+          return newTime;
+        });
       }, 1000);
     } else if (time === 0) {
       handleTimerCompletion();
@@ -118,9 +119,13 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
           />
 
           <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
-            <div className="flex flex-row m-2 absolute items-center gap-4">
+            <div className="flex flex-row m-2 absolute items-center justify-center gap-4">
               <audio ref={tickingRef} preload="auto" src={selectedTicking} />
-              {formatTime(time)}
+              <span className="block w-[3.4rem] text-left p-1 m-1 ">
+                {" "}
+                {formatTime(time)}
+              </span>
+
               <audio ref={audioRef} preload="auto" src={selectedAlarm}></audio>
             </div>
             <div className="container relative items-center justify-center ml-[1rem] mr-[5.6rem]  mt-[.1rem]  ">
