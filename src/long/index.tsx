@@ -28,6 +28,11 @@ const LongBreak = ({ setSelectedPage }: Props) => {
     setTime(timerValue3 * 60);
     setProgress(0);
   }, [timerValue3]);
+  useEffect(() => {
+    const percentage = ((timerValue3 * 60 - time) / (timerValue3 * 60)) * 100;
+    const formattedPercentage = Math.max(percentage, 0).toFixed(1);
+    setProgress(parseFloat(formattedPercentage));
+  }, [time, timerValue3]);
 
   useEffect(() => {
     setTicking(selectedTicking);
@@ -121,9 +126,6 @@ const LongBreak = ({ setSelectedPage }: Props) => {
 
             <audio ref={audioRef} preload="auto" src={selectedAlarm} />
           </div>
-          <div className="container relative items-center justify-center ml-[1rem] mr-[5.6rem]  mt-[.1rem]  ">
-            <ProgressBar value={progress} radius={70} />
-          </div>
         </div>
         <ControlButton
           text={<img src={nextSvg} alt="Next" />}
@@ -141,9 +143,9 @@ const LongBreak = ({ setSelectedPage }: Props) => {
         }
         onClick={() => toggleTimer()}
       />
-      {/* <div className="container mx-auto mt-8">
+      <div className="container mx-auto mt-8">
         <ProgressBar value={progress} />
-      </div> */}
+      </div>
     </div>
   );
 };

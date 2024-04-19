@@ -26,6 +26,11 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   }, [timerValue2]);
 
   useEffect(() => {
+    const percentage = ((timerValue2 * 60 - time) / (timerValue2 * 60)) * 100;
+    const formattedPercentage = Math.max(percentage, 0).toFixed(1);
+    setProgress(parseFloat(formattedPercentage));
+  }, [time, timerValue2]);
+  useEffect(() => {
     setTicking(selectedTicking);
   }, [selectedTicking, setTicking]);
   useEffect(() => {
@@ -116,9 +121,6 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
             <audio ref={audioRef} preload="auto" src={selectedAlarm} />
           </div>
-          <div className="container relative items-center justify-center ml-[1rem] mr-[5.6rem]  mt-[.1rem]  ">
-            <ProgressBar value={progress} radius={70} />
-          </div>
         </div>
         <ControlButton
           text={<img src={nextSvg} alt="Next" />}
@@ -136,9 +138,9 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
         }
         onClick={() => toggleTimer()}
       />
-      {/* <div className="container mx-auto mt-8">
+      <div className="container mx-auto mt-8">
         <ProgressBar value={progress} />
-      </div> */}
+      </div>
     </div>
   );
 };

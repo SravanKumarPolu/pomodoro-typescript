@@ -31,6 +31,11 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   }, [timerValue1]);
 
   useEffect(() => {
+    const percentage = ((timerValue1 * 60 - time) / (timerValue1 * 60)) * 100;
+    const formattedPercentage = Math.max(percentage, 0).toFixed(1);
+    setProgress(parseFloat(formattedPercentage));
+  }, [timerValue1, time]);
+  useEffect(() => {
     setTicking(selectedTicking);
   }, [selectedTicking, setTicking]);
 
@@ -63,7 +68,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
-
+    // let currentTime = time;
     if (isActive && time > 0) {
       interval = setInterval(() => {
         setTime((prevTime) => {
@@ -118,20 +123,17 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
             }}
           />
 
-          <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
-            <div className="flex flex-row m-2 absolute items-center justify-center gap-4">
+          <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center relative">
+            <div className="flex flex-row m-2 items-center justify-center gap-4">
               <audio ref={tickingRef} preload="auto" src={selectedTicking} />
               <span className="block w-[3.4rem] text-left p-1 m-1 ">
-                {" "}
                 {formatTime(time)}
               </span>
 
               <audio ref={audioRef} preload="auto" src={selectedAlarm}></audio>
             </div>
-            <div className="container relative items-center justify-center ml-[1rem] mr-[5.6rem]  mt-[.1rem]  ">
-              <ProgressBar value={progress} radius={70} />
-            </div>
           </div>
+
           <ControlButton
             text={<img src={nextSvg} alt="Next" />}
             onClick={() => {
@@ -154,6 +156,9 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
           }
           onClick={() => toggleTimer()}
         />
+        <div className="container mx-auto mt-8">
+          <ProgressBar value={progress} />
+        </div>
       </div>
     </>
   );
