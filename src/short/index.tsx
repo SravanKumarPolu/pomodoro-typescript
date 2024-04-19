@@ -28,8 +28,10 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   useEffect(() => {
     const percentage = ((timerValue2 * 60 - time) / (timerValue2 * 60)) * 100;
     const formattedPercentage = Math.max(percentage, 0).toFixed(1);
+
     setProgress(parseFloat(formattedPercentage));
   }, [time, timerValue2]);
+
   useEffect(() => {
     setTicking(selectedTicking);
   }, [selectedTicking, setTicking]);
@@ -81,7 +83,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const handleTimerCompletion = () => {
     setIsActive(false);
     setTime(timerValue2 * 60);
-    setProgress(100);
+
     const audio = audioRef.current;
     if (audio) {
       var audioPlay = audio.play();

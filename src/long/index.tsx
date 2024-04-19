@@ -30,7 +30,9 @@ const LongBreak = ({ setSelectedPage }: Props) => {
   }, [timerValue3]);
   useEffect(() => {
     const percentage = ((timerValue3 * 60 - time) / (timerValue3 * 60)) * 100;
+
     const formattedPercentage = Math.max(percentage, 0).toFixed(1);
+
     setProgress(parseFloat(formattedPercentage));
   }, [time, timerValue3]);
 
@@ -85,7 +87,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
   const handleTimerCompletion = () => {
     setIsActive(false);
     setTime(timerValue3 * 60);
-    setProgress(100);
+
     const audio = audioRef.current;
     if (audio) {
       var audioPlay = audio.play();

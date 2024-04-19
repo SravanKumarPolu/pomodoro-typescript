@@ -9,15 +9,15 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ value }) => {
         <div className="flex h-[.7rem] w-[99%] mb-4 relative text-center overflow-hidden text-xs bg-teal-500 rounded ">
           <div
             style={{ width: `${value}%` }}
-            className="flex flex-col justify-center   bg-blue-800 text-xs  text-center whitespace-nowrap text-white">
-            <span className="absolute inset-0  flex items-center justify-center">
+            className="flex  justify-center  items-center  bg-blue-800 text-xs  text-center whitespace-nowrap text-white">
+            <span className="absolute inset-0 text-center  flex items-center justify-center">
               {" "}
               {value}%
             </span>
           </div>
         </div>
         <div>
-          <span className=" w-28 text-center h-8 flex justify-center items-center">
+          <span className="  text-center h-8 flex justify-center items-center">
             {value}%
           </span>
         </div>

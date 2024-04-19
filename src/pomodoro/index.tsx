@@ -33,6 +33,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   useEffect(() => {
     const percentage = ((timerValue1 * 60 - time) / (timerValue1 * 60)) * 100;
     const formattedPercentage = Math.max(percentage, 0).toFixed(1);
+
     setProgress(parseFloat(formattedPercentage));
   }, [timerValue1, time]);
   useEffect(() => {
@@ -89,7 +90,6 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const handleTimerCompletion = () => {
     setIsActive(false);
     setTime(timerValue1 * 60);
-    setProgress(100);
 
     const audio = audioRef.current;
     if (audio) {
