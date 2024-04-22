@@ -21,7 +21,8 @@ const LongBreak = ({ setSelectedPage }: Props) => {
   const [time, setTime] = useState(timerValue3 * 60);
   const tickingRef = useRef<HTMLAudioElement>(null);
 
-  const { selectedAlarm, selectedTicking, setTicking } = useSoundContext();
+  const { selectedAlarm, selectedTicking, setTicking, audioVolume } =
+    useSoundContext();
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -44,12 +45,13 @@ const LongBreak = ({ setSelectedPage }: Props) => {
     const tickingAudio = tickingRef.current;
     if (isActive && tickingAudio) {
       tickingAudio.play();
+      tickingAudio.volume = audioVolume;
       tickingAudio.loop = true;
     } else if (!isActive && tickingAudio) {
       tickingAudio.pause();
       tickingAudio.currentTime = 0;
     }
-  }, [isActive]);
+  }, [isActive, audioVolume]);
   const toggleTimer = () => {
     setIsActive(!isActive);
     const tickingAudio = tickingRef.current;
@@ -91,6 +93,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
     const audio = audioRef.current;
     if (audio) {
       var audioPlay = audio.play();
+      audio.volume = audioVolume;
       audioPlay
         .then(() => {
           setTimeout(() => {

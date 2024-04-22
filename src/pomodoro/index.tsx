@@ -78,7 +78,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
       tickingAudio.pause();
       tickingAudio.currentTime = 0;
     }
-  }, [isActive]);
+  }, [isActive, audioVolume]);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;

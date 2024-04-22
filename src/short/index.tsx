@@ -16,7 +16,8 @@ type Props = {
 const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue2, formatTime } = useTimerContext();
-  const { selectedAlarm, selectedTicking, setTicking } = useSoundContext();
+  const { selectedAlarm, selectedTicking, setTicking, audioVolume } =
+    useSoundContext();
   const [time, setTime] = useState(timerValue2);
   const tickingRef = useRef<HTMLAudioElement>(null);
   const [progress, setProgress] = useState(0);
@@ -39,12 +40,13 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
     const tickingAudio = tickingRef.current;
     if (isActive && tickingAudio) {
       tickingAudio.play();
+      tickingAudio.volume = audioVolume;
       tickingAudio.loop = true;
     } else if (!isActive && tickingAudio) {
       tickingAudio.pause();
       tickingAudio.currentTime = 0;
     }
-  }, [isActive]);
+  }, [isActive, audioVolume]);
 
   const toggleTimer = () => {
     setIsActive(!isActive);
@@ -59,8 +61,30 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
       }
     }
   };
-
   const audioRef = useRef<HTMLAudioElement>(null);
+  const handleTimerCompletion = () => {
+    setIsActive(false);
+    setTime(timerValue2 * 60);
+
+    const audio = audioRef.current;
+    if (audio) {
+      var audioPlay = audio.play();
+      audio.volume = audioVolume;
+      audioPlay
+        .then(() => {
+          setTimeout(() => {
+            console.log("hi");
+          }, 2000);
+        })
+        .catch((error: any) => {
+          console.error(error);
+        });
+      const audioDuration = 10000;
+      setTimeout(() => {
+        setSelectedPage(SelectedPage.Pomodoro);
+      }, audioDuration);
+    }
+  };
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -79,29 +103,6 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
     return () => clearInterval(interval);
   }, [isActive, time, setSelectedPage, timerValue2]);
-
-  const handleTimerCompletion = () => {
-    setIsActive(false);
-    setTime(timerValue2 * 60);
-
-    const audio = audioRef.current;
-    if (audio) {
-      var audioPlay = audio.play();
-      audioPlay
-        .then(() => {
-          setTimeout(() => {
-            console.log("hi");
-          }, 2000);
-        })
-        .catch((error: any) => {
-          console.error(error);
-        });
-      const audioDuration = 10000;
-      setTimeout(() => {
-        setSelectedPage(SelectedPage.Pomodoro);
-      }, audioDuration);
-    }
-  };
 
   return (
     <div className="flex justify-center items-center flex-col">
