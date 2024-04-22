@@ -15,6 +15,7 @@ const Sound: React.FC<Props> = () => {
     setSelectedTicking,
     tickingOptions,
     alarmOptions,
+    setAudioVolume,
   } = useSoundContext();
 
   useEffect(() => {
@@ -29,6 +30,11 @@ const Sound: React.FC<Props> = () => {
       }
     };
   }, []);
+  useEffect(() => {
+    if (audio) {
+      audio.volume = volume;
+    }
+  }, [volume]);
 
   const setupAudioEventListeners = () => {
     if (!audio) return;
@@ -66,6 +72,7 @@ const Sound: React.FC<Props> = () => {
     if (audio) {
       audio.volume = newVolume;
       setVolume(newVolume);
+      setAudioVolume(newVolume);
     }
   };
 

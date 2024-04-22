@@ -54,6 +54,8 @@ type SoundContextProps = {
   setSelectedTicking: Dispatch<SetStateAction<string>>;
   setTicking: (ticking: string) => void;
   tickingOptions: { label: string; value: string }[];
+  audioVolume: number;
+  setAudioVolume: (volume: number) => void;
 };
 
 const SoundContext = createContext<SoundContextProps | undefined>(undefined);
@@ -65,7 +67,7 @@ type SoundProviderProps = {
 export const SoundProvider: React.FC<SoundProviderProps> = ({ children }) => {
   const [selectedAlarm, setSelectedAlarm] = useState<string>(Kitchen);
   const [selectedTicking, setSelectedTicking] = useState<string>("");
-
+  const [audioVolume, setAudioVolume] = useState<number>(0.5);
   const setAlarm = (alarm: string) => {
     setSelectedAlarm(alarm);
   };
@@ -82,6 +84,8 @@ export const SoundProvider: React.FC<SoundProviderProps> = ({ children }) => {
     selectedTicking,
     setSelectedTicking,
     setTicking,
+    audioVolume,
+    setAudioVolume,
     tickingOptions,
   };
 

@@ -1,4 +1,3 @@
-// pomodoro/index.tsx
 import React, { useEffect, useRef, useState } from "react";
 import { SelectedPage } from "@/shared/types";
 import { ControlButton } from "../components/ButtonComponents";
@@ -23,70 +22,10 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const tickingRef = useRef<HTMLAudioElement>(null);
   const [progress, setProgress] = useState(0);
 
-  const { selectedAlarm, selectedTicking, setTicking } = useSoundContext();
+  const { selectedAlarm, selectedTicking, setTicking, audioVolume } =
+    useSoundContext();
 
-  useEffect(() => {
-    setTime(timerValue1 * 60);
-    setProgress(0);
-  }, [timerValue1]);
-
-  useEffect(() => {
-    const percentage = ((timerValue1 * 60 - time) / (timerValue1 * 60)) * 100;
-    const formattedPercentage = Math.max(percentage, 0).toFixed(1);
-
-    setProgress(parseFloat(formattedPercentage));
-  }, [timerValue1, time]);
-  useEffect(() => {
-    setTicking(selectedTicking);
-  }, [selectedTicking, setTicking]);
-
-  useEffect(() => {
-    const tickingAudio = tickingRef.current;
-
-    if (isActive && tickingAudio) {
-      tickingAudio.play();
-      tickingAudio.loop = true; // Loop the ticking sound
-    } else if (!isActive && tickingAudio) {
-      tickingAudio.pause();
-      tickingAudio.currentTime = 0;
-    }
-  }, [isActive]);
-
-  const toggleTimer = () => {
-    setIsActive(!isActive);
-
-    const tickingAudio = tickingRef.current;
-    if (tickingAudio) {
-      if (!isActive) {
-        tickingAudio.play();
-        tickingAudio.loop = true;
-      } else {
-        tickingAudio.pause();
-        tickingAudio.currentTime = 0;
-      }
-    }
-  };
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-    // let currentTime = time;
-    if (isActive && time > 0) {
-      interval = setInterval(() => {
-        setTime((prevTime) => {
-          const newTime = prevTime - 1;
-          Math.floor(((timerValue1 * 60 - newTime) / (timerValue1 * 60)) * 100);
-          return newTime;
-        });
-      }, 1000);
-    } else if (time === 0) {
-      handleTimerCompletion();
-    }
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [isActive, time, setSelectedPage, timerValue1]);
-
+  // Declare handleTimerCompletion function before useEffect
   const handleTimerCompletion = () => {
     setIsActive(false);
     setTime(timerValue1 * 60);
@@ -94,6 +33,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
     const audio = audioRef.current;
     if (audio) {
       var audioPlay = audio.play();
+      audio.volume = audioVolume;
       audioPlay
         .then(() => {
           setTimeout(() => {
@@ -108,6 +48,70 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
       setTimeout(() => {
         setSelectedPage(SelectedPage.ShortBreak);
       }, audioDuration);
+    }
+  };
+
+  useEffect(() => {
+    setTime(timerValue1 * 60);
+    setProgress(0);
+  }, [timerValue1]);
+
+  useEffect(() => {
+    const percentage = ((timerValue1 * 60 - time) / (timerValue1 * 60)) * 100;
+    const formattedPercentage = Math.max(percentage, 0).toFixed(1);
+
+    setProgress(parseFloat(formattedPercentage));
+  }, [timerValue1, time]);
+
+  useEffect(() => {
+    setTicking(selectedTicking);
+  }, [selectedTicking, setTicking]);
+
+  useEffect(() => {
+    const tickingAudio = tickingRef.current;
+
+    if (isActive && tickingAudio) {
+      tickingAudio.play();
+      tickingAudio.volume = audioVolume;
+      tickingAudio.loop = true;
+    } else if (!isActive && tickingAudio) {
+      tickingAudio.pause();
+      tickingAudio.currentTime = 0;
+    }
+  }, [isActive]);
+
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+
+    if (isActive && time > 0) {
+      intervalId = setInterval(() => {
+        setTime((prevTime) => {
+          const newTime = prevTime - 1;
+          Math.floor(((timerValue1 * 60 - newTime) / (timerValue1 * 60)) * 100);
+          return newTime;
+        });
+      }, 1000);
+    } else if (time === 0) {
+      handleTimerCompletion();
+    }
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [isActive, time, setSelectedPage, timerValue1]);
+
+  const toggleTimer = () => {
+    setIsActive(!isActive);
+
+    const tickingAudio = tickingRef.current;
+    if (tickingAudio) {
+      if (!isActive) {
+        tickingAudio.play();
+        tickingAudio.loop = true;
+      } else {
+        tickingAudio.pause();
+        tickingAudio.currentTime = 0;
+      }
     }
   };
 
