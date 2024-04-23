@@ -16,8 +16,13 @@ type Props = {
 const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue2, formatTime } = useTimerContext();
-  const { selectedAlarm, selectedTicking, setTicking, audioVolume } =
-    useSoundContext();
+  const {
+    selectedAlarm,
+    selectedTicking,
+    setTicking,
+    audioVolume1,
+    audioVolume2,
+  } = useSoundContext();
   const [time, setTime] = useState(timerValue2);
   const tickingRef = useRef<HTMLAudioElement>(null);
   const [progress, setProgress] = useState(0);
@@ -40,13 +45,13 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
     const tickingAudio = tickingRef.current;
     if (isActive && tickingAudio) {
       tickingAudio.play();
-      tickingAudio.volume = audioVolume;
+      tickingAudio.volume = audioVolume2;
       tickingAudio.loop = true;
     } else if (!isActive && tickingAudio) {
       tickingAudio.pause();
       tickingAudio.currentTime = 0;
     }
-  }, [isActive, audioVolume]);
+  }, [isActive, audioVolume2]);
 
   const toggleTimer = () => {
     setIsActive(!isActive);
@@ -69,7 +74,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
     const audio = audioRef.current;
     if (audio) {
       var audioPlay = audio.play();
-      audio.volume = audioVolume;
+      audio.volume = audioVolume1;
       audioPlay
         .then(() => {
           setTimeout(() => {

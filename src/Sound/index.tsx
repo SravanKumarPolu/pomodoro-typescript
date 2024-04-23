@@ -15,7 +15,8 @@ const Sound: React.FC<Props> = () => {
     setSelectedTicking,
     tickingOptions,
     alarmOptions,
-    setAudioVolume,
+    setAudioVolume1,
+    setAudioVolume2,
   } = useSoundContext();
 
   useEffect(() => {
@@ -64,7 +65,7 @@ const Sound: React.FC<Props> = () => {
     }
   };
 
-  const handleVolumeChange = (
+  const handleVolumeChange1 = (
     event: React.ChangeEvent<HTMLInputElement>,
     setVolume: React.Dispatch<React.SetStateAction<number>>
   ) => {
@@ -72,7 +73,18 @@ const Sound: React.FC<Props> = () => {
     if (audio) {
       audio.volume = newVolume;
       setVolume(newVolume);
-      setAudioVolume(newVolume);
+      setAudioVolume1(newVolume);
+    }
+  };
+  const handleVolumeChange2 = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    setVolume: React.Dispatch<React.SetStateAction<number>>
+  ) => {
+    const newVolume = parseFloat(event.target.value);
+    if (audio) {
+      audio.volume = newVolume;
+      setVolume(newVolume);
+      setAudioVolume2(newVolume);
     }
   };
 
@@ -98,7 +110,7 @@ const Sound: React.FC<Props> = () => {
               value={volume}
               max={1}
               step={0.01}
-              onChange={(e) => handleVolumeChange(e, setVolume)}
+              onChange={(e) => handleVolumeChange1(e, setVolume)}
             />
           </div>
         </div>
@@ -122,7 +134,7 @@ const Sound: React.FC<Props> = () => {
               value={tickingVolume}
               max={1}
               step={0.01}
-              onChange={(e) => handleVolumeChange(e, setTickingVolume)}
+              onChange={(e) => handleVolumeChange2(e, setTickingVolume)}
             />
           </div>
         </div>
