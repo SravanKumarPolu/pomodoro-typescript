@@ -8,6 +8,7 @@ import pauseSvg from "@/assets/pause.svg";
 import resetSvg from "@/assets/reset.svg";
 import nextSvg from "@/assets/next.svg";
 import ProgressBar from "@/components/ProgressBar";
+import LiveTime from "@/components/LiveTime";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -17,10 +18,11 @@ type Props = {
 const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue1, formatTime } = useTimerContext();
-  const [time, setTime] = useState(timerValue1 * 60);
+  const [time, setTime] = useState<number>(timerValue1 * 60);
   const audioRef = useRef<HTMLAudioElement>(null);
   const tickingRef = useRef<HTMLAudioElement>(null);
   const [progress, setProgress] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const {
     selectedAlarm,
@@ -30,29 +32,24 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
     audioVolume2,
   } = useSoundContext();
 
-  // Declare handleTimerCompletion function before useEffect
   const handleTimerCompletion = () => {
     setIsActive(false);
     setTime(timerValue1 * 60);
 
     const audio = audioRef.current;
     if (audio) {
-      var audioPlay = audio.play();
       audio.volume = audioVolume1;
-      audioPlay
+      audio
+        .play()
         .then(() => {
           setTimeout(() => {
             console.log("hi");
-          }, 2000);
+            setSelectedPage(SelectedPage.ShortBreak);
+          }, 10000); // Adjust the duration as needed
         })
         .catch((error: any) => {
           console.error(error);
         });
-
-      const audioDuration = 10000;
-      setTimeout(() => {
-        setSelectedPage(SelectedPage.ShortBreak);
-      }, audioDuration);
     }
   };
 
@@ -86,38 +83,47 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   }, [isActive, audioVolume2]);
 
   useEffect(() => {
-    let intervalId: NodeJS.Timeout;
-
-    if (isActive && time > 0) {
-      intervalId = setInterval(() => {
-        setTime((prevTime) => {
-          const newTime = prevTime - 1;
-          Math.floor(((timerValue1 * 60 - newTime) / (timerValue1 * 60)) * 100);
-          return newTime;
-        });
-      }, 1000);
-    } else if (time === 0) {
-      handleTimerCompletion();
-    }
-
     return () => {
-      clearInterval(intervalId);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
     };
-  }, [isActive, time, setSelectedPage, timerValue1]);
+  }, []);
+
+  const startTimer = () => {
+    intervalRef.current = setInterval(() => {
+      setTime((prevTime) => {
+        if (prevTime === 0) {
+          clearInterval(intervalRef.current!);
+          handleTimerCompletion();
+          return prevTime;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+  };
+
+  const stopTimer = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+  };
 
   const toggleTimer = () => {
-    setIsActive(!isActive);
-
-    const tickingAudio = tickingRef.current;
-    if (tickingAudio) {
-      if (!isActive) {
-        tickingAudio.play();
-        tickingAudio.loop = true;
+    setIsActive((prevActive) => {
+      if (!prevActive) {
+        startTimer();
       } else {
-        tickingAudio.pause();
-        tickingAudio.currentTime = 0;
+        stopTimer();
       }
-    }
+      return !prevActive;
+    });
+  };
+
+  const resetTimer = () => {
+    stopTimer();
+    setIsActive(false);
+    setTime(timerValue1 * 60);
   };
 
   return (
@@ -126,19 +132,16 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
         <div className="flex flex-row m-2 items-center gap-4">
           <ControlButton
             text={<img src={resetSvg} alt="Reset" />}
-            onClick={() => {
-              setIsActive(false);
-              setTime(timerValue1 * 60);
-            }}
+            onClick={resetTimer}
           />
 
           <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center relative">
             <div className="flex flex-row m-2 items-center justify-center gap-4">
               <audio ref={tickingRef} preload="auto" src={selectedTicking} />
-              <span className="block w-[3.4rem] text-left p-1 m-1 ">
+              <span className="block w-[3.4rem] text-left p-1 m-1">
                 {formatTime(time)}
               </span>
-
+              <LiveTime />
               <audio ref={audioRef} preload="auto" src={selectedAlarm}></audio>
             </div>
           </div>
@@ -163,7 +166,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
               </>
             )
           }
-          onClick={() => toggleTimer()}
+          onClick={toggleTimer}
         />
         <div className="container mx-auto mt-8">
           <ProgressBar value={progress} />

@@ -68,7 +68,7 @@ type SoundProviderProps = {
 
 export const SoundProvider: React.FC<SoundProviderProps> = ({ children }) => {
   const [selectedAlarm, setSelectedAlarm] = useState<string>(Kitchen);
-  const [selectedTicking, setSelectedTicking] = useState<string>("");
+  const [selectedTicking, setSelectedTicking] = useState<string>(BackTickle);
   const [audioVolume1, setAudioVolume1] = useState<number>(0.5);
   const [audioVolume2, setAudioVolume2] = useState<number>(0.5);
   const setAlarm = (alarm: string) => {
