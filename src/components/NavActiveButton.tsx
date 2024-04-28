@@ -19,10 +19,10 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <a
       href="#"
-      className={` ${className} ${isActive ? "border-white " : ""} 
-      ${disabled ? " opacity-50 cursor-not-allowed" : ""}
-      `}
-      onClick={disabled ? undefined : onClick}>
+      className={`${className} ${isActive ? "border-white " : ""} 
+      ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
+      onClick={disabled ? undefined : onClick}
+      style={{ pointerEvents: disabled ? "none" : "auto" }}>
       {children}
     </a>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SelectedPage } from "@/shared/types";
 import { ControlButton } from "../components/ButtonComponents";
 import { useSoundContext } from "@/components/SoundContext";
@@ -8,7 +8,6 @@ import pauseSvg from "@/assets/pause.svg";
 import resetSvg from "@/assets/reset.svg";
 import nextSvg from "@/assets/next.svg";
 import ProgressBar from "@/components/ProgressBar";
-import LiveTime from "@/components/LiveTime";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -141,7 +140,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
               <span className="block w-[3.4rem] text-left p-1 m-1">
                 {formatTime(time)}
               </span>
-              <LiveTime />
+
               <audio ref={audioRef} preload="auto" src={selectedAlarm}></audio>
             </div>
           </div>
