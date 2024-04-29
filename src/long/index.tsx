@@ -127,7 +127,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
           }}
         />
         {/* <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center"> */}
-        <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center">
+        <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold text-lg flex items-center justify-center relative lg:w-36 xl:w-48 2xl:w-56">
           <div className="flex flex-row m-2 absolute items-center  gap-4">
             <audio ref={tickingRef} preload="auto" src={selectedTicking} />
             <span className="block w-[3.4rem] text-left p-1 m-1 ">

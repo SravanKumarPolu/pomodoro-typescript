@@ -33,15 +33,15 @@ function App() {
       className={`w-full    top-0   overflow-hidden shadow-md  ${
         isDarkMode ? "bg-gray-700" : selectedColor
       }`}>
-      <div>
+      <section>
         <Navbar
           selectedPage={selectedPage}
           setSelectedPage={setSelectedPage}
           isTopOfPage={isTopOfPage}
           onClose={handleClose}
         />
-      </div>
-      <section className="xl:padding-l wide:padding-r padding-b  ">
+      </section>
+      <section>
         <Hero
           selectedPage={selectedPage}
           setSelectedPage={setSelectedPage}
