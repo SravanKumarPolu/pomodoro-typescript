@@ -127,14 +127,14 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
   return (
     <>
-      <div className="flex justify-center items-center flex-col">
+      <div className="h-96 md:h-80 lg:h-72 xl:h-64 2xl:h-56 w-full md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-1/3 flex items-center justify-center flex-col">
         <div className="flex flex-row m-2 items-center gap-4">
           <ControlButton
             text={<img src={resetSvg} alt="Reset" />}
             onClick={resetTimer}
           />
 
-          <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold flex items-center justify-center relative">
+          <div className="w-28 z-1 h-28 bg-white rounded-full text-blue-500 font-semibold text-lg flex items-center justify-center relative lg:w-36 xl:w-48 2xl:w-56">
             <div className="flex flex-row m-2 items-center justify-center gap-4">
               <audio ref={tickingRef} preload="auto" src={selectedTicking} />
               <span className="block w-[3.4rem] text-left p-1 m-1">
@@ -167,7 +167,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
           }
           onClick={toggleTimer}
         />
-        <div className="container mx-auto mt-8">
+        <div className="container mx-auto mt-8 pt-4">
           <ProgressBar value={progress} />
         </div>
       </div>
