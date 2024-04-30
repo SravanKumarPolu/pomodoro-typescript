@@ -16,6 +16,12 @@ type Props = {
 const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue2, formatTime } = useTimerContext();
+  const [time, setTime] = useState<number>(timerValue2 * 60);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const tickingRef = useRef<HTMLAudioElement>(null);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
   const {
     selectedAlarm,
     selectedTicking,
@@ -23,9 +29,28 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
     audioVolume1,
     audioVolume2,
   } = useSoundContext();
-  const [time, setTime] = useState(timerValue2);
-  const tickingRef = useRef<HTMLAudioElement>(null);
-  const [progress, setProgress] = useState(0);
+
+  const handleTimerCompletion = () => {
+    setIsActive(false);
+    setTime(timerValue2 * 60);
+
+    const audio = audioRef.current;
+    if (audio) {
+      audio.volume = audioVolume1;
+      audio
+        .play()
+        .then(() => {
+          setTimeout(() => {
+            console.log("hi");
+            setSelectedPage(SelectedPage.ShortBreak);
+          }, 10000); // Adjust the duration as needed
+        })
+        .catch((error: any) => {
+          console.error(error);
+        });
+    }
+  };
+
   useEffect(() => {
     setTime(timerValue2 * 60);
     setProgress(0);
@@ -36,13 +61,15 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
     const formattedPercentage = Math.max(percentage, 0).toFixed(1);
 
     setProgress(parseFloat(formattedPercentage));
-  }, [time, timerValue2]);
+  }, [timerValue2, time]);
 
   useEffect(() => {
     setTicking(selectedTicking);
   }, [selectedTicking, setTicking]);
+
   useEffect(() => {
     const tickingAudio = tickingRef.current;
+
     if (isActive && tickingAudio) {
       tickingAudio.play();
       tickingAudio.volume = audioVolume2;
@@ -53,42 +80,48 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
     }
   }, [isActive, audioVolume2]);
 
-  const toggleTimer = () => {
-    setIsActive(!isActive);
-    const tickingAudio = tickingRef.current;
-    if (tickingAudio) {
-      if (!isActive) {
-        tickingAudio.play();
-        tickingAudio.loop = true;
-      } else {
-        tickingAudio.pause();
-        tickingAudio.currentTime = 0;
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
       }
+    };
+  }, []);
+
+  const startTimer = () => {
+    intervalRef.current = setInterval(() => {
+      setTime((prevTime) => {
+        if (prevTime === 0) {
+          clearInterval(intervalRef.current!);
+          handleTimerCompletion();
+          return prevTime;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+  };
+
+  const stopTimer = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
     }
   };
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const handleTimerCompletion = () => {
+
+  const toggleTimer = () => {
+    setIsActive((prevActive) => {
+      if (!prevActive) {
+        startTimer();
+      } else {
+        stopTimer();
+      }
+      return !prevActive;
+    });
+  };
+
+  const resetTimer = () => {
+    stopTimer();
     setIsActive(false);
     setTime(timerValue2 * 60);
-
-    const audio = audioRef.current;
-    if (audio) {
-      var audioPlay = audio.play();
-      audio.volume = audioVolume1;
-      audioPlay
-        .then(() => {
-          setTimeout(() => {
-            console.log("hi");
-          }, 2000);
-        })
-        .catch((error: any) => {
-          console.error(error);
-        });
-      const audioDuration = 10000;
-      setTimeout(() => {
-        setSelectedPage(SelectedPage.Pomodoro);
-      }, audioDuration);
-    }
   };
 
   useEffect(() => {
