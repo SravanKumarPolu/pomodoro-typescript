@@ -134,7 +134,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
               <img
                 src={resetSvg}
                 alt="Reset"
-                className="w-full sm:w-10 md:w-12 lg:w-14 "
+                className="w-full sm:w-10 md:w-12 lg:w-14"
               />
             }
             onClick={resetTimer}
@@ -148,16 +148,15 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
                 src={selectedTicking}
                 className="hidden md:block"
               />
-
               <span className="block md:w-20 lg:w-24 xl:w-32 2xl:w-40 text-left p-1 m-1">
                 {formatTime(time)}
               </span>
-
               <audio
                 ref={audioRef}
                 preload="auto"
                 src={selectedAlarm}
-                className="hidden md:block"></audio>
+                className="hidden md:block"
+              />
             </div>
           </div>
 
@@ -166,37 +165,32 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
               <img
                 src={nextSvg}
                 alt="Next"
-                className="w-full sm:w-10 md:w-12 lg:w-14 "
+                className="w-full sm:w-10 md:w-12 lg:w-14"
               />
             }
-            onClick={() => {
-              setSelectedPage(SelectedPage.ShortBreak);
-            }}
+            onClick={() => setSelectedPage(SelectedPage.ShortBreak)}
           />
         </div>
 
         <ControlButton
           text={
             isActive ? (
-              <>
-                <img
-                  src={pauseSvg}
-                  alt="Pause"
-                  className="w-full sm:w-10 md:w-12 lg:w-14 "
-                />
-              </>
+              <img
+                src={pauseSvg}
+                alt="Pause"
+                className="w-full sm:w-10 md:w-12 lg:w-14"
+              />
             ) : (
-              <>
-                <img
-                  src={playSvg}
-                  alt="Play"
-                  className="w-full sm:w-10 md:w-12 lg:w-14 "
-                />
-              </>
+              <img
+                src={playSvg}
+                alt="Play"
+                className="w-full sm:w-10 md:w-12 lg:w-14"
+              />
             )
           }
           onClick={toggleTimer}
         />
+
         <div className="container mx-auto mt-8 pt-4">
           <ProgressBar value={progress} />
         </div>
