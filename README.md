@@ -7,5 +7,6 @@ This  is mainly focus on time mangement that the reason  i created Pomodoro time
  2. TypeScript
  3. Tailwind
 
-### My wesite  click [Task with Breaks](https://pomoto12.netlify.app/){:target="_blank"}
+### My website click <a href="https://pomoto12.netlify.app/" target="_blank">Task with Breaks</a>
+
 
