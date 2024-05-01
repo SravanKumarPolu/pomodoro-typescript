@@ -127,36 +127,29 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
   return (
     <>
-      <div className="h-96 md:h-80 lg:h-72 xl:h-64 2xl:h-56 w-full md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-1/3 flex items-center justify-center flex-col">
+      <div className="h-96 md:h-80 lg:h-72 xl:h-64 2xl:h-56 w-full md:mt-8 lg:mt-10 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-1/3 flex items-center justify-center flex-col">
         <div className="flex flex-row m-2 items-center gap-4">
           <ControlButton
             text={
               <img
                 src={resetSvg}
                 alt="Reset"
-                className="w-full sm:w-10 md:w-12 lg:w-14"
+                className="w-10 sm:w-10 md:w-12 lg:w-14"
               />
             }
             onClick={resetTimer}
           />
 
-          <div className="z-1 h-full w-full md:h-40 md:w-40 lg:h-48 xl:h-56 2xl:h-64 mt-10 bg-white rounded-full text-blue-500 font-semibold text-lg flex items-center justify-center relative lg:w-48 xl:w-56 2xl:w-64">
-            <div className="flex flex-row m-2 items-center justify-center gap-4">
-              <audio
-                ref={tickingRef}
-                preload="auto"
-                src={selectedTicking}
-                className="hidden md:block"
-              />
-              <span className="block md:w-20 lg:w-24 xl:w-32 2xl:w-40 text-left p-1 m-1">
+          <div
+            className=" z-1 h-32 w-32 md:h-40 md:w-40 lg:h-48 xl:h-56 2xl:h-64  bg-white rounded-full text-blue-500 font-semibold
+           text-lg flex items-center justify-center relative lg:w-48 xl:w-56 2xl:w-64">
+            <div className="flex flex-row m-2 absolute items-center  gap-4">
+              <audio ref={tickingRef} preload="auto" src={selectedTicking} />
+              <span className="block w-[3.4rem] text-left p-1 m-1 ">
                 {formatTime(time)}
               </span>
-              <audio
-                ref={audioRef}
-                preload="auto"
-                src={selectedAlarm}
-                className="hidden md:block"
-              />
+
+              <audio ref={audioRef} preload="auto" src={selectedAlarm} />
             </div>
           </div>
 
@@ -165,32 +158,37 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
               <img
                 src={nextSvg}
                 alt="Next"
-                className="w-full sm:w-10 md:w-12 lg:w-14"
+                className="w-10 sm:w-10 md:w-12 lg:w-14"
               />
             }
-            onClick={() => setSelectedPage(SelectedPage.ShortBreak)}
+            onClick={() => {
+              setSelectedPage(SelectedPage.ShortBreak);
+            }}
           />
         </div>
 
         <ControlButton
           text={
             isActive ? (
-              <img
-                src={pauseSvg}
-                alt="Pause"
-                className="w-full sm:w-10 md:w-12 lg:w-14"
-              />
+              <>
+                <img
+                  src={pauseSvg}
+                  alt="Pause"
+                  className="w-10 sm:w-10 md:w-12 lg:w-14"
+                />
+              </>
             ) : (
-              <img
-                src={playSvg}
-                alt="Play"
-                className="w-full sm:w-10 md:w-12 lg:w-14"
-              />
+              <>
+                <img
+                  src={playSvg}
+                  alt="Play"
+                  className="w-10 sm:w-10 md:w-12 lg:w-14"
+                />
+              </>
             )
           }
           onClick={toggleTimer}
         />
-
         <div className="container mx-auto mt-8 pt-4">
           <ProgressBar value={progress} />
         </div>

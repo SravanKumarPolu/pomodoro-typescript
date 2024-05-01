@@ -35,7 +35,6 @@ const alarmOptions = [
 ];
 
 const tickingOptions = [
-  { label: "None", value: "" },
   { label: "TickingFast", value: TickingFast },
   { label: "TickingSlow", value: TickingSlow },
   { label: "Ticking-Tension", value: TickleTension },
@@ -43,6 +42,7 @@ const tickingOptions = [
   { label: "Back-Tickle", value: BackTickle },
   { label: "BrownNoise", value: BrownNoise },
   { label: "WhiteNoise", value: WhiteNoise },
+  { label: "None", value: "" },
 ];
 
 type SoundContextProps = {

@@ -89,9 +89,9 @@ const Hero: React.FC<Props> = ({
               ? "bg-white-700"
               : "pb-4 bg-gradient-to-b from-gray-600 via-pink-500 to-selectedColor-400"
           }`}>
-          <div className="flex flex-col m-2 my-4 gap-4 xs:my-2 py-2 px-4 xs:flex-row">
+          <div className="flex flex-col m-2 my-4 gap-4  xs:my-2 py-2 px-4 xs:flex-row">
             <button
-              className="text-white py-2 px-4 rounded-lg w-full xs:w-auto mb-2 xs:mb-0 xs:mr-2"
+              className=" text-white"
               onClick={() => setSelectedPage(SelectedPage.ShortBreak)}>
               <Link
                 page="Short Break"
@@ -100,9 +100,8 @@ const Hero: React.FC<Props> = ({
                 setSelectedPage={setSelectedPage}
               />
             </button>
-
             <button
-              className="text-white py-2 px-4 rounded-lg w-full xs:w-auto mb-2 xs:mb-0 xs:mr-2"
+              className="text-white "
               onClick={() => setSelectedPage(SelectedPage.Pomodoro)}>
               <Link
                 page="Pomodoro"
@@ -113,7 +112,7 @@ const Hero: React.FC<Props> = ({
             </button>
 
             <button
-              className="text-white py-2 px-4 rounded-lg w-full xs:w-auto"
+              className=" text-white"
               onClick={() => setSelectedPage(SelectedPage.LongBreak)}>
               <Link
                 page="Long Break"
@@ -123,7 +122,6 @@ const Hero: React.FC<Props> = ({
               />
             </button>
           </div>
-
           {renderPage()}
         </div>
         <div className="flex   justify-center flex-wrapper  pt-2">
