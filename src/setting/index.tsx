@@ -41,9 +41,9 @@ const Setting = ({ onClose }: Props) => {
           </button>
         </div>
         <div className="p-4 flex flex-col">
-          <div className="border-b-2 border-white-500 px-1 pb-1">
+          <div className="border-b-2 border-white-500 p-1 ">
             <div
-              className="flex flex-row cursor-pointer"
+              className="flex flex-row p-1 cursor-pointer"
               onClick={() => toggleAccordion("timer")}>
               <img src={TimerSvg} width={20} height={20} />
               <h2>Timer</h2>
@@ -55,7 +55,7 @@ const Setting = ({ onClose }: Props) => {
 
           <div className="border-b-2 border-white-500 p-1">
             <div
-              className="flex flex-row cursor-pointer"
+              className="flex flex-row p-1 cursor-pointer"
               onClick={() => toggleAccordion("task")}>
               <img src={TaskSvg} width={20} height={20} />
               <h2>Task</h2>
@@ -67,7 +67,7 @@ const Setting = ({ onClose }: Props) => {
 
           <div className="border-b-2 border-white-500 p-1">
             <div
-              className="flex flex-row p-1 cursor-pointer"
+              className="flex flex-row p-1  cursor-pointer"
               onClick={() => toggleAccordion("sound")}>
               <img src={SoundSvg} width={20} height={20} />
               <h2 className="ml-1">Sound</h2>

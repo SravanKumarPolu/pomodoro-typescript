@@ -147,10 +147,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
       <div className="flex flex-row m-2 items-center gap-4">
         <ControlButton
           text={<img src={resetSvg} alt="Reset" />}
-          onClick={() => {
-            setTime(timerValue2 * 60);
-            setIsActive(false);
-          }}
+          onClick={resetTimer}
         />
 
         <div
