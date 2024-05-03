@@ -127,7 +127,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
   };
 
   return (
-    <div className="h-96 md:h-80 lg:h-72 xl:h-64 md:mt-8 lg:mt-10 2xl:h-56 w-full md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-1/3 flex items-center justify-center flex-col">
+    <div className=" w-full  flex items-center justify-center flex-col">
       <div className="flex flex-row  m-2 items-center gap-4">
         <ControlButton
           text={
@@ -182,7 +182,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
         }
         onClick={() => toggleTimer()}
       />
-      <div className="container mx-auto mt-8 pt-4">
+      <div className="w-[70%] md:w-[50%] mx-auto mt-8 pt-4">
         <ProgressBar value={progress} />
       </div>
     </div>

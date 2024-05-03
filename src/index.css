@@ -13,13 +13,14 @@ body,
   font-family: "DM Sans", sans-serif;
   color: black; /* Instead of @apply text-black */
 }
+/* Example of media query for larger screens */
 
-@media (max-width: 100px) {
+/* @media (max-width: 100px) {
   body {
     width: 80vh;
     height: 100px;
   }
-}
+} */
 
 .selected-color {
   border: 2px solid black;
