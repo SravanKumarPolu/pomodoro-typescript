@@ -36,7 +36,7 @@ const Link = ({
 
   return (
     <AnchorLink
-      className={`flex flex-row items-center ${
+      className={`flex flex-row items-center md:text-xl md:py-2 ${
         selectedPage === (src || lowerCasePage) ? "text-white " : "text-white "
       }
        transition duration-500 py-1 px-[.5px]`}

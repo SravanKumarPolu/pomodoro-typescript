@@ -29,7 +29,7 @@ function App() {
   const { isDarkMode } = useDarkMode();
   const { selectedColor } = useColor();
   return (
-    <main
+    <div
       className={`w-full    top-0   overflow-hidden shadow-md  ${
         isDarkMode ? "bg-gray-700" : selectedColor
       }`}>
@@ -48,7 +48,7 @@ function App() {
           isTopOfPage={isTopOfPage}
         />
       </section>
-    </main>
+    </div>
   );
 }
 

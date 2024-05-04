@@ -49,14 +49,19 @@ const Navbar = ({
   return (
     <>
       <header
-        className=" absolute z-20    
+        className=" absolute  h-[10%]   
     
     ">
-        <nav className="sticky">
+        <nav
+          className="h-[10%] 
+          ">
           <div
-            className={` ${navbarBackground} ${flexBetween} fixed   top-0 z-30 w-full pb-5 sm:py-4 `}>
+            className={` ${navbarBackground} ${flexBetween} fixed  h-[10%] 
+            
+            top-0 z-30 w-full pb-5 sm:py-4 `}>
             <motion.div
-              className=" flex w-full  relative flex-col justify-center items-center mx-auto  ml-[-.1rem] border-none md:flex-row"
+              className=" flex w-full  relative flex-col justify-center
+               items-center mx-auto  ml-[-.1rem] border-none md:flex-row"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.5 }}
