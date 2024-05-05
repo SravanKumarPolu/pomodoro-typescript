@@ -76,21 +76,21 @@ const Hero: React.FC<Props> = ({
   };
   const { isDarkMode } = useDarkMode();
   return (
-    <div className="mt-[6rem]  w-screen h-screen md:mt-[5%]">
+    <div className=" flex mt-[6rem]  w-screen h-screen ">
       <div
-        className={`flex flex-col ${
+        className={`flex flex-row ${
           isDarkMode ? "bg-slate-700" : selectedColor
         } flex h-full py-9 flex-col items-center  ${
           isAboveMediumScreens ? "w-full" : "w-full"
         } rounded-sm text-white relative`}>
         <div
-          className={`flex flex-col   w-5/6 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-1/3 h-full  md:h-3/4 lg:h-2/3 xl:h-1/2 2xl:h-1/3 
+          className={`flex flex-col   w-5/6   
             items-center rounded justify-center gap-4 md:mb-5  md:gap-10 ${
               isDarkMode
                 ? "bg-white-700"
                 : "pb-4 bg-gradient-to-b from-gray-600 via-pink-500 to-selectedColor-400"
             }`}>
-          <section className="flex flex-col m-2 my-4 gap-4  xs:my-2 py-2 px-4 xs:flex-row">
+          <section className="flex flex-col sm:flex-col md:flex-row xl:flex-row m-2 my-4 gap-4  xs:my-2 py-2 px-4 xs:flex-row">
             <button
               className="  text-white "
               onClick={() => setSelectedPage(SelectedPage.ShortBreak)}>

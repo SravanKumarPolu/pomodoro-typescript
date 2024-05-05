@@ -28,7 +28,7 @@ const Navbar = ({
 
   onClose,
 }: Props) => {
-  const flexBetween = "flex items-center justify-between";
+  const flexBetween = "flex flex-col py-8 items-center justify-between";
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
   const navbarBackground = isTopOfPage
     ? ""
@@ -48,173 +48,166 @@ const Navbar = ({
 
   return (
     <>
-      <header
-        className=" absolute  h-[10%]   
-    
-    ">
-        <nav
-          className="h-[10%] 
-          ">
-          <div
-            className={` ${navbarBackground} ${flexBetween} fixed  h-[10%] 
+      <nav className=" flex  h-auto w-screen">
+        <div
+          className={` fixed  ${navbarBackground} ${flexBetween}
             
-            top-0 z-30 w-full pb-5 sm:py-4 `}>
+            top-0 z-30 py-3 w-full     `}>
+          <motion.div
+            className=" flex w-full  relative flex-col justify-center
+               items-center mx-auto  py-0  border-none md:flex-row"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 1.5 }}
+            variants={{
+              hidden: { opacity: 0, x: -50 },
+              visible: { opacity: 1, x: 0 },
+            }}>
+            <HText>
+              <span className="pl-2">Task & Breaks</span>
+            </HText>
             <motion.div
-              className=" flex w-full  relative flex-col justify-center
-               items-center mx-auto  ml-[-.1rem] border-none md:flex-row"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 1.5 }}
               variants={{
-                hidden: { opacity: 0, x: -50 },
+                hidden: { opacity: 0, x: 150 },
                 visible: { opacity: 1, x: 0 },
               }}>
-              <HText>
-                <span className="pl-2">Task & Breaks</span>
-              </HText>
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 1.5 }}
-                variants={{
-                  hidden: { opacity: 0, x: 150 },
-                  visible: { opacity: 1, x: 0 },
-                }}>
-                {isAboveMediumScreens ? (
-                  <div className="flex flex-row  ">
-                    <Button
-                      className={` cursor-none flex flex-row mx-1 text-opacity-0 items-center px-4 gap-[2px]   rounded-sm relative    ${
-                        isDarkMode ? "bg-white bg-opacity-80" : ""
-                      } `}
-                      isActive={selectedPage === SelectedPage.Report}
-                      disabled={true}
-                      onClick={() => setSelectedPage(SelectedPage.Report)}>
-                      <Links
-                        src={reportsvg}
-                        width={20}
-                        height={20}
-                        selectedPage={selectedPage}
-                        setSelectedPage={setSelectedPage}
-                      />
-                      <Links
-                        className=""
-                        page="Report"
-                        selectedPage={selectedPage}
-                        setSelectedPage={setSelectedPage}
-                      />
-                    </Button>
+              {isAboveMediumScreens ? (
+                <div className="flex flex-row  ">
+                  <Button
+                    className={` cursor-none flex  mx-1 text-opacity-0 items-center px-4 gap-[2px]   rounded-sm relative    ${
+                      isDarkMode ? "bg-white bg-opacity-80" : ""
+                    } `}
+                    isActive={selectedPage === SelectedPage.Report}
+                    disabled={true}
+                    onClick={() => setSelectedPage(SelectedPage.Report)}>
+                    <Links
+                      src={reportsvg}
+                      width={20}
+                      height={20}
+                      selectedPage={selectedPage}
+                      setSelectedPage={setSelectedPage}
+                    />
+                    <Links
+                      className=""
+                      page="Report"
+                      selectedPage={selectedPage}
+                      setSelectedPage={setSelectedPage}
+                    />
+                  </Button>
 
-                    <Button
-                      className={`flex flex-row mx-1  items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white  focusa:border-white focus-within:border-white ${
-                        isDarkMode ? "bg-white bg-opacity-80" : ""
-                      }`}
-                      isActive={selectedPage === SelectedPage.Setting}
-                      onClick={() => handleSettingClick(SelectedPage.Setting)}>
-                      <Links
-                        src={settingsvg}
-                        width={20}
-                        height={20}
-                        selectedPage={selectedPage}
-                        setSelectedPage={setSelectedPage}
-                      />
-                      <Links
-                        page="Setting"
-                        selectedPage={selectedPage}
-                        setSelectedPage={setSelectedPage}
-                      />
-                    </Button>
-                    <Button
-                      className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-not-allowed rounded-sm relative ${
-                        isDarkMode ? "bg-white bg-opacity-80" : ""
-                      }`}
-                      isActive={selectedPage === SelectedPage.Login}
-                      onClick={() => setSelectedPage(SelectedPage.Login)}
-                      disabled={true}
-                      // onClick={() => handleSettingClick(SelectedPage.Login)}
-                    >
-                      <Links
-                        src={loginsvg}
-                        width={20}
-                        height={20}
-                        selectedPage={selectedPage}
-                        setSelectedPage={setSelectedPage}
-                      />
-                      <Links
-                        page="Login"
-                        selectedPage={selectedPage}
-                        setSelectedPage={setSelectedPage}
-                      />
-                    </Button>
-                  </div>
-                ) : (
-                  <div className="flex   items-center relative ">
-                    <Button
-                      className={`flex flex-row  items-center m-2   rounded-md px-2 relative ${
-                        isDarkMode ? "bg-white bg-opacity-80" : ""
-                      }`}
-                      isActive={selectedPage === SelectedPage.Report}
-                      disabled={true}
-                      onClick={() => setSelectedPage(SelectedPage.Report)}
+                  <Button
+                    className={`flex flex-row mx-1  items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white  focusa:border-white focus-within:border-white ${
+                      isDarkMode ? "bg-white bg-opacity-80" : ""
+                    }`}
+                    isActive={selectedPage === SelectedPage.Setting}
+                    onClick={() => handleSettingClick(SelectedPage.Setting)}>
+                    <Links
+                      src={settingsvg}
+                      width={20}
+                      height={20}
+                      selectedPage={selectedPage}
+                      setSelectedPage={setSelectedPage}
+                    />
+                    <Links
+                      page="Setting"
+                      selectedPage={selectedPage}
+                      setSelectedPage={setSelectedPage}
+                    />
+                  </Button>
+                  <Button
+                    className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-not-allowed rounded-sm relative ${
+                      isDarkMode ? "bg-white bg-opacity-80" : ""
+                    }`}
+                    isActive={selectedPage === SelectedPage.Login}
+                    onClick={() => setSelectedPage(SelectedPage.Login)}
+                    disabled={true}
+                    // onClick={() => handleSettingClick(SelectedPage.Login)}
+                  >
+                    <Links
+                      src={loginsvg}
+                      width={20}
+                      height={20}
+                      selectedPage={selectedPage}
+                      setSelectedPage={setSelectedPage}
+                    />
+                    <Links
+                      page="Login"
+                      selectedPage={selectedPage}
+                      setSelectedPage={setSelectedPage}
+                    />
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex    items-center relative ">
+                  <Button
+                    className={`flex flex-row  items-center m-2   rounded-md px-2 relative ${
+                      isDarkMode ? "bg-white bg-opacity-80" : ""
+                    }`}
+                    isActive={selectedPage === SelectedPage.Report}
+                    disabled={true}
+                    onClick={() => setSelectedPage(SelectedPage.Report)}
 
-                      // onClick={() => handleSettingClick(SelectedPage.Report)}
-                    >
-                      <Links
-                        src={reportsvg}
-                        width={24}
-                        height={24}
-                        selectedPage={selectedPage}
-                        setSelectedPage={setSelectedPage}
-                      />
-                    </Button>
+                    // onClick={() => handleSettingClick(SelectedPage.Report)}
+                  >
+                    <Links
+                      src={reportsvg}
+                      width={24}
+                      height={24}
+                      selectedPage={selectedPage}
+                      setSelectedPage={setSelectedPage}
+                    />
+                  </Button>
 
-                    <button
-                      className={`flex flex-row  items-center m-2 cursor-pointer  rounded-md px-2 relative ${
-                        isDarkMode ? "bg-white bg-opacity-80" : ""
-                      }`}
-                      onClick={() => handleSettingClick(SelectedPage.Setting)}>
-                      <Links
-                        src={settingsvg}
-                        width={24}
-                        height={24}
-                        selectedPage={selectedPage}
-                        setSelectedPage={setSelectedPage}
-                      />
-                    </button>
+                  <button
+                    className={`flex flex-row  items-center m-2 cursor-pointer  rounded-md px-2 relative ${
+                      isDarkMode ? "bg-white bg-opacity-80" : ""
+                    }`}
+                    onClick={() => handleSettingClick(SelectedPage.Setting)}>
+                    <Links
+                      src={settingsvg}
+                      width={24}
+                      height={24}
+                      selectedPage={selectedPage}
+                      setSelectedPage={setSelectedPage}
+                    />
+                  </button>
 
-                    <Button
-                      className={`flex flex-row border-none items-center m-2  border-2 rounded-md px-2 relative ${
-                        isDarkMode ? "bg-white bg-opacity-80" : ""
-                      }`}
-                      isActive={selectedPage === SelectedPage.Login}
-                      onClick={() => setSelectedPage(SelectedPage.Login)}
-                      disabled={true}
-                      // onClick={() => handleSettingClick(SelectedPage.Login)}
-                    >
-                      <Links
-                        src={loginsvg}
-                        width={24}
-                        height={24}
-                        selectedPage={selectedPage}
-                        setSelectedPage={setSelectedPage}
-                      />
-                    </Button>
-                  </div>
-                )}
-              </motion.div>
+                  <Button
+                    className={`flex flex-row border-none items-center m-2  border-2 rounded-md px-2 relative ${
+                      isDarkMode ? "bg-white bg-opacity-80" : ""
+                    }`}
+                    isActive={selectedPage === SelectedPage.Login}
+                    onClick={() => setSelectedPage(SelectedPage.Login)}
+                    disabled={true}
+                    // onClick={() => handleSettingClick(SelectedPage.Login)}
+                  >
+                    <Links
+                      src={loginsvg}
+                      width={24}
+                      height={24}
+                      selectedPage={selectedPage}
+                      setSelectedPage={setSelectedPage}
+                    />
+                  </Button>
+                </div>
+              )}
             </motion.div>
-          </div>
-        </nav>
+          </motion.div>
+        </div>
+      </nav>
 
-        {showSetting && (
-          <Setting
-            selectedPage={selectedPage}
-            setSelectedPage={setSelectedPage}
-            onClose={handleSettingClose}
-          />
-        )}
-      </header>
+      {showSetting && (
+        <Setting
+          selectedPage={selectedPage}
+          setSelectedPage={setSelectedPage}
+          onClose={handleSettingClose}
+        />
+      )}
     </>
   );
 };

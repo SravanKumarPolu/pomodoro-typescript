@@ -146,19 +146,13 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
     <div className="w-full  flex items-center justify-center flex-col">
       <section className="flex flex-row m-2 items-center gap-4">
         <ControlButton
-          text={
-            <img
-              src={resetSvg}
-              alt="Reset"
-              className="w-10 sm:w-10 md:w-12 lg:w-14"
-            />
-          }
+          text={<img src={resetSvg} alt="Reset" className="w-8" />}
           onClick={resetTimer}
         />
 
         <div
-          className=" z-1 h-32 w-32 md:h-40 md:w-40 lg:h-48 xl:h-56 2xl:h-64  bg-white rounded-full text-blue-500 font-semibold
-           text-lg flex items-center justify-center relative lg:w-48 xl:w-56 2xl:w-64">
+          className=" z-1 h-32 w-32 lg:w-40 lg:h-40 xl:w-44 xl:h-44   bg-white rounded-full text-blue-500 font-semibold
+           text-lg flex items-center justify-center relative ">
           <div className="flex flex-row m-2 absolute items-center  justify-center gap-4">
             <audio ref={tickingRef} preload="auto" src={selectedTicking} />
             <span className="block w-[3.4rem] text-left p-1 m-1  ">
@@ -169,13 +163,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
           </div>
         </div>
         <ControlButton
-          text={
-            <img
-              src={nextSvg}
-              alt="Next"
-              className="w-10 sm:w-10 md:w-12 lg:w-14"
-            />
-          }
+          text={<img src={nextSvg} alt="Next" className="w-8" />}
           onClick={() => setSelectedPage(SelectedPage.Pomodoro)}
         />
       </section>
@@ -183,17 +171,9 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
         <ControlButton
           text={
             isActive ? (
-              <img
-                src={pauseSvg}
-                alt="Pause"
-                className="w-10 sm:w-10 md:w-12 lg:w-14"
-              />
+              <img src={pauseSvg} alt="Pause" className="w-8" />
             ) : (
-              <img
-                src={playSvg}
-                alt="Play"
-                className="w-10 sm:w-10 md:w-12 lg:w-14"
-              />
+              <img src={playSvg} alt="Play" className="w-8" />
             )
           }
           onClick={() => toggleTimer()}
