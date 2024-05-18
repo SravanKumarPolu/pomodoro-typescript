@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-#root,
+/* #root,
 html,
 body,
 .app {
@@ -12,7 +12,7 @@ body,
   width: 100%;
   font-family: "DM Sans", sans-serif;
   color: black; /* Instead of @apply text-black */
-}
+
 /* Example of media query for larger screens */
 
 /* @media (max-width: 100px) {
@@ -36,4 +36,21 @@ body,
 
 .active-link {
   color: black;
+}
+@media (min-width: 1920px) {
+  .your-nav-class {
+    font-size: 1.5rem;
+    padding: 2rem;
+  }
+
+  .your-hero-class {
+    font-size: 1.5rem;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  .your-button-class {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
 }

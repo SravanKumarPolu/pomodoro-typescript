@@ -76,23 +76,22 @@ const Hero: React.FC<Props> = ({
   };
   const { isDarkMode } = useDarkMode();
   return (
-    <div className=" flex mt-[6rem]  w-screen h-screen ">
+    <div className="flex mt-[6rem] w-screen h-screen">
       <div
         className={`flex flex-row ${
           isDarkMode ? "bg-slate-700" : selectedColor
-        } flex h-full py-9 flex-col items-center  ${
+        } flex h-full py-9 flex-col items-center ${
           isAboveMediumScreens ? "w-full" : "w-full"
         } rounded-sm text-white relative`}>
         <div
-          className={`flex flex-col   w-5/6   
-            items-center rounded justify-center gap-4 md:mb-5  md:gap-10 ${
-              isDarkMode
-                ? "bg-white-700"
-                : "pb-4 bg-gradient-to-b from-gray-600 via-pink-500 to-selectedColor-400"
-            }`}>
-          <section className="flex flex-col sm:flex-col md:flex-row xl:flex-row m-2 my-4 gap-4  xs:my-2 py-2 px-4 xs:flex-row">
+          className={`flex flex-col rounded shadow-md w-5/6 items-center justify-center gap-4 md:mb-5 md:gap-10 ${
+            isDarkMode
+              ? "bg-white-700"
+              : "pb-4 bg-gradient-to-b from-gray-600 via-pink-500 to-selectedColor-400"
+          }`}>
+          <section className="flex flex-col sm:flex-col md:flex-row xl:flex-row m-2 my-4 gap-4 xs:my-2 py-2 px-4 xs:flex-row">
             <button
-              className="  text-white "
+              className="text-white"
               onClick={() => setSelectedPage(SelectedPage.ShortBreak)}>
               <Link
                 page="Short Break"
@@ -102,7 +101,7 @@ const Hero: React.FC<Props> = ({
               />
             </button>
             <button
-              className="text-white "
+              className="text-white"
               onClick={() => setSelectedPage(SelectedPage.Pomodoro)}>
               <Link
                 page="Pomodoro"
@@ -111,9 +110,8 @@ const Hero: React.FC<Props> = ({
                 setSelectedPage={setSelectedPage}
               />
             </button>
-
             <button
-              className=" text-white"
+              className="text-white"
               onClick={() => setSelectedPage(SelectedPage.LongBreak)}>
               <Link
                 page="Long Break"
@@ -124,8 +122,7 @@ const Hero: React.FC<Props> = ({
             </button>
           </section>
           <section className="w-screen">{renderPage()}</section>
-
-          <section className="flex   justify-center flex-wrapper  pt-2">
+          <section className="flex justify-center flex-wrapper pt-2">
             <TodoWrapper />
           </section>
         </div>

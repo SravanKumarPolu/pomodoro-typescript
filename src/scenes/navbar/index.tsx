@@ -48,14 +48,11 @@ const Navbar = ({
 
   return (
     <>
-      <nav className=" flex  h-auto w-screen">
+      <nav className="flex h-auto w-screen">
         <div
-          className={` fixed  ${navbarBackground} ${flexBetween}
-            
-            top-0 z-30 py-3 w-full     `}>
+          className={`fixed ${navbarBackground} ${flexBetween} top-0 z-30 py-3 w-full`}>
           <motion.div
-            className=" flex w-full  relative flex-col justify-center
-               items-center mx-auto  py-0  border-none md:flex-row"
+            className="flex w-full relative flex-col justify-center items-center mx-auto py-0 border-none md:flex-row"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
@@ -77,13 +74,13 @@ const Navbar = ({
                 visible: { opacity: 1, x: 0 },
               }}>
               {isAboveMediumScreens ? (
-                <div className="flex flex-row  ">
+                <div className="flex flex-row">
                   <Button
-                    className={` cursor-none flex  mx-1 text-opacity-0 items-center px-4 gap-[2px]   rounded-sm relative    ${
+                    className={`cursor-none flex mx-1 text-opacity-0 items-center px-4 gap-[2px] rounded-sm relative ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
-                    } `}
+                    }`}
                     isActive={selectedPage === SelectedPage.Report}
-                    disabled={true}
+                    disabled
                     onClick={() => setSelectedPage(SelectedPage.Report)}>
                     <Links
                       src={reportsvg}
@@ -93,7 +90,6 @@ const Navbar = ({
                       setSelectedPage={setSelectedPage}
                     />
                     <Links
-                      className=""
                       page="Report"
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
@@ -101,7 +97,7 @@ const Navbar = ({
                   </Button>
 
                   <Button
-                    className={`flex flex-row mx-1  items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white  focusa:border-white focus-within:border-white ${
+                    className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white focus:border-white ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     isActive={selectedPage === SelectedPage.Setting}
@@ -119,15 +115,14 @@ const Navbar = ({
                       setSelectedPage={setSelectedPage}
                     />
                   </Button>
+
                   <Button
                     className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-not-allowed rounded-sm relative ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     isActive={selectedPage === SelectedPage.Login}
                     onClick={() => setSelectedPage(SelectedPage.Login)}
-                    disabled={true}
-                    // onClick={() => handleSettingClick(SelectedPage.Login)}
-                  >
+                    disabled>
                     <Links
                       src={loginsvg}
                       width={20}
@@ -143,17 +138,14 @@ const Navbar = ({
                   </Button>
                 </div>
               ) : (
-                <div className="flex    items-center relative ">
+                <div className="flex items-center relative">
                   <Button
-                    className={`flex flex-row  items-center m-2   rounded-md px-2 relative ${
+                    className={`flex flex-row items-center m-2 rounded-md px-2 relative ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     isActive={selectedPage === SelectedPage.Report}
-                    disabled={true}
-                    onClick={() => setSelectedPage(SelectedPage.Report)}
-
-                    // onClick={() => handleSettingClick(SelectedPage.Report)}
-                  >
+                    disabled
+                    onClick={() => setSelectedPage(SelectedPage.Report)}>
                     <Links
                       src={reportsvg}
                       width={24}
@@ -164,7 +156,7 @@ const Navbar = ({
                   </Button>
 
                   <button
-                    className={`flex flex-row  items-center m-2 cursor-pointer  rounded-md px-2 relative ${
+                    className={`flex flex-row items-center m-2 cursor-pointer rounded-md px-2 relative ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     onClick={() => handleSettingClick(SelectedPage.Setting)}>
@@ -178,14 +170,12 @@ const Navbar = ({
                   </button>
 
                   <Button
-                    className={`flex flex-row border-none items-center m-2  border-2 rounded-md px-2 relative ${
+                    className={`flex flex-row border-none items-center m-2 border-2 rounded-md px-2 relative ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     isActive={selectedPage === SelectedPage.Login}
                     onClick={() => setSelectedPage(SelectedPage.Login)}
-                    disabled={true}
-                    // onClick={() => handleSettingClick(SelectedPage.Login)}
-                  >
+                    disabled>
                     <Links
                       src={loginsvg}
                       width={24}
@@ -199,15 +189,15 @@ const Navbar = ({
             </motion.div>
           </motion.div>
         </div>
-      </nav>
 
-      {showSetting && (
-        <Setting
-          selectedPage={selectedPage}
-          setSelectedPage={setSelectedPage}
-          onClose={handleSettingClose}
-        />
-      )}
+        {showSetting && (
+          <Setting
+            selectedPage={selectedPage}
+            setSelectedPage={setSelectedPage}
+            onClose={handleSettingClose}
+          />
+        )}
+      </nav>
     </>
   );
 };
