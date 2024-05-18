@@ -1,10 +1,8 @@
 import { SelectedPage } from "@/shared/types";
-
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Pomodoro from "@/pomodoro";
 import ShortBreak from "@/short";
 import LongBreak from "@/long";
-
 import { useEffect, useState } from "react";
 import TodoWrapper from "@/todolist/TodoWrapper";
 import { useColor } from "@/components/ColorContex";
@@ -17,12 +15,8 @@ type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-const Hero: React.FC<Props> = ({
-  selectedPage,
-
-  setSelectedPage,
-}: Props) => {
-  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px");
+const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
+  const isAboveMediumScreens = useMediaQuery("(min-width: 768px)");
   const { selectedColor } = useColor();
   const [remainingTime, setRemainingTime] = useState<number>(25 * 60);
 
@@ -91,7 +85,9 @@ const Hero: React.FC<Props> = ({
           }`}>
           <section className="flex flex-col sm:flex-col md:flex-row xl:flex-row m-2 my-4 gap-4 xs:my-2 py-2 px-4 xs:flex-row">
             <button
-              className="text-white"
+              className={`text-white md:text-lg md:w-48 ${
+                isAboveMediumScreens ? "w-full" : "w-full"
+              } ${isAboveMediumScreens ? "h-12" : "h-10"} `}
               onClick={() => setSelectedPage(SelectedPage.ShortBreak)}>
               <Link
                 page="Short Break"
@@ -101,7 +97,9 @@ const Hero: React.FC<Props> = ({
               />
             </button>
             <button
-              className="text-white"
+              className={`text-white md:text-lg md:w-48 ${
+                isAboveMediumScreens ? "w-full" : "w-full"
+              } ${isAboveMediumScreens ? "h-12" : "h-10"} `}
               onClick={() => setSelectedPage(SelectedPage.Pomodoro)}>
               <Link
                 page="Pomodoro"
@@ -111,7 +109,9 @@ const Hero: React.FC<Props> = ({
               />
             </button>
             <button
-              className="text-white"
+              className={`text-white md:text-lg md:w-48 ${
+                isAboveMediumScreens ? "w-full" : "w-full"
+              } ${isAboveMediumScreens ? "h-12" : "h-10"} `}
               onClick={() => setSelectedPage(SelectedPage.LongBreak)}>
               <Link
                 page="Long Break"

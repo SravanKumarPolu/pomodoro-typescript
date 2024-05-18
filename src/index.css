@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* #root,
+#root,
 html,
 body,
 .app {
@@ -12,7 +12,7 @@ body,
   width: 100%;
   font-family: "DM Sans", sans-serif;
   color: black; /* Instead of @apply text-black */
-
+}
 /* Example of media query for larger screens */
 
 /* @media (max-width: 100px) {
