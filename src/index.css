@@ -37,20 +37,3 @@ body,
 .active-link {
   color: black;
 }
-@media (min-width: 1920px) {
-  .your-nav-class {
-    font-size: 1.5rem;
-    padding: 2rem;
-  }
-
-  .your-hero-class {
-    font-size: 1.5rem;
-    padding: 2rem;
-    width: 100%;
-  }
-
-  .your-button-class {
-    font-size: 1.2rem;
-    padding: 1rem;
-  }
-}

@@ -142,8 +142,8 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   }, [isActive, time, setSelectedPage, timerValue2]);
 
   return (
-    <div className="w-full flex items-center justify-center flex-col p-4 lg:p-8 xl:p-12">
-      <section className="flex flex-row items-center gap-4 md:gap-6 xl:gap-8 m-2">
+    <div className="w-full flex items-center justify-center flex-col ">
+      <section className="flex flex-row items-center  m-2">
         <ControlButton
           text={
             <img src={resetSvg} alt="Reset" className="w-8 md:w-10 xl:w-12" />
