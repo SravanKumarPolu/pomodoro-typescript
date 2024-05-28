@@ -78,7 +78,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
           isAboveMediumScreens ? "w-full" : "w-full"
         } rounded-sm text-white relative`}>
         <div
-          className={`flex flex-col rounded shadow-md w-5/6 items-center justify-center gap-4 md:mb-5 md:gap-10 ${
+          className={`flex flex-col rounded shadow-md w-5/6 h-auto items-center justify-center gap-4 md:mb-5 md:gap-10 ${
             isDarkMode
               ? "bg-white-700"
               : "pb-4 bg-gradient-to-b from-gray-600 via-pink-500 to-selectedColor-400"
@@ -122,7 +122,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
             </button>
           </section>
           <section className="w-screen">{renderPage()}</section>
-          <section className="flex justify-center flex-wrapper pt-2">
+          <section className="flex  justify-center flex-wrapper pt-2">
             <TodoWrapper />
           </section>
         </div>

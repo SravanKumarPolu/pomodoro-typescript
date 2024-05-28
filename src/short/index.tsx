@@ -32,21 +32,34 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
   const handleTimerCompletion = () => {
     setIsActive(false);
-    setTime(timerValue2 * 60);
+    setTime(timerValue2 * 60); // Assuming timerValue1 is for short break duration
 
     const audio = audioRef.current;
     if (audio) {
       audio.volume = audioVolume1;
-      audio
-        .play()
-        .then(() => {
-          setTimeout(() => {
-            setSelectedPage(SelectedPage.Pomodoro);
-          }, 3000); // Wait for 3 seconds before switching to the short break
-        })
-        .catch((error: any) => {
-          console.error(error);
-        });
+
+      // Function to play audio and restart it if needed
+      const playAudio = () => {
+        audio.currentTime = 0;
+        audio.play().catch((error) => console.error(error));
+      };
+
+      // Play the audio initially
+      playAudio();
+
+      // Ensure audio plays for at least 5 seconds
+      const intervalId = setInterval(
+        playAudio,
+        Math.max(audio.duration * 1000, 1000)
+      );
+
+      // Stop playing audio after 6 seconds and switch to the Pomodoro page
+      setTimeout(() => {
+        clearInterval(intervalId);
+        audio.pause();
+        audio.currentTime = 0;
+        setSelectedPage(SelectedPage.Pomodoro);
+      }, 6000); // Wait for 6 seconds before switching to Pomodoro
     }
   };
 

@@ -30,6 +30,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
     audioVolume1,
     audioVolume2,
   } = useSoundContext();
+
   const handleTimerCompletion = () => {
     setIsActive(false);
     setTime(timerValue1 * 60);
@@ -37,16 +38,26 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
     const audio = audioRef.current;
     if (audio) {
       audio.volume = audioVolume1;
-      audio
-        .play()
-        .then(() => {
-          setTimeout(() => {
-            setSelectedPage(SelectedPage.ShortBreak);
-          }, 3000); // Wait for 3 seconds before switching to the short break
-        })
-        .catch((error: any) => {
-          console.error(error);
-        });
+
+      // Function to play audio and restart it if needed
+      const playAudio = () => {
+        audio.currentTime = 0;
+        audio.play().catch((error) => console.error(error));
+      };
+
+      // Play the audio initially
+      playAudio();
+
+      // Ensure audio plays for at least 5 seconds
+      const intervalId = setInterval(playAudio, audio.duration * 1000);
+
+      // Stop playing audio after 5 seconds and switch to the short break
+      setTimeout(() => {
+        clearInterval(intervalId);
+        audio.pause();
+        audio.currentTime = 0;
+        setSelectedPage(SelectedPage.ShortBreak);
+      }, 7000); // Wait for 5 seconds before switching to the short break
     }
   };
 
