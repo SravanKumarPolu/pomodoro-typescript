@@ -17,7 +17,8 @@ type Props = {
 const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue1, formatTime } = useTimerContext();
-  const [time, setTime] = useState<number>(timerValue1 * 60);
+  const [, setEndTime] = useState<Date | null>(null);
+  const [remainingTime, setRemainingTime] = useState<number>(timerValue1 * 60);
   const audioRef = useRef<HTMLAudioElement>(null);
   const tickingRef = useRef<HTMLAudioElement>(null);
   const [progress, setProgress] = useState(0);
@@ -33,45 +34,42 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
   const handleTimerCompletion = () => {
     setIsActive(false);
-    setTime(timerValue1 * 60);
+    setEndTime(null);
+    setRemainingTime(timerValue1 * 60);
 
     const audio = audioRef.current;
     if (audio) {
       audio.volume = audioVolume1;
 
-      // Function to play audio and restart it if needed
       const playAudio = () => {
         audio.currentTime = 0;
         audio.play().catch((error) => console.error(error));
       };
 
-      // Play the audio initially
       playAudio();
 
-      // Ensure audio plays for at least 5 seconds
       const intervalId = setInterval(playAudio, audio.duration * 1000);
 
-      // Stop playing audio after 5 seconds and switch to the short break
       setTimeout(() => {
         clearInterval(intervalId);
         audio.pause();
         audio.currentTime = 0;
         setSelectedPage(SelectedPage.ShortBreak);
-      }, 7000); // Wait for 5 seconds before switching to the short break
+      }, 7000);
     }
   };
 
   useEffect(() => {
-    setTime(timerValue1 * 60);
+    setRemainingTime(timerValue1 * 60);
     setProgress(0);
   }, [timerValue1]);
 
   useEffect(() => {
-    const percentage = ((timerValue1 * 60 - time) / (timerValue1 * 60)) * 100;
+    const percentage =
+      ((timerValue1 * 60 - remainingTime) / (timerValue1 * 60)) * 100;
     const formattedPercentage = Math.max(percentage, 0).toFixed(1);
-
     setProgress(parseFloat(formattedPercentage));
-  }, [timerValue1, time]);
+  }, [timerValue1, remainingTime]);
 
   useEffect(() => {
     setTicking(selectedTicking);
@@ -99,15 +97,20 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   }, []);
 
   const startTimer = () => {
+    const end = new Date();
+    end.setMinutes(end.getMinutes() + timerValue1);
+    setEndTime(end);
+
     intervalRef.current = setInterval(() => {
-      setTime((prevTime) => {
-        if (prevTime === 0) {
-          clearInterval(intervalRef.current!);
-          handleTimerCompletion();
-          return prevTime;
-        }
-        return prevTime - 1;
-      });
+      const now = new Date();
+      const distance = end.getTime() - now.getTime();
+
+      if (distance <= 0) {
+        clearInterval(intervalRef.current!);
+        handleTimerCompletion();
+      } else {
+        setRemainingTime(Math.ceil(distance / 1000));
+      }
     }, 1000);
   };
 
@@ -131,7 +134,8 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const resetTimer = () => {
     stopTimer();
     setIsActive(false);
-    setTime(timerValue1 * 60);
+    setEndTime(null);
+    setRemainingTime(timerValue1 * 60);
   };
 
   return (
@@ -149,7 +153,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
             <div className="flex flex-row items-center justify-center absolute gap-4 md:gap-6 xl:gap-8 m-2">
               <audio ref={tickingRef} preload="auto" src={selectedTicking} />
               <span className="block w-[3.4rem] md:w-[4rem] xl:w-[5rem] text-left p-1 m-1">
-                {formatTime(time)}
+                {formatTime(remainingTime)}
               </span>
               <audio ref={audioRef} preload="auto" src={selectedAlarm} />
             </div>

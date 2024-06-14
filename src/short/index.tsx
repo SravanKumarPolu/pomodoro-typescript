@@ -59,7 +59,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
         audio.pause();
         audio.currentTime = 0;
         setSelectedPage(SelectedPage.Pomodoro);
-      }, 6000); // Wait for 6 seconds before switching to Pomodoro
+      }, 7000); // Wait for 6 seconds before switching to Pomodoro
     }
   };
 
