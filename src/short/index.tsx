@@ -16,7 +16,9 @@ type Props = {
 const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue2, formatTime } = useTimerContext();
-  const [time, setTime] = useState<number>(timerValue2 * 60);
+
+  const [, setEndTime] = useState<Date | null>(null);
+  const [remainingTime, setRemainingTime] = useState<number>(timerValue2 * 60);
   const audioRef = useRef<HTMLAudioElement>(null);
   const tickingRef = useRef<HTMLAudioElement>(null);
   const [progress, setProgress] = useState(0);
@@ -32,48 +34,42 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
 
   const handleTimerCompletion = () => {
     setIsActive(false);
-    setTime(timerValue2 * 60); // Assuming timerValue1 is for short break duration
+    setEndTime(null);
+    setRemainingTime(timerValue2 * 60);
 
     const audio = audioRef.current;
     if (audio) {
       audio.volume = audioVolume1;
 
-      // Function to play audio and restart it if needed
       const playAudio = () => {
         audio.currentTime = 0;
         audio.play().catch((error) => console.error(error));
       };
 
-      // Play the audio initially
       playAudio();
 
-      // Ensure audio plays for at least 5 seconds
-      const intervalId = setInterval(
-        playAudio,
-        Math.max(audio.duration * 1000, 1000)
-      );
+      const intervalId = setInterval(playAudio, audio.duration * 1000);
 
-      // Stop playing audio after 6 seconds and switch to the Pomodoro page
       setTimeout(() => {
         clearInterval(intervalId);
         audio.pause();
         audio.currentTime = 0;
         setSelectedPage(SelectedPage.Pomodoro);
-      }, 7000); // Wait for 6 seconds before switching to Pomodoro
+      }, 7000);
     }
   };
 
   useEffect(() => {
-    setTime(timerValue2 * 60);
+    setRemainingTime(timerValue2 * 60);
     setProgress(0);
   }, [timerValue2]);
 
   useEffect(() => {
-    const percentage = ((timerValue2 * 60 - time) / (timerValue2 * 60)) * 100;
+    const percentage =
+      ((timerValue2 * 60 - remainingTime) / (timerValue2 * 60)) * 100;
     const formattedPercentage = Math.max(percentage, 0).toFixed(1);
-
     setProgress(parseFloat(formattedPercentage));
-  }, [timerValue2, time]);
+  }, [timerValue2, remainingTime]);
 
   useEffect(() => {
     setTicking(selectedTicking);
@@ -101,15 +97,20 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   }, []);
 
   const startTimer = () => {
+    const end = new Date();
+    end.setMinutes(end.getMinutes() + timerValue2);
+    setEndTime(end);
+
     intervalRef.current = setInterval(() => {
-      setTime((prevTime) => {
-        if (prevTime === 0) {
-          clearInterval(intervalRef.current!);
-          handleTimerCompletion();
-          return prevTime;
-        }
-        return prevTime - 1;
-      });
+      const now = new Date();
+      const distance = end.getTime() - now.getTime();
+
+      if (distance <= 0) {
+        clearInterval(intervalRef.current!);
+        handleTimerCompletion();
+      } else {
+        setRemainingTime(Math.ceil(distance / 1000));
+      }
     }, 1000);
   };
 
@@ -133,26 +134,9 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
   const resetTimer = () => {
     stopTimer();
     setIsActive(false);
-    setTime(timerValue2 * 60);
+    setEndTime(null);
+    setRemainingTime(timerValue2 * 60);
   };
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-
-    if (isActive && time > 0) {
-      interval = setInterval(() => {
-        setTime((prevTime) => {
-          const newTime = prevTime - 1;
-          Math.floor(((timerValue2 * 60 - newTime) / (timerValue2 * 60)) * 100);
-          return newTime;
-        });
-      }, 1000);
-    } else if (time === 0) {
-      handleTimerCompletion();
-    }
-
-    return () => clearInterval(interval);
-  }, [isActive, time, setSelectedPage, timerValue2]);
 
   return (
     <div className="w-full flex items-center justify-center flex-col ">
@@ -168,7 +152,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
           <div className="flex flex-row items-center justify-center absolute gap-4 md:gap-6 xl:gap-8 m-2">
             <audio ref={tickingRef} preload="auto" src={selectedTicking} />
             <span className="block w-[3.4rem] md:w-[4rem] xl:w-[5rem] text-left p-1 m-1">
-              {formatTime(time)}
+              {formatTime(remainingTime)}
             </span>
             <audio ref={audioRef} preload="auto" src={selectedAlarm} />
           </div>
