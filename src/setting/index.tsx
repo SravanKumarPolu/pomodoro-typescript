@@ -1,5 +1,4 @@
-// Setting.tsx
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { SelectedPage } from "@/shared/types";
 import removesvg from "@/assets/remove.svg";
 import Timer from "@/Timer";
@@ -9,7 +8,6 @@ import Theme from "@/Theme";
 import TaskSvg from "@/assets/task.svg";
 import ThemeSvg from "@/assets/theme.svg";
 import SoundSvg from "@/assets/sound.svg";
-
 import TimerSvg from "@/assets/Timer.svg";
 
 type Props = {
@@ -20,13 +18,33 @@ type Props = {
 
 const Setting = ({ onClose }: Props) => {
   const [accordionOpen, setAccordionOpen] = useState<string | null>(null);
+  const settingRef = useRef<HTMLDivElement>(null); // Reference to the setting div
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        settingRef.current &&
+        !settingRef.current.contains(event.target as Node)
+      ) {
+        onClose(); // Close setting when clicking outside
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [onClose]);
 
   const toggleAccordion = (section: string) => {
     setAccordionOpen((prev) => (prev === section ? null : section));
   };
 
   return (
-    <div className="w-[22rem] sm:w-[20rem] md:w-[24rem] lg:w-[30rem] xl:w-[35rem] 2xl:w-[40rem] z-10 fixed p-4 m-2 mt-24 top-11 sm:mt-10 sm:right-[4rem] sm:fixed">
+    <div
+      ref={settingRef} // Assign the ref to the main div of the setting
+      className="w-[22rem] sm:w-[20rem] md:w-[24rem] lg:w-[30rem] xl:w-[35rem] 2xl:w-[40rem] z-10 fixed p-4 m-2 mt-24 top-11 sm:mt-10 sm:right-[4rem] sm:fixed">
       <div className="bg-white rounded shadow-lg">
         <div className="flex justify-between p-4 border-b-2 border-white-500">
           <h1 className="text-lg font-semibold">Setting</h1>
@@ -41,7 +59,7 @@ const Setting = ({ onClose }: Props) => {
           </button>
         </div>
         <div className="p-4 flex flex-col">
-          <div className="border-b-2 border-white-500 p-1 ">
+          <div className="border-b-2 border-white-500 p-1">
             <div
               className="flex flex-row p-1 cursor-pointer"
               onClick={() => toggleAccordion("timer")}>
@@ -67,7 +85,7 @@ const Setting = ({ onClose }: Props) => {
 
           <div className="border-b-2 border-white-500 p-1">
             <div
-              className="flex flex-row p-1  cursor-pointer"
+              className="flex flex-row p-1 cursor-pointer"
               onClick={() => toggleAccordion("sound")}>
               <img src={SoundSvg} width={20} height={20} />
               <h2 className="ml-1">Sound</h2>
@@ -88,8 +106,6 @@ const Setting = ({ onClose }: Props) => {
               <Theme label={""} />
             </div>
           </div>
-
-          {/* <Notifications /> */}
         </div>
       </div>
     </div>

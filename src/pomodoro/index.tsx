@@ -163,7 +163,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
             text={
               <img src={nextSvg} alt="Next" className="w-8 md:w-10 xl:w-12" />
             }
-            onClick={() => setSelectedPage(SelectedPage.Pomodoro)}
+            onClick={() => setSelectedPage(SelectedPage.ShortBreak)}
           />
         </section>
 
