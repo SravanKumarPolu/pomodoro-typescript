@@ -23,7 +23,7 @@ const Task = ({ label }: Props) => {
           <label htmlFor="toggle1">Auto Switch Tasks {label}</label>
           <div
             onClick={handleToggle1}
-            className={`w-16 h-8 bg-gray-300 rounded-full corsor-pointer p-1 ${
+            className={`w-16 h-8 bg-gray-400 rounded-full corsor-pointer p-1 ${
               isChecked1 ? "bg-green-500" : ""
             }`}>
             <div
@@ -36,7 +36,7 @@ const Task = ({ label }: Props) => {
         <div className="flex items-center mb-4  justify-between">
           <label htmlFor="toggle2">Auto Check Tasks {label}</label>
           <div
-            className={`w-16 h-8 bg-gray-300 rounded-full p-1 cursor-pointer ${
+            className={`w-16 h-8 bg-gray-400 rounded-full p-1 cursor-pointer ${
               isChecked2 ? "bg-green-500" : ""
             }`}
             onClick={handleToggle2}>

@@ -18,7 +18,7 @@ type Props = {
 
 const Setting = ({ onClose }: Props) => {
   const [accordionOpen, setAccordionOpen] = useState<string | null>(null);
-  const settingRef = useRef<HTMLDivElement>(null); // Reference to the setting div
+  const settingRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -26,7 +26,7 @@ const Setting = ({ onClose }: Props) => {
         settingRef.current &&
         !settingRef.current.contains(event.target as Node)
       ) {
-        onClose(); // Close setting when clicking outside
+        onClose();
       }
     };
 
@@ -43,66 +43,69 @@ const Setting = ({ onClose }: Props) => {
 
   return (
     <div
-      ref={settingRef} // Assign the ref to the main div of the setting
-      className="w-[22rem] sm:w-[20rem] md:w-[24rem] lg:w-[30rem] xl:w-[35rem] 2xl:w-[40rem] z-10 fixed p-4 m-2 mt-24 top-11 sm:mt-10 sm:right-[4rem] sm:fixed">
-      <div className="bg-white rounded shadow-lg">
-        <div className="flex justify-between p-4 border-b-2 border-white-500">
-          <h1 className="text-lg font-semibold">Setting</h1>
-          <button className="cursor-pointer" onClick={onClose}>
+      ref={settingRef}
+      className="absolute z-10 p-4 m-4 mt-24 top-11 right-0 sm:mt-10 sm:right-[2rem] md:right-[3rem] lg:right-[7rem] xl:right-[10rem] 2xl:right-[14.3rem]  w-[21.5rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem] xl:w-[36rem] 2xl:w-[26rem]">
+      <div className="bg-white rounded-lg shadow-xl">
+        <div className="flex justify-between items-center p-4 border-b border-gray-200">
+          <h1 className="text-xl font-semibold">Settings</h1>
+          <button onClick={onClose} className="focus:outline-none">
             <img
               width={24}
               height={24}
               src={removesvg}
-              alt=""
+              alt="Close"
               className="filter grayscale"
             />
           </button>
         </div>
-        <div className="p-4 flex flex-col">
-          <div className="border-b-2 border-white-500 p-1">
+        <div className="p-4 space-y-4">
+          <div className="border-b border-gray-200 pb-2">
             <div
-              className="flex flex-row p-1 cursor-pointer"
+              className="flex items-center cursor-pointer"
               onClick={() => toggleAccordion("timer")}>
-              <img src={TimerSvg} width={20} height={20} />
-              <h2>Timer</h2>
+              <img src={TimerSvg} width={20} height={20} alt="Timer" />
+              <h2 className="ml-2 text-lg font-medium">Timer</h2>
             </div>
-            <div className={accordionOpen === "timer" ? "block" : "hidden"}>
+            <div
+              className={accordionOpen === "timer" ? "block mt-2" : "hidden"}>
               <Timer />
             </div>
           </div>
 
-          <div className="border-b-2 border-white-500 p-1">
+          <div className="border-b border-gray-200 pb-2">
             <div
-              className="flex flex-row p-1 cursor-pointer"
+              className="flex items-center cursor-pointer"
               onClick={() => toggleAccordion("task")}>
-              <img src={TaskSvg} width={20} height={20} />
-              <h2>Task</h2>
+              <img src={TaskSvg} width={20} height={20} alt="Task" />
+              <h2 className="ml-2 text-lg font-medium">Task</h2>
             </div>
-            <div className={accordionOpen === "task" ? "block" : "hidden"}>
+            <div className={accordionOpen === "task" ? "block mt-2" : "hidden"}>
               <Task label={""} />
             </div>
           </div>
 
-          <div className="border-b-2 border-white-500 p-1">
+          <div className="border-b border-gray-200 pb-2">
             <div
-              className="flex flex-row p-1 cursor-pointer"
+              className="flex items-center cursor-pointer"
               onClick={() => toggleAccordion("sound")}>
-              <img src={SoundSvg} width={20} height={20} />
-              <h2 className="ml-1">Sound</h2>
+              <img src={SoundSvg} width={20} height={20} alt="Sound" />
+              <h2 className="ml-2 text-lg font-medium">Sound</h2>
             </div>
-            <div className={accordionOpen === "sound" ? "block" : "hidden"}>
+            <div
+              className={accordionOpen === "sound" ? "block mt-2" : "hidden"}>
               <Sound />
             </div>
           </div>
 
-          <div className="border-b-2 border-white-500 p-1">
+          <div className="pb-2">
             <div
-              className="flex flex-row p-1 gap-1 cursor-pointer"
+              className="flex items-center cursor-pointer"
               onClick={() => toggleAccordion("theme")}>
-              <img src={ThemeSvg} width={15} height={15} />
-              <h2>Theme</h2>
+              <img src={ThemeSvg} width={20} height={20} alt="Theme" />
+              <h2 className="ml-2 text-lg font-medium">Theme</h2>
             </div>
-            <div className={accordionOpen === "theme" ? "block" : "hidden"}>
+            <div
+              className={accordionOpen === "theme" ? "block mt-2" : "hidden"}>
               <Theme label={""} />
             </div>
           </div>
