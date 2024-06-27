@@ -27,6 +27,13 @@ export default {
       fontFamily: {
         dmsans: ["DM Sans", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
+
+        roboto: ["Roboto", "sans-serif"],
+        arial: ["Arial", "Helvetica", "sans-serif"],
+        helvetica: ["Helvetica", "Arial"],
+        verdana: ["Verdana", "Geneva", "sans-serif"],
+        geneva: ["Geneva", "Verdana", "sans-serif"],
+        georgia: ["Georgia", "serif"],
       },
     },
   },

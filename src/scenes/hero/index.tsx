@@ -97,7 +97,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
               />
             </button>
             <button
-              className={`text-white md:text-lg md:w-48 ${
+              className={`text-white md:text-lg md:w-48 font-helvetica ${
                 isAboveMediumScreens ? "w-full" : "w-full"
               } ${isAboveMediumScreens ? "h-12" : "h-10"} `}
               onClick={() => setSelectedPage(SelectedPage.Pomodoro)}>

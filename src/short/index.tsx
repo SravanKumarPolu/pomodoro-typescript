@@ -179,7 +179,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
         />
       </section>
 
-      <section className="w-[70%] md:w-[50%] lg:w-[40%] xl:w-[30%] mx-auto mt-8 md:mt-10 xl:mt-12 pt-4">
+      <section className="w-[70%] md:w-[50%] lg:w-[50%] 2xl:w-[60%] mx-auto mt-8 md:mt-10 xl:mt-12 pt-4">
         <ProgressBar value={progress} />
       </section>
     </div>

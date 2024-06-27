@@ -76,7 +76,7 @@ const Navbar = ({
               {isAboveMediumScreens ? (
                 <div className="flex flex-row">
                   <Button
-                    className={`cursor-none flex mx-1 text-opacity-0 items-center px-4 gap-[2px] rounded-sm relative ${
+                    className={`cursor-none flex mx-1 text-opacity-0 items-center px-4 py-2 gap-[2px] rounded-sm relative ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     isActive={selectedPage === SelectedPage.Report}
@@ -97,7 +97,7 @@ const Navbar = ({
                   </Button>
 
                   <Button
-                    className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white focus:border-white ${
+                    className={`flex flex-row mx-1 items-center px-4  py-2 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white focus:border-white ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     isActive={selectedPage === SelectedPage.Setting}
@@ -117,7 +117,7 @@ const Navbar = ({
                   </Button>
 
                   <Button
-                    className={`flex flex-row mx-1 items-center px-4 gap-[2px] cursor-not-allowed rounded-sm relative ${
+                    className={`flex flex-row mx-1 items-center px-4 py-2 gap-[2px] cursor-not-allowed rounded-sm relative ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     isActive={selectedPage === SelectedPage.Login}
