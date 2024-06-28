@@ -1,13 +1,13 @@
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import Pomodoro from "@/pomodoro";
-import ShortBreak from "@/short";
-import LongBreak from "@/long";
+
 import { useEffect, useState } from "react";
 import TodoWrapper from "@/todolist/TodoWrapper";
 import { useColor } from "@/components/ColorContex";
 import { useDarkMode } from "@/components/DarkModeContext";
-import Link from "@/components/ActiveComponent";
+import ShortBreak from "@/short";
+import Pomodoro from "@/pomodoro";
+import LongBreak from "@/long";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -18,57 +18,29 @@ type Props = {
 const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 768px)");
   const { selectedColor } = useColor();
+  const { isDarkMode } = useDarkMode();
+
+  const [selectedTimer, setSelectedTimer] = useState<SelectedPage | null>(null);
   const [remainingTime, setRemainingTime] = useState<number>(25 * 60);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
 
-    timer = setInterval(() => {
-      setRemainingTime((prevTime) => {
-        if (prevTime === 0) {
-          // handleTimeout();
-          clearInterval(timer);
-        }
-        return prevTime - 1;
-      });
-    }, 1000);
+    if (selectedTimer !== null) {
+      timer = setInterval(() => {
+        setRemainingTime((prevTime) => {
+          if (prevTime === 0) {
+            clearInterval(timer);
+            return 0;
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
+    }
 
     return () => clearInterval(timer);
-  }, [selectedPage, setSelectedPage, remainingTime]);
+  }, [selectedTimer]);
 
-  const renderPage = () => {
-    switch (selectedPage) {
-      case SelectedPage.Pomodoro:
-        return (
-          <Pomodoro
-            selectedPage={selectedPage}
-            setSelectedPage={setSelectedPage}
-          />
-        );
-      case SelectedPage.ShortBreak:
-        return (
-          <ShortBreak
-            selectedPage={selectedPage}
-            setSelectedPage={setSelectedPage}
-          />
-        );
-      case SelectedPage.LongBreak:
-        return (
-          <LongBreak
-            selectedPage={selectedPage}
-            setSelectedPage={setSelectedPage}
-          />
-        );
-      default:
-        return (
-          <Pomodoro
-            selectedPage={selectedPage}
-            setSelectedPage={setSelectedPage}
-          />
-        );
-    }
-  };
-  const { isDarkMode } = useDarkMode();
   return (
     <div className="flex mt-[6rem] w-screen h-screen">
       <div
@@ -88,41 +60,47 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
               className={`text-white md:text-lg md:w-48 ${
                 isAboveMediumScreens ? "w-full" : "w-full"
               } ${isAboveMediumScreens ? "h-12" : "h-10"} `}
-              onClick={() => setSelectedPage(SelectedPage.ShortBreak)}>
-              <Link
-                page="Short Break"
-                isActive={selectedPage === "ShortBreak"}
-                selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
-              />
+              onClick={() => setSelectedTimer(SelectedPage.ShortBreak)}>
+              Short Break
             </button>
             <button
               className={`text-white md:text-lg md:w-48 font-helvetica ${
                 isAboveMediumScreens ? "w-full" : "w-full"
               } ${isAboveMediumScreens ? "h-12" : "h-10"} `}
-              onClick={() => setSelectedPage(SelectedPage.Pomodoro)}>
-              <Link
-                page="Pomodoro"
-                isActive={selectedPage === "Pomodoro"}
-                selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
-              />
+              onClick={() => setSelectedTimer(SelectedPage.Pomodoro)}>
+              Pomodoro
             </button>
             <button
               className={`text-white md:text-lg md:w-48 ${
                 isAboveMediumScreens ? "w-full" : "w-full"
               } ${isAboveMediumScreens ? "h-12" : "h-10"} `}
-              onClick={() => setSelectedPage(SelectedPage.LongBreak)}>
-              <Link
-                page="Long Break"
-                isActive={selectedPage === "LongBreak"}
+              onClick={() => setSelectedTimer(SelectedPage.LongBreak)}>
+              Long Break
+            </button>
+          </section>
+
+          <section className="flex justify-center flex-wrapper pt-2">
+            {selectedTimer === SelectedPage.ShortBreak && (
+              <ShortBreak
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
               />
-            </button>
+            )}
+            {selectedTimer === SelectedPage.Pomodoro && (
+              <Pomodoro
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
+            )}
+            {selectedTimer === SelectedPage.LongBreak && (
+              <LongBreak
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
+            )}
           </section>
-          <section className="w-screen">{renderPage()}</section>
-          <section className="flex  justify-center flex-wrapper pt-2">
+
+          <section className="flex justify-center flex-wrapper pt-2">
             <TodoWrapper />
           </section>
         </div>
