@@ -20,8 +20,10 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
   const { selectedColor } = useColor();
   const { isDarkMode } = useDarkMode();
 
-  const [selectedTimer, setSelectedTimer] = useState<SelectedPage | null>(null);
-  const [remainingTime, setRemainingTime] = useState<number>(25 * 60);
+  const [selectedTimer, setSelectedTimer] = useState<SelectedPage | null>(
+    SelectedPage.Pomodoro
+  );
+  const [, setRemainingTime] = useState<number>(25 * 60);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
