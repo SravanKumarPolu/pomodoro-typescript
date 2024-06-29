@@ -99,6 +99,8 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
               <ShortBreak
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
+                selectedTimer={selectedTimer}
+                setSelectedTimer={setSelectedTimer}
               />
             )}
             {selectedTimer === SelectedPage.Pomodoro && (

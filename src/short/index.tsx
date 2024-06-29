@@ -11,9 +11,15 @@ import ProgressBar from "@/components/ProgressBar";
 type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
+  selectedTimer: SelectedPage | null;
+  setSelectedTimer: (value: SelectedPage | null) => void;
 };
 
-const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
+const ShortBreak: React.FC<Props> = ({
+  setSelectedPage,
+  selectedTimer,
+  setSelectedTimer,
+}: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue2, formatTime } = useTimerContext();
 
@@ -55,6 +61,7 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
         audio.pause();
         audio.currentTime = 0;
         setSelectedPage(SelectedPage.Pomodoro);
+        setSelectedTimer(SelectedPage.Pomodoro);
       }, 7000);
     }
   };
@@ -162,7 +169,10 @@ const ShortBreak: React.FC<Props> = ({ setSelectedPage }: Props) => {
           text={
             <img src={nextSvg} alt="Next" className="w-8 md:w-10 xl:w-12" />
           }
-          onClick={() => setSelectedPage(SelectedPage.Pomodoro)}
+          onClick={() => {
+            setSelectedPage(SelectedPage.Pomodoro);
+            setSelectedTimer(SelectedPage.Pomodoro);
+          }}
         />
       </section>
 
