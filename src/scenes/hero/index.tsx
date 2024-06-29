@@ -1,6 +1,5 @@
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
-
 import { useEffect, useState } from "react";
 import TodoWrapper from "@/todolist/TodoWrapper";
 import { useColor } from "@/components/ColorContex";
@@ -8,6 +7,7 @@ import { useDarkMode } from "@/components/DarkModeContext";
 import ShortBreak from "@/short";
 import Pomodoro from "@/pomodoro";
 import LongBreak from "@/long";
+import Link from "@/components/ActiveComponent";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -63,21 +63,34 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
                 isAboveMediumScreens ? "w-full" : "w-full"
               } ${isAboveMediumScreens ? "h-12" : "h-10"} `}
               onClick={() => setSelectedTimer(SelectedPage.ShortBreak)}>
-              Short Break
+              <Link
+                page="Short Break"
+                isActive={selectedTimer === SelectedPage.ShortBreak}
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
             </button>
             <button
-              className={`text-white md:text-lg md:w-48 font-helvetica ${
-                isAboveMediumScreens ? "w-full" : "w-full"
-              } ${isAboveMediumScreens ? "h-12" : "h-10"} `}
+              className={`text-white md:text-lg md:w-48 font-helvetica  `}
               onClick={() => setSelectedTimer(SelectedPage.Pomodoro)}>
-              Pomodoro
+              <Link
+                page="Pomodoro"
+                isActive={selectedTimer === SelectedPage.Pomodoro}
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
             </button>
             <button
               className={`text-white md:text-lg md:w-48 ${
                 isAboveMediumScreens ? "w-full" : "w-full"
               } ${isAboveMediumScreens ? "h-12" : "h-10"} `}
               onClick={() => setSelectedTimer(SelectedPage.LongBreak)}>
-              Long Break
+              <Link
+                page="Long Break"
+                isActive={selectedTimer === SelectedPage.LongBreak}
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
             </button>
           </section>
 

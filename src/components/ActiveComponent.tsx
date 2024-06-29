@@ -13,7 +13,7 @@ const Link: React.FC<LinkProps> = ({ page, setSelectedPage, isActive }) => {
       href="#"
       className={`block px-6 xs:px-4 py-2 md:py-1 bg-white bg-opacity-50 rounded-sm 
       active:bg-slate-400 focus-within:bg-slate-400 hover:bg-slate-400 ${
-        isActive ? "active-link" : ""
+        isActive ? "text-black" : "text-white"
       }`}
       onClick={() => setSelectedPage(page as SelectedPage)}
       style={{
