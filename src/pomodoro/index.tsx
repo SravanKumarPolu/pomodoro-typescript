@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+// Pomodoro.tsx
 import { SelectedPage } from "@/shared/types";
+import { useEffect, useRef, useState } from "react";
 import { ControlButton } from "../components/ButtonComponents";
 import { useSoundContext } from "@/components/SoundContext";
 import { useTimerContext } from "@/components/TimerContext";
@@ -12,9 +13,15 @@ import ProgressBar from "@/components/ProgressBar";
 type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
+  selectedTimer: SelectedPage | null; // Add selectedTimer prop
+  setSelectedTimer: (value: SelectedPage | null) => void; // Add setSelectedTimer prop
 };
 
-const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
+const Pomodoro: React.FC<Props> = ({
+  setSelectedPage,
+  selectedTimer,
+  setSelectedTimer,
+}: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue1, formatTime } = useTimerContext();
   const [, setEndTime] = useState<Date | null>(null);
@@ -55,6 +62,7 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
         audio.pause();
         audio.currentTime = 0;
         setSelectedPage(SelectedPage.ShortBreak);
+        setSelectedTimer(SelectedPage.ShortBreak); // Update selectedTimer
       }, 7000);
     }
   };
@@ -163,7 +171,10 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
             text={
               <img src={nextSvg} alt="Next" className="w-8 md:w-10 xl:w-12" />
             }
-            onClick={() => setSelectedPage(SelectedPage.ShortBreak)}
+            onClick={() => {
+              setSelectedPage(SelectedPage.ShortBreak);
+              setSelectedTimer(SelectedPage.ShortBreak); // Update selectedTimer
+            }}
           />
         </section>
 
@@ -192,4 +203,4 @@ const Index: React.FC<Props> = ({ setSelectedPage }: Props) => {
   );
 };
 
-export default Index;
+export default Pomodoro;

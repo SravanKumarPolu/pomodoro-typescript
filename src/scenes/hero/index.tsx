@@ -1,3 +1,4 @@
+// Hero.tsx
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { useEffect, useState } from "react";
@@ -11,7 +12,6 @@ import Link from "@/components/ActiveComponent";
 
 type Props = {
   selectedPage: SelectedPage;
-  isTopOfPage: boolean;
   setSelectedPage: (value: SelectedPage) => void;
 };
 
@@ -105,6 +105,8 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
               <Pomodoro
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
+                selectedTimer={selectedTimer} // Pass selectedTimer as prop
+                setSelectedTimer={setSelectedTimer} // Pass setSelectedTimer as prop
               />
             )}
             {selectedTimer === SelectedPage.LongBreak && (
