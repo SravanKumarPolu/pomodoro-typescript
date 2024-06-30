@@ -19,7 +19,6 @@ type Props = {
 
 const Pomodoro: React.FC<Props> = ({
   setSelectedPage,
-  selectedTimer,
   setSelectedTimer,
 }: Props) => {
   const [isActive, setIsActive] = useState(false);

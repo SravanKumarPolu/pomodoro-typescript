@@ -17,7 +17,6 @@ type Props = {
 
 const ShortBreak: React.FC<Props> = ({
   setSelectedPage,
-  selectedTimer,
   setSelectedTimer,
 }: Props) => {
   const [isActive, setIsActive] = useState(false);

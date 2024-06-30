@@ -42,11 +42,7 @@ function App() {
         />
       </section>
       <section>
-        <Hero
-          selectedPage={selectedPage}
-          setSelectedPage={setSelectedPage}
-          isTopOfPage={isTopOfPage}
-        />
+        <Hero selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
       </section>
     </div>
   );

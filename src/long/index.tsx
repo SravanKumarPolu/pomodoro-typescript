@@ -13,9 +13,11 @@ import ProgressBar from "@/components/ProgressBar";
 type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
+  selectedTimer: SelectedPage | null;
+  setSelectedTimer: (valu: SelectedPage | null) => void;
 };
 
-const LongBreak = ({ setSelectedPage }: Props) => {
+const LongBreak = ({ setSelectedPage, setSelectedTimer }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue3, formatTime } = useTimerContext();
 
@@ -56,6 +58,7 @@ const LongBreak = ({ setSelectedPage }: Props) => {
         audio.pause();
         audio.currentTime = 0;
         setSelectedPage(SelectedPage.Pomodoro);
+        setSelectedTimer(SelectedPage.Pomodoro);
       }, 7000);
     }
   };
@@ -163,7 +166,10 @@ const LongBreak = ({ setSelectedPage }: Props) => {
           text={
             <img src={nextSvg} alt="Next" className="w-8 md:w-10 xl:w-12" />
           }
-          onClick={() => setSelectedPage(SelectedPage.Pomodoro)}
+          onClick={() => {
+            setSelectedPage(SelectedPage.Pomodoro);
+            setSelectedTimer(SelectedPage.Pomodoro);
+          }}
         />
       </section>
 

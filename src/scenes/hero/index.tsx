@@ -12,6 +12,7 @@ import Link from "@/components/ActiveComponent";
 
 type Props = {
   selectedPage: SelectedPage;
+
   setSelectedPage: (value: SelectedPage) => void;
 };
 
@@ -115,6 +116,8 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
               <LongBreak
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
+                selectedTimer={selectedTimer}
+                setSelectedTimer={setSelectedTimer}
               />
             )}
           </section>
