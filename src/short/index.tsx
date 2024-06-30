@@ -187,8 +187,7 @@ const ShortBreak: React.FC<Props> = ({
           onClick={() => toggleTimer()}
         />
       </section>
-
-      <section className="w-[70%] md:w-[50%] lg:w-[50%] 2xl:w-[60%] mx-auto mt-8 md:mt-10 xl:mt-12 pt-4">
+      <section className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-3/4 2xl:w-[640px] mx-auto mt-8 md:mt-10 xl:mt-12 pt-4">
         <ProgressBar value={progress} />
       </section>
     </div>
