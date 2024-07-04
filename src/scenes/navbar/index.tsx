@@ -1,6 +1,5 @@
 // Navbar.tsx
 import { motion } from "framer-motion";
-
 import settingsvg from "../../assets/setting.svg";
 import reportsvg from "../../assets/report.svg";
 import loginsvg from "../../assets/login.svg";
@@ -17,7 +16,6 @@ type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
   isTopOfPage: boolean;
-
   onClose: () => void;
 };
 
@@ -25,22 +23,23 @@ const Navbar = ({
   selectedPage,
   setSelectedPage,
   isTopOfPage,
-
   onClose,
 }: Props) => {
   const flexBetween = "flex flex-col py-8 items-center justify-between";
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
   const navbarBackground = isTopOfPage
-    ? ""
-    : "HText-black bg-pink-300  drop-shadow";
+    ? " "
+    : "HText-black bg-pink-300 drop-shadow";
+  const textColor = isTopOfPage ? "text-white" : "text-black";
 
   const [showSetting, setShowSetting] = useState(false);
-
   const { isDarkMode } = useDarkMode();
+
   const handleSettingClick = (page: SelectedPage) => {
     setSelectedPage(page);
     setShowSetting(true);
   };
+
   const handleSettingClose = () => {
     setShowSetting(false);
     onClose();
@@ -50,7 +49,7 @@ const Navbar = ({
     <>
       <nav className="flex h-auto w-screen">
         <div
-          className={`fixed ${navbarBackground} ${flexBetween} top-0 z-30 py-3 w-full`}>
+          className={`fixed ${navbarBackground} ${flexBetween} ${textColor} top-0 z-30 py-3 w-full`}>
           <motion.div
             className="flex w-full relative flex-col justify-center items-center mx-auto py-0 border-none md:flex-row"
             initial="hidden"
@@ -88,16 +87,18 @@ const Navbar = ({
                       height={20}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
+                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                     <Links
                       page="Report"
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
+                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                   </Button>
 
                   <Button
-                    className={`flex flex-row mx-1 items-center px-4  py-2 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white focus:border-white ${
+                    className={`flex flex-row mx-1 items-center px-4 py-2 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white focus:border-white ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     isActive={selectedPage === SelectedPage.Setting}
@@ -108,11 +109,13 @@ const Navbar = ({
                       height={20}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
+                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                     <Links
                       page="Setting"
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
+                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                   </Button>
 
@@ -129,11 +132,13 @@ const Navbar = ({
                       height={20}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
+                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                     <Links
                       page="Login"
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
+                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                   </Button>
                 </div>
@@ -152,6 +157,7 @@ const Navbar = ({
                       height={24}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
+                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                   </Button>
 
@@ -166,6 +172,7 @@ const Navbar = ({
                       height={24}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
+                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                   </button>
 
@@ -174,14 +181,15 @@ const Navbar = ({
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     isActive={selectedPage === SelectedPage.Login}
-                    onClick={() => setSelectedPage(SelectedPage.Login)}
-                    disabled>
+                    disabled
+                    onClick={() => setSelectedPage(SelectedPage.Login)}>
                     <Links
                       src={loginsvg}
                       width={24}
                       height={24}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
+                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                   </Button>
                 </div>
