@@ -1,4 +1,3 @@
-// Navbar.tsx
 import { motion } from "framer-motion";
 import settingsvg from "../../assets/setting.svg";
 import reportsvg from "../../assets/report.svg";
@@ -31,6 +30,8 @@ const Navbar = ({
     ? " "
     : "HText-black bg-pink-300 drop-shadow";
   const textColor = isTopOfPage ? "text-white" : "text-black";
+
+  const svgColor = isTopOfPage ? "color-white" : "color-black"; // Define svgColor based on isTopOfPage
 
   const [showSetting, setShowSetting] = useState(false);
   const { isDarkMode } = useDarkMode();
@@ -83,17 +84,16 @@ const Navbar = ({
                     onClick={() => setSelectedPage(SelectedPage.Report)}>
                     <Links
                       src={reportsvg}
+                      className={svgColor} // Pass svgColor here
                       width={20}
                       height={20}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                     <Links
                       page="Report"
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                   </Button>
 
@@ -105,17 +105,16 @@ const Navbar = ({
                     onClick={() => handleSettingClick(SelectedPage.Setting)}>
                     <Links
                       src={settingsvg}
+                      className={svgColor} // Pass svgColor here
                       width={20}
                       height={20}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                     <Links
                       page="Setting"
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                   </Button>
 
@@ -128,17 +127,16 @@ const Navbar = ({
                     disabled>
                     <Links
                       src={loginsvg}
+                      className={svgColor} // Pass svgColor here
                       width={20}
                       height={20}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                     <Links
                       page="Login"
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                   </Button>
                 </div>
@@ -157,7 +155,6 @@ const Navbar = ({
                       height={24}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                   </Button>
 
@@ -172,7 +169,6 @@ const Navbar = ({
                       height={24}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                   </button>
 
@@ -189,7 +185,6 @@ const Navbar = ({
                       height={24}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                      isTopOfPage={isTopOfPage} // Pass isTopOfPage here
                     />
                   </Button>
                 </div>

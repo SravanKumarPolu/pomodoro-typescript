@@ -1,4 +1,3 @@
-// Link.tsx
 import { SelectedPage } from "@/shared/types";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
@@ -6,11 +5,10 @@ type Props = {
   page?: string;
   src?: string;
   width?: number;
-  className?: string;
+  className?: string; // Accept className prop
   height?: number;
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
-  isTopOfPage: boolean; // Added prop for isTopOfPage
 };
 
 const Link = ({
@@ -21,7 +19,6 @@ const Link = ({
   height,
   selectedPage,
   setSelectedPage,
-  isTopOfPage, // Destructure isTopOfPage from props
 }: Props) => {
   const lowerCasePage = page ? page.toLowerCase().replace(/ /g, "") : "";
 
@@ -38,24 +35,20 @@ const Link = ({
       className={`flex flex-row items-center xl:text-xl ${
         selectedPage === (src || lowerCasePage) ? " " : " "
       }
-       transition duration-500 px-[.5px]`}
+       transition duration-500 px-[.5px] ${className}`} // Apply className here
       href={`#${src || lowerCasePage}`}
       onClick={handleClick}>
-      <div>
-        {src ? (
-          <img
-            src={src}
-            className={`${className} ${
-              isTopOfPage ? "color-white" : "color-black"
-            }`}
-            alt=""
-            width={width}
-            height={height}
-          />
-        ) : (
-          page
-        )}
-      </div>
+      {src ? (
+        <img
+          src={src}
+          className={`${className}`} // Use className here
+          alt=""
+          width={width}
+          height={height}
+        />
+      ) : (
+        <div>{page}</div>
+      )}
     </AnchorLink>
   );
 };
