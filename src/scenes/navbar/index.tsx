@@ -82,14 +82,14 @@ const Navbar = ({
                     isActive={selectedPage === SelectedPage.Report}
                     disabled
                     onClick={() => setSelectedPage(SelectedPage.Report)}>
-                    <Links
+                    {/* <Links
                       src={reportsvg}
                       className={svgColor} // Pass svgColor here
                       width={20}
                       height={20}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                    />
+                    /> */}
                     <Links
                       page="Report"
                       selectedPage={selectedPage}
@@ -103,14 +103,14 @@ const Navbar = ({
                     }`}
                     isActive={selectedPage === SelectedPage.Setting}
                     onClick={() => handleSettingClick(SelectedPage.Setting)}>
-                    <Links
+                    {/* <Links
                       src={settingsvg}
                       className={svgColor} // Pass svgColor here
                       width={20}
                       height={20}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                    />
+                    /> */}
                     <Links
                       page="Setting"
                       selectedPage={selectedPage}
@@ -125,14 +125,14 @@ const Navbar = ({
                     isActive={selectedPage === SelectedPage.Login}
                     onClick={() => setSelectedPage(SelectedPage.Login)}
                     disabled>
-                    <Links
+                    {/* <Links
                       src={loginsvg}
                       className={svgColor} // Pass svgColor here
                       width={20}
                       height={20}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                    />
+                    /> */}
                     <Links
                       page="Login"
                       selectedPage={selectedPage}

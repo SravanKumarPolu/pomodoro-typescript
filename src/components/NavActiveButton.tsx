@@ -1,4 +1,3 @@
-// Button.tsx
 import { ReactNode } from "react";
 
 type ButtonProps = {
@@ -17,14 +16,13 @@ const Button: React.FC<ButtonProps> = ({
   isActive,
 }) => {
   return (
-    <a
-      href="#"
-      className={`${className} ${isActive ? "border-white " : ""} 
+    <div
+      className={` px-8 ${className} ${isActive ? "border-white " : ""} 
       ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
       onClick={disabled ? undefined : onClick}
       style={{ pointerEvents: disabled ? "none" : "auto" }}>
       {children}
-    </a>
+    </div>
   );
 };
 

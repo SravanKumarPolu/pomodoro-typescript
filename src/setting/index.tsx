@@ -44,6 +44,7 @@ const Setting = ({ onClose }: Props) => {
   return (
     <div
       ref={settingRef}
+      id="settingRef"
       className="absolute z-20 p-4 m-4 mt-24 top-11 right-0 sm:mt-10 sm:right-[2rem] md:right-[3rem] lg:right-[7rem] xl:right-[10rem]
        2xl:right-[14.3rem]  w-[21.5rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem] xl:w-[36rem] 2xl:w-[26rem] shadow-sm">
       <div className="bg-white rounded-lg shadow-xl">
