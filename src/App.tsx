@@ -30,7 +30,7 @@ function App() {
   const { selectedColor } = useColor();
   return (
     <div
-      className={`w-full     top-0   overflow-hidden shadow-md  ${
+      className={`w-auto   overflow-hidden shadow-md  ${
         isDarkMode ? "bg-gray-700" : selectedColor
       }`}>
       <section>

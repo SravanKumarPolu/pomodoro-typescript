@@ -7,6 +7,7 @@ export default {
       linearGradientColors: {
         "pink-gradient": ["#FF61D2", "#FE9090"],
       },
+
       colors: {
         "gray-20": "#F8F4EB",
         "gray-50": "#EFE6E6",

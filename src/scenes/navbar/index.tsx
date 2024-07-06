@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useDarkMode } from "@/components/DarkModeContext";
 import HText from "@/shared/HText";
 import Button from "@/components/NavActiveButton";
+import { useColor } from "@/components/ColorContex";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -24,14 +25,12 @@ const Navbar = ({
   isTopOfPage,
   onClose,
 }: Props) => {
-  const flexBetween = "flex flex-col py-8 items-center justify-between";
+  const flexBetween = "flex flex-col pt-6 items-center justify-between";
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
+  const { selectedColor } = useColor();
   const navbarBackground = isTopOfPage
     ? " "
-    : "HText-black bg-pink-300 drop-shadow";
-  const textColor = isTopOfPage ? "text-white" : "text-black";
-
-  const svgColor = isTopOfPage ? "color-white" : "color-black"; // Define svgColor based on isTopOfPage
+    : `HText-black ${selectedColor} drop-shadow `;
 
   const [showSetting, setShowSetting] = useState(false);
   const { isDarkMode } = useDarkMode();
@@ -48,9 +47,9 @@ const Navbar = ({
 
   return (
     <>
-      <nav className="flex h-auto w-screen">
+      <nav className="flex  w-screen">
         <div
-          className={`fixed ${navbarBackground} ${flexBetween} ${textColor} top-0 z-30 py-3 w-full`}>
+          className={`fixed ${navbarBackground} ${flexBetween}  top-0 z-30 py-3 w-full`}>
           <motion.div
             className="flex w-full relative flex-col justify-center items-center mx-auto py-0 border-none md:flex-row"
             initial="hidden"
@@ -82,14 +81,13 @@ const Navbar = ({
                     isActive={selectedPage === SelectedPage.Report}
                     disabled
                     onClick={() => setSelectedPage(SelectedPage.Report)}>
-                    {/* <Links
+                    <Links
                       src={reportsvg}
-                      className={svgColor} // Pass svgColor here
                       width={20}
                       height={20}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                    /> */}
+                    />
                     <Links
                       page="Report"
                       selectedPage={selectedPage}
@@ -98,19 +96,18 @@ const Navbar = ({
                   </Button>
 
                   <Button
-                    className={`flex flex-row mx-1 items-center px-4 py-2 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white focus:border-white ${
+                    className={`flex  flex-row mx-1 items-center px-4 py-2 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white focus:border-white ${
                       isDarkMode ? "bg-white bg-opacity-80" : ""
                     }`}
                     isActive={selectedPage === SelectedPage.Setting}
                     onClick={() => handleSettingClick(SelectedPage.Setting)}>
-                    {/* <Links
+                    <Links
                       src={settingsvg}
-                      className={svgColor} // Pass svgColor here
                       width={20}
                       height={20}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                    /> */}
+                    />
                     <Links
                       page="Setting"
                       selectedPage={selectedPage}
@@ -125,14 +122,13 @@ const Navbar = ({
                     isActive={selectedPage === SelectedPage.Login}
                     onClick={() => setSelectedPage(SelectedPage.Login)}
                     disabled>
-                    {/* <Links
+                    <Links
                       src={loginsvg}
-                      className={svgColor} // Pass svgColor here
-                      width={20}
-                      height={20}
+                      width={24}
+                      height={24}
                       selectedPage={selectedPage}
                       setSelectedPage={setSelectedPage}
-                    /> */}
+                    />
                     <Links
                       page="Login"
                       selectedPage={selectedPage}

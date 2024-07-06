@@ -1,6 +1,5 @@
 import { SelectedPage } from "@/shared/types";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import { useEffect, useState } from "react";
 
 type Props = {
   page?: string;
@@ -34,7 +33,7 @@ const Link = ({
   return (
     <AnchorLink
       className={`flex flex-row items-center xl:text-xl ${
-        selectedPage === (src || lowerCasePage) ? " " : " "
+        selectedPage === (src || lowerCasePage) ? "text-white " : "text-white "
       }
       transition duration-500 px-[.5px] ${className}`} // Apply className here
       href={`#${src || lowerCasePage}`}

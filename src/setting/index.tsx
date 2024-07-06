@@ -44,10 +44,10 @@ const Setting = ({ onClose }: Props) => {
   return (
     <div
       ref={settingRef}
-      id="settingRef"
-      className="absolute z-20 p-4 m-4 mt-24 top-11 right-0 sm:mt-10 sm:right-[2rem] md:right-[3rem] lg:right-[7rem] xl:right-[10rem]
+      id="setting"
+      className="block absolute z-20 p-4 m-4 mt-20 justify-items-center  lg:mt-[3.4rem] sm:right-[2rem] md:right-[3rem] mr-0 lg:right-[7rem] xl:mr-[24.5rem]  xl:right-[30rem]
        2xl:right-[14.3rem]  w-[21.5rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem] xl:w-[36rem] 2xl:w-[26rem] shadow-sm">
-      <div className="bg-white rounded-lg shadow-xl">
+      <div className="bg-white rounded-md shadow-xl">
         <div className="flex justify-between items-center p-4 border-b border-gray-200">
           <h1 className="text-xl font-semibold">Settings</h1>
           <button onClick={onClose} className="focus:outline-none">

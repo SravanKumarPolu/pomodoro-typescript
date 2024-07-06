@@ -56,7 +56,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
           className={`flex flex-col rounded shadow-md w-5/6 h-auto items-center justify-center gap-4 md:mb-5 md:gap-10 ${
             isDarkMode
               ? "bg-white-700"
-              : "pb-4 bg-gradient-to-b from-gray-600 via-pink-500 to-selectedColor-400"
+              : "pb-4 bg-gradient-to-b from-gray-600 via-pink-400 to-selectedColor-400"
           }`}>
           <section className="flex flex-col sm:flex-col md:flex-row xl:flex-row m-2 my-4 gap-4 xs:my-2 py-2 px-4 xs:flex-row">
             <button

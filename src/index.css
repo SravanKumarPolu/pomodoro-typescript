@@ -37,3 +37,6 @@ body,
 .active-link {
   color: black;
 }
+.text-current {
+  color: white;
+}
