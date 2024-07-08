@@ -53,26 +53,28 @@ const TodoWrapper: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-auto items-center mx-auto    text-black ">
+    <div className="flex flex-col h-auto items-center mx-auto text-black ">
       <TodoForm
         addTodo={addTodo}
         startTimer={() => setTimerIsActive(true)}
         timerIsActive={timerIsActive}
       />
 
-      {todos.map((todo) =>
-        todo.isEditing ? (
-          <EditTodoForm key={todo.id} editTodo={editTask} task={todo} />
-        ) : (
-          <Todo
-            key={todo.id}
-            task={todo}
-            toggleComplete={() => toggleComplete(todo.id)}
-            deleteTodo={() => deleteTodo(todo.id)}
-            editTodo={() => editTodo(todo.id)}
-          />
-        )
-      )}
+      <div className="w-full px-4 py-2 mx-auto max-h-[10rem] overflow-y-auto custom-scrollbar">
+        {todos.map((todo) =>
+          todo.isEditing ? (
+            <EditTodoForm key={todo.id} editTodo={editTask} task={todo} />
+          ) : (
+            <Todo
+              key={todo.id}
+              task={todo}
+              toggleComplete={() => toggleComplete(todo.id)}
+              deleteTodo={() => deleteTodo(todo.id)}
+              editTodo={() => editTodo(todo.id)}
+            />
+          )
+        )}
+      </div>
     </div>
   );
 };

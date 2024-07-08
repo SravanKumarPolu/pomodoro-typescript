@@ -23,7 +23,7 @@ const TodoForm: React.FC<Props> = ({ addTodo, timerIsActive, startTimer }) => {
   };
 
   return (
-    <div className="m-4">
+    <div className="m-4 ">
       {isAboveMediumScreens ? (
         <form onSubmit={handleSubmit} className="flex flex-row ">
           <input
