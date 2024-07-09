@@ -1,4 +1,3 @@
-// TodoWrapper.tsx
 import React, { useState } from "react";
 import TodoForm from "./TodoForm";
 import { v4 as uuidv4 } from "uuid";
@@ -12,9 +11,14 @@ type Todo = {
   isEditing: boolean;
 };
 
-const TodoWrapper: React.FC = () => {
+type Props = {
+  remainingTime: number; // Add remainingTime prop
+};
+
+const TodoWrapper: React.FC<Props> = ({ remainingTime }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [timerIsActive, setTimerIsActive] = useState(false);
+
   const addTodo = (todo: string) => {
     setTodos((prevTodos) => [
       ...prevTodos,
@@ -71,6 +75,7 @@ const TodoWrapper: React.FC = () => {
               toggleComplete={() => toggleComplete(todo.id)}
               deleteTodo={() => deleteTodo(todo.id)}
               editTodo={() => editTodo(todo.id)}
+              remainingTime={remainingTime} // Pass remainingTime to each Todo
             />
           )
         )}

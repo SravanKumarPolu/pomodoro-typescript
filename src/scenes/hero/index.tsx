@@ -122,9 +122,9 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
             )}
           </section>
 
-          <section className="flex justify-center flex-wrapper pt-2">
+          {/* <section className="flex justify-center flex-wrapper pt-2">
             <TodoWrapper />
-          </section>
+          </section> */}
         </div>
       </div>
     </div>

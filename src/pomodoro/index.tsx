@@ -9,6 +9,7 @@ import pauseSvg from "@/assets/pause.svg";
 import resetSvg from "@/assets/reset.svg";
 import nextSvg from "@/assets/next.svg";
 import ProgressBar from "@/components/ProgressBar";
+import TodoWrapper from "@/todolist/TodoWrapper";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -195,6 +196,9 @@ const Pomodoro: React.FC<Props> = ({
         </section>
         <section className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-3/4 2xl:w-[640px] mx-auto mt-8 md:mt-10 xl:mt-12 pt-4">
           <ProgressBar value={progress} />
+        </section>
+        <section className="flex justify-center flex-wrapper pt-2">
+          <TodoWrapper remainingTime={remainingTime} />
         </section>
       </div>
     </>
