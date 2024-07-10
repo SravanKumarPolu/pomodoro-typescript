@@ -1,5 +1,5 @@
 import { SelectedPage } from "@/shared/types";
-import AnchorLink from "react-anchor-link-smooth-scroll";
+import { useEffect } from "react";
 
 type Props = {
   page?: string;
@@ -9,6 +9,15 @@ type Props = {
   height?: number;
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
+};
+
+const smoothScrollTo = (targetElement: HTMLElement | null) => {
+  if (targetElement) {
+    window.scrollTo({
+      top: targetElement.offsetTop,
+      behavior: "smooth",
+    });
+  }
 };
 
 const Link = ({
@@ -30,19 +39,33 @@ const Link = ({
     }
   };
 
+  useEffect(() => {
+    const handleSmoothScroll = () => {
+      const targetElement = document.getElementById(src || lowerCasePage);
+      smoothScrollTo(targetElement);
+    };
+
+    const linkElement = document.getElementById(`${src || lowerCasePage}-link`);
+    if (linkElement) {
+      linkElement.addEventListener("click", handleSmoothScroll);
+    }
+
+    return () => {
+      if (linkElement) {
+        linkElement.removeEventListener("click", handleSmoothScroll);
+      }
+    };
+  }, [src, lowerCasePage, setSelectedPage]);
+
   return (
-    <AnchorLink
+    <a
+      id={`${src || lowerCasePage}-link`}
       className={`flex flex-row items-center xl:text-xl ${
         selectedPage === (src || lowerCasePage) ? "text-white " : "text-white "
       }
       transition duration-500 px-[.5px] ${className}`} // Apply className here
       href={`#${src || lowerCasePage}`}
-      onClick={handleClick}
-      offset={() => {
-        // Ensure element exists before accessing getBoundingClientRect
-        const element = document.querySelector(`#${src || lowerCasePage}`);
-        return element ? element.getBoundingClientRect().top : 0;
-      }}>
+      onClick={handleClick}>
       {src ? (
         <img
           src={src}
@@ -54,7 +77,7 @@ const Link = ({
       ) : (
         <span>{page}</span>
       )}
-    </AnchorLink>
+    </a>
   );
 };
 
