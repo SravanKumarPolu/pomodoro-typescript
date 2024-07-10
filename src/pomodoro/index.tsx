@@ -198,7 +198,7 @@ const Pomodoro: React.FC<Props> = ({
           <ProgressBar value={progress} />
         </section>
         <section className="flex justify-center flex-wrapper pt-2">
-          <TodoWrapper remainingTime={remainingTime} />
+          <TodoWrapper remainingTime={remainingTime} isActive={false} />
         </section>
       </div>
     </>

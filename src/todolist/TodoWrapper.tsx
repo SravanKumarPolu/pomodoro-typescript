@@ -12,9 +12,9 @@ type Todo = {
 };
 
 type Props = {
-  remainingTime: number; // Add remainingTime prop
+  remainingTime: number;
+  isActive: boolean;
 };
-
 const TodoWrapper: React.FC<Props> = ({ remainingTime }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [timerIsActive, setTimerIsActive] = useState(false);
@@ -75,7 +75,7 @@ const TodoWrapper: React.FC<Props> = ({ remainingTime }) => {
               toggleComplete={() => toggleComplete(todo.id)}
               deleteTodo={() => deleteTodo(todo.id)}
               editTodo={() => editTodo(todo.id)}
-              remainingTime={remainingTime} // Pass remainingTime to each Todo
+              remainingTime={remainingTime}
             />
           )
         )}
