@@ -1,4 +1,3 @@
-// App.tsx
 import Navbar from "@/scenes/navbar";
 import { useEffect, useState } from "react";
 import { SelectedPage } from "./shared/types";
@@ -23,14 +22,16 @@ function App() {
   }, []);
 
   function handleClose(): void {
-    throw new Error("Function not implemented.");
+    console.log("Navbar closed");
+    // Add the functionality you need for closing the navbar
   }
 
   const { isDarkMode } = useDarkMode();
   const { selectedColor } = useColor();
+
   return (
     <div
-      className={`w-auto   overflow-hidden shadow-md  ${
+      className={`w-auto overflow-hidden shadow-md ${
         isDarkMode ? "bg-gray-700" : selectedColor
       }`}>
       <section>
