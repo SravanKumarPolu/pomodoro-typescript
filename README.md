@@ -7,8 +7,7 @@ This  is mainly focus on time mangement that the reason  i created Pomodoro time
  2. TypeScript
  3. Tailwind
 ## Project Working Time Experience
-   - Developed a real-time Pomodoro timer application using
-TypeScript to enhance productivity of main and time
+   - Developed a real-time Pomodoro timer application using TypeScript to enhance productivity of main and time
 management.
    - Implemented core functionality including work sessions, break intervals, and customizable timer settings.
    - Focused on improving code maintainability and readability through TypeScript’s type safety features.
