@@ -53,7 +53,7 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
           isAboveMediumScreens ? "w-full" : "w-full"
         } rounded-sm text-white relative`}>
         <div
-          className={`flex flex-col rounded shadow-md w-5/6 h-auto items-center justify-center gap-4 md:mb-5 md:gap-10 ${
+          className={`flex flex-col rounded shadow-md w-5/6 h-5/6 items-center justify-center gap-4 md:mb-5 md:gap-10 ${
             isDarkMode
               ? "bg-white-700"
               : "pb-4 bg-gradient-to-b from-gray-600 via-pink-400 to-selectedColor-400"
