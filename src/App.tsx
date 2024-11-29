@@ -1,10 +1,10 @@
-import Navbar from "@/scenes/navbar";
 import { useEffect, useState } from "react";
-import { SelectedPage } from "./shared/types";
-import Hero from "./scenes/hero";
 
-import { useDarkMode } from "./components/DarkModeContext";
+import Hero from "./scenes/hero";
+import Navbar from "./scenes/navbar";
+import { SelectedPage } from "./shared/types";
 import { useColor } from "./components/ColorContex";
+import { useDarkMode } from "./components/DarkModeContext";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(

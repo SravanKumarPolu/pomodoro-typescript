@@ -1,38 +1,39 @@
-import { motion } from "framer-motion";
-import settingsvg from "../../assets/setting.svg";
-import reportsvg from "../../assets/report.svg";
-import loginsvg from "../../assets/login.svg";
+import Button from "@/components/NavActiveButton";
+import HText from "@/shared/HText";
 import Links from "./Link";
 import { SelectedPage } from "@/shared/types";
-import useMediaQuery from "@/hooks/useMediaQuery";
 import Setting from "@/setting";
-import { useState } from "react";
-import { useDarkMode } from "@/components/DarkModeContext";
-import HText from "@/shared/HText";
-import Button from "@/components/NavActiveButton";
+import loginsvg from "../../assets/login.svg";
+import { motion } from "framer-motion";
+import reportsvg from "../../assets/report.svg";
+import settingsvg from "../../assets/setting.svg";
 import { useColor } from "@/components/ColorContex";
+import { useDarkMode } from "@/components/DarkModeContext";
+import useMediaQuery from "@/hooks/useMediaQuery";
+import { useState } from "react";
 
-type Props = {
+interface NavbarProps {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
   isTopOfPage: boolean;
   onClose: () => void;
-};
+}
 
-const Navbar = ({
+const Navbar: React.FC<NavbarProps> = ({
   selectedPage,
   setSelectedPage,
   isTopOfPage,
   onClose,
-}: Props) => {
+}) => {
   const flexBetween = "flex flex-col pt-6 items-center justify-between";
+
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
   const { selectedColor } = useColor();
   const navbarBackground = isTopOfPage
-    ? " "
-    : `HText-black ${selectedColor} drop-shadow `;
+    ? "bg-transparent"
+    : `bg-opacity-90 backdrop-blur-md ${selectedColor} shadow-md`;
 
-  const [showSetting, setShowSetting] = useState(false);
+  const [showSetting, setShowSetting] = useState<boolean>(false);
   const { isDarkMode } = useDarkMode();
 
   const handleSettingClick = (page: SelectedPage) => {
@@ -47,11 +48,13 @@ const Navbar = ({
 
   return (
     <>
-      <nav className="flex  w-screen">
+      <nav className="fixed top-0 z-50 w-full">
         <div
-          className={`fixed ${navbarBackground} ${flexBetween}  top-0 z-30 py-3 w-full`}>
+          className={`${navbarBackground} ${flexBetween} ${
+            isDarkMode ? "dark" : ""
+          } transition-all duration-300 py-4 px-6`}>
           <motion.div
-            className="flex w-full relative flex-col justify-center items-center mx-auto py-0 border-none md:flex-row"
+            className="flex w-full items-center justify-between max-w-7xl mx-auto md:flex-row"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
@@ -61,9 +64,12 @@ const Navbar = ({
               visible: { opacity: 1, x: 0 },
             }}>
             <HText>
-              <span className="pl-2">Task & Breaks</span>
+              <span className="text-xl font-bold tracking-wide text-white pl-2">
+                Task & Breaks
+              </span>
             </HText>
             <motion.div
+              className="flex gap-4 mt-4 md:mt-0"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.5 }}
@@ -73,10 +79,12 @@ const Navbar = ({
                 visible: { opacity: 1, x: 0 },
               }}>
               {isAboveMediumScreens ? (
-                <div className="flex flex-row">
+                <div className="flex items-center gap-4">
                   <Button
-                    className={`cursor-none flex mx-1 text-opacity-0 items-center px-4 py-2 gap-[2px] rounded-sm relative ${
-                      isDarkMode ? "bg-white bg-opacity-80" : ""
+                    className={`flex items-center gap-2 px-4 py-2 rounded-md transition-all duration-200 ${
+                      selectedPage === SelectedPage.Report
+                        ? "bg-opacity-90 bg-gray-800 text-white"
+                        : "hover:bg-gray-700 hover:text-white"
                     }`}
                     isActive={selectedPage === SelectedPage.Report}
                     disabled
@@ -96,8 +104,10 @@ const Navbar = ({
                   </Button>
 
                   <Button
-                    className={`flex  flex-row mx-1 items-center px-4 py-2 gap-[2px] cursor-pointer rounded-sm relative bg-opacity-50 border border-transparent hover:border-white focus:border-white ${
-                      isDarkMode ? "bg-white bg-opacity-80" : ""
+                    className={`flex items-center gap-2 px-4 py-2 relative rounded-md transition-all duration-200 ${
+                      selectedPage === SelectedPage.Setting
+                        ? "bg-opacity-90 bg-gray-800 text-white"
+                        : "hover:bg-gray-700 hover:text-white"
                     }`}
                     isActive={selectedPage === SelectedPage.Setting}
                     onClick={() => handleSettingClick(SelectedPage.Setting)}>
@@ -116,9 +126,7 @@ const Navbar = ({
                   </Button>
 
                   <Button
-                    className={`flex flex-row mx-1 items-center px-4 py-2 gap-[2px] cursor-not-allowed rounded-sm relative ${
-                      isDarkMode ? "bg-white bg-opacity-80" : ""
-                    }`}
+                    className="flex items-center gap-2 px-4 py-2 rounded-md  text-gray-500 cursor-not-allowed"
                     isActive={selectedPage === SelectedPage.Login}
                     onClick={() => setSelectedPage(SelectedPage.Login)}
                     disabled>
@@ -137,10 +145,12 @@ const Navbar = ({
                   </Button>
                 </div>
               ) : (
-                <div className="flex items-center relative">
+                <div className="flex items-center gap-2">
                   <Button
-                    className={`flex flex-row items-center m-2 rounded-md px-2 relative ${
-                      isDarkMode ? "bg-white bg-opacity-80" : ""
+                    className={`flex items-center p-2 rounded-md transition-all duration-200 ${
+                      selectedPage === SelectedPage.Report
+                        ? "bg-gray-800 text-white"
+                        : "hover:bg-gray-700 hover:text-white"
                     }`}
                     isActive={selectedPage === SelectedPage.Report}
                     disabled
@@ -155,8 +165,10 @@ const Navbar = ({
                   </Button>
 
                   <button
-                    className={`flex flex-row items-center m-2 cursor-pointer rounded-md px-2 relative ${
-                      isDarkMode ? "bg-white bg-opacity-80" : ""
+                    className={`flex items-center p-2 rounded-md transition-all duration-200 ${
+                      selectedPage === SelectedPage.Setting
+                        ? "bg-gray-800 text-white"
+                        : "hover:bg-gray-700 hover:text-white"
                     }`}
                     onClick={() => handleSettingClick(SelectedPage.Setting)}>
                     <Links
@@ -169,9 +181,7 @@ const Navbar = ({
                   </button>
 
                   <Button
-                    className={`flex flex-row border-none items-center m-2 border-2 rounded-md px-2 relative ${
-                      isDarkMode ? "bg-white bg-opacity-80" : ""
-                    }`}
+                    className="flex items-center p-2  text-gray-500 rounded-md cursor-not-allowed"
                     isActive={selectedPage === SelectedPage.Login}
                     disabled
                     onClick={() => setSelectedPage(SelectedPage.Login)}>
@@ -190,11 +200,15 @@ const Navbar = ({
         </div>
 
         {showSetting && (
-          <Setting
-            selectedPage={selectedPage}
-            setSelectedPage={setSelectedPage}
-            onClose={handleSettingClose}
-          />
+          <div className="absolute top-full  w-full flex justify-center">
+            <div className=" shadow-lg rounded-md  max-w-md">
+              <Setting
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+                onClose={handleSettingClose}
+              />
+            </div>
+          </div>
         )}
       </nav>
     </>

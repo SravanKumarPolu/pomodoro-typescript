@@ -11,15 +11,6 @@ type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-const smoothScrollTo = (targetElement: HTMLElement | null) => {
-  if (targetElement) {
-    window.scrollTo({
-      top: targetElement.offsetTop,
-      behavior: "smooth",
-    });
-  }
-};
-
 const Link = ({
   page,
   src,
@@ -29,41 +20,42 @@ const Link = ({
   selectedPage,
   setSelectedPage,
 }: Props) => {
-  const lowerCasePage = page ? page.toLowerCase().replace(/ /g, "") : "";
+  // Ensure the lowerCasePage is of type SelectedPage
+  const lowerCasePage = page
+    ? (page.toLowerCase().replace(/ /g, "") as SelectedPage)
+    : null;
 
   const handleClick = () => {
+    // Ensure `src` or `lowerCasePage` are valid SelectedPage values
     if (src) {
       setSelectedPage(src as SelectedPage);
-    } else {
-      setSelectedPage(lowerCasePage as SelectedPage);
+    } else if (lowerCasePage) {
+      setSelectedPage(lowerCasePage);
     }
   };
 
   useEffect(() => {
-    const handleSmoothScroll = () => {
-      const targetElement = document.getElementById(src || lowerCasePage);
-      smoothScrollTo(targetElement);
-    };
-
-    const linkElement = document.getElementById(`${src || lowerCasePage}-link`);
-    if (linkElement) {
-      linkElement.addEventListener("click", handleSmoothScroll);
-    }
-
-    return () => {
-      if (linkElement) {
-        linkElement.removeEventListener("click", handleSmoothScroll);
+    const smoothScrollTo = (targetElement: HTMLElement | null) => {
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop,
+          behavior: "smooth",
+        });
       }
     };
-  }, [src, lowerCasePage, setSelectedPage]);
+
+    const targetElement = document.getElementById(
+      src || (lowerCasePage as string)
+    );
+    smoothScrollTo(targetElement);
+  }, [src, lowerCasePage]);
 
   return (
     <a
       id={`${src || lowerCasePage}-link`}
-      className={`flex flex-row items-center xl:text-xl ${
-        selectedPage === (src || lowerCasePage) ? "text-white " : "text-white "
-      }
-      transition duration-500 px-[.5px] ${className}`} // Apply className here
+      className={`flex items-center xl:text-xl ${
+        selectedPage === (src || lowerCasePage) ? "text-white" : "text-gray-400"
+      } transition duration-500 px-[.5px] ${className}`}
       href={`#${src || lowerCasePage}`}
       onClick={handleClick}>
       {src ? (
