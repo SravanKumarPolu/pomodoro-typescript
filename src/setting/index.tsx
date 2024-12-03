@@ -47,8 +47,8 @@ const Setting = ({ onClose }: Props) => {
       <div
         ref={settingRef}
         id="setting"
-        className="absolute z-20 p-4 pt-0 flex justify-center items-center 
-               w-[20rem] sm:w-[24rem] shadow-lg rounded-lg">
+        className="absolute z-20 p-4 pt-0 flex flex-col justify-center sm:justify-start items-center 
+             w-full max-w-xs sm:w-full md:max-w-md lg:max-w-lg shadow-lg rounded-md">
         <div className="bg-white rounded-lg shadow-xl border border-gray-200">
           {/* Header */}
           <div className="flex justify-between items-center p-4 border-b border-gray-200 bg-gray-50 rounded-t-lg">

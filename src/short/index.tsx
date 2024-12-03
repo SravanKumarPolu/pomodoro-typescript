@@ -1,13 +1,15 @@
-import React, { useEffect, useState, useRef } from "react";
-import { SelectedPage } from "@/shared/types";
-import playSvg from "@/assets/play.svg";
-import pauseSvg from "@/assets/pause.svg";
-import { useTimerContext } from "@/components/TimerContext";
+import React, { useEffect, useRef, useState } from "react";
+
 import { ControlButton } from "@/components/ButtonComponents";
-import { useSoundContext } from "@/components/SoundContext";
-import resetSvg from "@/assets/reset.svg";
-import nextSvg from "@/assets/next.svg";
 import ProgressBar from "@/components/ProgressBar";
+import { SelectedPage } from "@/shared/types";
+import nextSvg from "@/assets/next.svg";
+import pauseSvg from "@/assets/pause.svg";
+import playSvg from "@/assets/play.svg";
+import resetSvg from "@/assets/reset.svg";
+import { useSoundContext } from "@/components/SoundContext";
+import { useTimerContext } from "@/components/TimerContext";
+
 type Props = {
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
@@ -21,44 +23,35 @@ const ShortBreak: React.FC<Props> = ({
 }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { timerValue2, formatTime } = useTimerContext();
-
-  const [, setEndTime] = useState<Date | null>(null);
   const [remainingTime, setRemainingTime] = useState<number>(timerValue2 * 60);
+  const [progress, setProgress] = useState(0);
+
   const audioRef = useRef<HTMLAudioElement>(null);
   const tickingRef = useRef<HTMLAudioElement>(null);
-  const [progress, setProgress] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const {
-    selectedAlarm,
-    selectedTicking,
-    setTicking,
-    audioVolume1,
-    audioVolume2,
-  } = useSoundContext();
+  const { selectedAlarm, selectedTicking, audioVolume1, audioVolume2 } =
+    useSoundContext();
 
   const handleTimerCompletion = () => {
     setIsActive(false);
-    setEndTime(null);
     setRemainingTime(timerValue2 * 60);
 
-    const audio = audioRef.current;
-    if (audio) {
+    if (audioRef.current) {
+      const audio = audioRef.current;
       audio.volume = audioVolume1;
+      audio.currentTime = 0;
 
-      const playAudio = () => {
-        audio.currentTime = 0;
-        audio.play().catch((error) => console.error(error));
+      const playAlarm = () => {
+        audio.play().catch(console.error);
       };
 
-      playAudio();
-
-      const intervalId = setInterval(playAudio, audio.duration * 1000);
+      playAlarm();
+      const alarmInterval = setInterval(playAlarm, audio.duration * 1000);
 
       setTimeout(() => {
-        clearInterval(intervalId);
+        clearInterval(alarmInterval);
         audio.pause();
-        audio.currentTime = 0;
         setSelectedPage(SelectedPage.Pomodoro);
         setSelectedTimer(SelectedPage.Pomodoro);
       }, 7000);
@@ -73,22 +66,16 @@ const ShortBreak: React.FC<Props> = ({
   useEffect(() => {
     const percentage =
       ((timerValue2 * 60 - remainingTime) / (timerValue2 * 60)) * 100;
-    const formattedPercentage = Math.max(percentage, 0).toFixed(1);
-    setProgress(parseFloat(formattedPercentage));
-  }, [timerValue2, remainingTime]);
-
-  useEffect(() => {
-    setTicking(selectedTicking);
-  }, [selectedTicking, setTicking]);
+    setProgress(parseFloat(percentage.toFixed(1)));
+  }, [remainingTime, timerValue2]);
 
   useEffect(() => {
     const tickingAudio = tickingRef.current;
-
     if (isActive && tickingAudio) {
-      tickingAudio.play();
       tickingAudio.volume = audioVolume2;
       tickingAudio.loop = true;
-    } else if (!isActive && tickingAudio) {
+      tickingAudio.play().catch(console.error);
+    } else if (tickingAudio) {
       tickingAudio.pause();
       tickingAudio.currentTime = 0;
     }
@@ -103,19 +90,14 @@ const ShortBreak: React.FC<Props> = ({
   }, []);
 
   const startTimer = () => {
-    const end = new Date();
-    end.setMinutes(end.getMinutes() + timerValue2);
-    setEndTime(end);
-
+    const endTime = Date.now() + remainingTime * 1000;
     intervalRef.current = setInterval(() => {
-      const now = new Date();
-      const distance = end.getTime() - now.getTime();
+      const timeLeft = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
+      setRemainingTime(timeLeft);
 
-      if (distance <= 0) {
-        clearInterval(intervalRef.current!);
+      if (timeLeft === 0) {
+        if (intervalRef.current) clearInterval(intervalRef.current);
         handleTimerCompletion();
-      } else {
-        setRemainingTime(Math.ceil(distance / 1000));
       }
     }, 1000);
   };
@@ -123,51 +105,42 @@ const ShortBreak: React.FC<Props> = ({
   const stopTimer = () => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
+      intervalRef.current = null;
     }
   };
 
   const toggleTimer = () => {
-    setIsActive((prevActive) => {
-      if (!prevActive) {
-        startTimer();
-      } else {
+    setIsActive((prev) => {
+      if (prev) {
         stopTimer();
+      } else {
+        startTimer();
       }
-      return !prevActive;
+      return !prev;
     });
   };
 
   const resetTimer = () => {
     stopTimer();
     setIsActive(false);
-    setEndTime(null);
     setRemainingTime(timerValue2 * 60);
   };
 
   return (
-    <div className="w-full flex items-center justify-center flex-col ">
-      <section className="flex flex-row items-center  m-2">
+    <div className="flex flex-col items-center w-full px-4 mt-10 gap-5">
+      {/* Timer Controls */}
+      <section className="flex gap-4 my-4">
         <ControlButton
-          text={
-            <img src={resetSvg} alt="Reset" className="w-8 md:w-10 xl:w-12" />
-          }
+          icon={<img src={resetSvg} alt="Reset" />}
           onClick={resetTimer}
         />
-
-        <div className="z-1 h-32 w-32 md:w-40 md:h-40 xl:w-48 xl:h-48 bg-white rounded-full text-blue-500 font-semibold text-lg md:text-xl xl:text-2xl flex items-center justify-center relative">
-          <div className="flex flex-row items-center justify-center absolute gap-4 md:gap-6 xl:gap-8 m-2">
-            <audio ref={tickingRef} preload="auto" src={selectedTicking} />
-            <span className="block w-[3.4rem] md:w-[4rem] xl:w-[5rem] text-left p-1 m-1">
-              {formatTime(remainingTime)}
-            </span>
-            <audio ref={audioRef} preload="auto" src={selectedAlarm} />
-          </div>
+        <div className="relative flex flex-col items-center justify-center w-28 h-28 md:w-40 md:h-40 rounded-full bg-white text-blue-600">
+          <audio ref={audioRef} src={selectedAlarm} preload="auto" />
+          <audio ref={tickingRef} src={selectedTicking} preload="auto" />
+          <span className="text-xl">{formatTime(remainingTime)}</span>
         </div>
-
         <ControlButton
-          text={
-            <img src={nextSvg} alt="Next" className="w-8 md:w-10 xl:w-12" />
-          }
+          icon={<img src={nextSvg} alt="Next" />}
           onClick={() => {
             setSelectedPage(SelectedPage.Pomodoro);
             setSelectedTimer(SelectedPage.Pomodoro);
@@ -175,21 +148,20 @@ const ShortBreak: React.FC<Props> = ({
         />
       </section>
 
-      <section className="mt-4 md:mt-6 xl:mt-8">
-        <ControlButton
-          text={
-            isActive ? (
-              <img src={pauseSvg} alt="Pause" className="w-8 md:w-10 xl:w-12" />
-            ) : (
-              <img src={playSvg} alt="Play" className="w-8 md:w-10 xl:w-12" />
-            )
-          }
-          onClick={() => toggleTimer()}
-        />
-      </section>
-      <section className="w-[304px] sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-3/4 2xl:w-[640px] mx-auto mt-8 md:mt-10 xl:mt-12 pt-4">
-        <ProgressBar value={progress} />
-      </section>
+      {/* Play/Pause */}
+      <ControlButton
+        icon={
+          <img
+            src={isActive ? pauseSvg : playSvg}
+            alt={isActive ? "Pause" : "Play"}
+          />
+        }
+        onClick={toggleTimer}
+        className="mt-6"
+      />
+
+      {/* Progress Bar */}
+      <ProgressBar value={progress} />
     </div>
   );
 };

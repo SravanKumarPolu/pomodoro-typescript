@@ -145,7 +145,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   </Button>
                 </div>
               ) : (
-                <div className="flex items-center gap-2">
+                <div className="flex  items-center gap-1">
                   <Button
                     className={`flex items-center p-2 rounded-md transition-all duration-200 ${
                       selectedPage === SelectedPage.Report
@@ -165,7 +165,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   </Button>
 
                   <button
-                    className={`flex items-center p-2 rounded-md transition-all duration-200 ${
+                    className={`flex relative items-center p-2 rounded-md transition-all duration-200 ${
                       selectedPage === SelectedPage.Setting
                         ? "bg-gray-800 text-white"
                         : "hover:bg-gray-700 hover:text-white"
@@ -200,8 +200,8 @@ const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {showSetting && (
-          <div className="absolute top-full  w-full flex justify-center">
-            <div className=" shadow-lg rounded-md  max-w-md">
+          <div className="absolute top-full mt-2 w-full flex justify-start  sm:justify-start lg:justify-center  md:justify-center">
+            <div className="  rounded-md p-4 max-w-md">
               <Setting
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}

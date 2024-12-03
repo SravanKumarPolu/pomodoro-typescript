@@ -1,18 +1,21 @@
 import React from "react";
 
-export const ControlButton: React.FC<{
-  text: string | React.ReactNode;
+interface ControlButtonProps {
+  icon: React.ReactNode; // Use `icon` instead of `text` for clarity
   onClick: () => void;
-}> = ({ text, onClick }) => (
+  className?: string; // Allow additional classes for flexibility
+}
+
+export const ControlButton: React.FC<ControlButtonProps> = ({
+  icon,
+  onClick,
+  className = "",
+}) => (
   <button
-    className="m-2 px-3 py-1 rounded-sm hover:bg-white hover:bg-opacity-50"
-    onClick={onClick}>
-    {typeof text === "string" ? (
-      text
-    ) : (
-      <span className="p-1" style={{ display: "flex", alignItems: "center" }}>
-        {text}
-      </span>
-    )}
+    className={`px-3 py-2 rounded hover:bg-opacity-50 transition-all ${className}`}
+    onClick={onClick}
+    aria-label="control-button" // Accessibility improvement
+  >
+    <span className="flex items-center justify-center">{icon}</span>
   </button>
 );
