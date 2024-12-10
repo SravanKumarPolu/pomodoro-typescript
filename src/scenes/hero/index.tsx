@@ -21,8 +21,8 @@ const Hero: React.FC<Props> = ({ selectedPage, setSelectedPage }: Props) => {
   );
 
   const timers = [
-    { label: "Pomodoro", value: SelectedPage.Pomodoro },
     { label: "Short Break", value: SelectedPage.ShortBreak },
+    { label: "Pomodoro", value: SelectedPage.Pomodoro },
     { label: "Long Break", value: SelectedPage.LongBreak },
   ];
 

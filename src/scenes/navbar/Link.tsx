@@ -54,7 +54,7 @@ const Link = ({
     <a
       id={`${src || lowerCasePage}-link`}
       className={`flex items-center xl:text-xl ${
-        selectedPage === (src || lowerCasePage) ? "text-white" : "text-gray-400"
+        selectedPage === (src || lowerCasePage) ? "text-white" : " text-white"
       } transition duration-500 px-[.5px] ${className}`}
       href={`#${src || lowerCasePage}`}
       onClick={handleClick}>
